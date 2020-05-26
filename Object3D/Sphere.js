@@ -55,18 +55,10 @@ Sphere.prototype.initBuffers = function() {
           this.position_buffer.push(x);
           this.position_buffer.push(y);
           this.position_buffer.push(z);
-          
-          this.texture_coord_buffer.push(u);
-          this.texture_coord_buffer.push(v);
 
           var aux = [x, y, z];
           vec3.normalize(aux, aux);
           this.normal_buffer.pushVec3(aux);
-
-          var tangent = [z, y, -x];
-          vec3.normalize(tangent, tangent);
-          this.tangent_buffer.pushVec3(tangent);
-
       }
   }
 }
