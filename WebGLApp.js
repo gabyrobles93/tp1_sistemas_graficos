@@ -7,12 +7,6 @@ var viewMatrix = mat4.create();
 var projMatrix = mat4.create();
 var normalMatrix = mat3.create();
 
-var rotate_angle = -1.57078;
-
-// Posición inicial para la camara orbital:
-mouse.pitch = mouse.factorAngular/8;
-mouse.yaw = -mouse.factorAngular/4;
-
 var sphere = null;
 var sphere2 = null;
 
@@ -22,18 +16,11 @@ function setViewProjectionMatrix() {
 }
 
 function setupSceneCamera() {
-    var m_rot = mat4.create();
     var m_trans = mat4.create();
 
-    mat4.identity(m_rot);
     mat4.identity(m_trans);
 
-    mat4.rotate(m_rot, m_rot, mouse.pitch, [1, 0, 0]);         
-    mat4.rotate(m_rot, m_rot, mouse.yaw, [0, 1, 0]);    
-    mat4.translate(m_trans, m_trans, [0, 0, mouse.zoom]);  
-
-    mat4.translate(m_trans, m_trans, [0, -10, -10]);
-    mat4.multiply(m_trans, m_rot, viewMatrix);
+    mat4.translate(viewMatrix, m_trans, [0, 0, 0]);
 
     setViewProjectionMatrix();
 }
@@ -80,7 +67,9 @@ function webGLStart() {
     initShaders();
     initWorldObjects();
 
-    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    // Pone en negro el fondo del canvas
+    // gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    
     gl.enable(gl.DEPTH_TEST);
 
     tick();
