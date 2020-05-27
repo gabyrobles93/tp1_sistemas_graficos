@@ -14,6 +14,7 @@ mouse.pitch = mouse.factorAngular/8;
 mouse.yaw = -mouse.factorAngular/4;
 
 var sphere = null;
+var sphere2 = null;
 
 function setViewProjectionMatrix() {
     gl.uniformMatrix4fv(shaderProgram.projMatrixUniform, false, projMatrix);
@@ -51,22 +52,16 @@ function drawScene(){
     // Definimos la ubicación de la camara
     setupSceneCamera();	
 
-/*
-    gl.bindBuffer(gl.ARRAY_BUFFER, trianglesVerticeBuffer);
-    gl.vertexAttribPointer(vertexPositionAttribute, 3, gl.FLOAT, false, 0, 0);
-
-    gl.bindBuffer(gl.ARRAY_BUFFER, trianglesNormalBuffer);
-    gl.vertexAttribPointer(vertexNormalAttribute, 3, gl.FLOAT, false, 0, 0);
-
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, trianglesIndexBuffer);
-    gl.drawElements( gl.TRIANGLE_STRIP, trianglesIndexBuffer.number_vertex_point, gl.UNSIGNED_SHORT, 0);
-*/
-
     var m1 = mat4.create();
     mat4.identity(m1);;
     mat4.translate(m1, m1, [0, 0, -10]);
 
     sphere.draw(m1);
+
+    mat4.identity(m1);;
+    mat4.translate(m1, m1, [0, -3, -10]);
+
+    sphere2.draw(m1);
 }
 
 function tick() {
@@ -76,6 +71,7 @@ function tick() {
 
 function initWorldObjects() {
     sphere = new Sphere(30, 30, 1);
+    sphere2 = new Sphere(30, 30, 0.5);
 }   
 
 function webGLStart() {
