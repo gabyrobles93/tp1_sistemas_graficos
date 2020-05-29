@@ -1,3 +1,6 @@
+var gl = null;
+var canvas = null;
+
 var mat4 = glMatrix.mat4;
 var mat3 = glMatrix.mat3;
 var vec3 = glMatrix.vec3;
@@ -11,8 +14,7 @@ var sphere = null;
 var sphere2 = null;
 
 function setViewProjectionMatrix() {
-    gl.uniformMatrix4fv(shaderProgram.projMatrixUniform, false, projMatrix);
-    gl.uniformMatrix4fv(shaderProgram.viewMatrixUniform, false, viewMatrix);
+    sphere.setViewProjectionMatrix(projMatrix, viewMatrix);
 }
 
 function setupSceneCamera() {
@@ -20,7 +22,7 @@ function setupSceneCamera() {
 
     mat4.identity(m_trans);
 
-    mat4.translate(viewMatrix, m_trans, [0, 0, 0]);
+    mat4.translate(viewMatrix, m_trans, [0, 0, -10]);
 
     setViewProjectionMatrix();
 }
@@ -41,14 +43,9 @@ function drawScene(){
 
     var m1 = mat4.create();
     mat4.identity(m1);;
-    mat4.translate(m1, m1, [0, 0, -10]);
+    mat4.translate(m1, m1, [0, 0, 0]);
 
     sphere.draw(m1);
-
-    mat4.identity(m1);;
-    mat4.translate(m1, m1, [0, -3, -10]);
-
-    sphere2.draw(m1);
 }
 
 function tick() {
@@ -57,14 +54,24 @@ function tick() {
 }
 
 function initWorldObjects() {
-    sphere = new Sphere(30, 30, 1);
-    sphere2 = new Sphere(30, 30, 0.5);
-}   
+    sphere = new Sphere(1, 50, 50, MaterialsList.DEFAULT);
+}
+
+function initGL(canvas) {
+    try {
+        gl = canvas.getContext("webgl");
+        gl.viewportWidth = canvas.width;
+        gl.viewportHeight = canvas.height;
+    } catch (e) {
+    }
+    if (!gl) {
+        alert("Could not initialise WebGL");
+    }
+}
 
 function webGLStart() {
     var canvas = document.getElementById("canvas");
     initGL(canvas);
-    initShaders();
     initWorldObjects();
 
     // Pone en negro el fondo del canvas
