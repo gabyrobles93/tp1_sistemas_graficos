@@ -4,16 +4,20 @@ var canvas = null;
 var mat4 = glMatrix.mat4;
 var mat3 = glMatrix.mat3;
 var vec3 = glMatrix.vec3;
+var vec4 = glMatrix.vec4;
 
 var viewMatrix = mat4.create();
 var projMatrix = mat4.create();
 
 var sphere = null;
-var sphere2 = null;
+
+var linea = null;
+var circulo = null;
+var cilindro = null;
 
 function setViewProjectionMatrix() {
     sphere.setViewProjectionMatrix(projMatrix, viewMatrix);
-    sphere2.setViewProjectionMatrix(projMatrix, viewMatrix);
+    cilindro.setViewProjectionMatrix(projMatrix, viewMatrix);
 }
 
 function setupSceneCamera() {
@@ -41,15 +45,15 @@ function drawScene(){
     setupSceneCamera();	
 
     var m1 = mat4.create();
-    mat4.identity(m1);;
+    mat4.identity(m1);
     mat4.translate(m1, m1, [0, 0, 0]);
 
     sphere.draw(m1);
 
-    mat4.identity(m1);;
-    mat4.translate(m1, m1, [1, 0, 0]);
+    mat4.identity(m1);
+    mat4.translate(m1, m1, [-1, 0, 0]);
 
-    sphere2.draw(m1);
+    cilindro.draw(m1);
 }
 
 function tick() {
@@ -59,7 +63,11 @@ function tick() {
 
 function initWorldObjects() {
     sphere = new Sphere(1, 50, 50, MaterialsList.DEFAULT);
-    sphere2 = new Sphere(1, 50, 50, MaterialsList.DEFAULT);
+
+    linea = new Line(5, 10);
+    circulo = new Circle(10, 1);
+
+    cilindro = new ExtrudedObject3D(circulo, linea, MaterialsList.DEFAULT);
 }
 
 function initGL(canvas) {
