@@ -1,6 +1,6 @@
 class Sphere extends Object3D {
-    constructor(radius, rows, columns, shaderProgram) {
-        super(rows, columns, shaderProgram);
+    constructor(radius, rows, columns, material) {
+        super(rows, columns, material);
         this.radius = radius;
         super._generateSurface();
     }

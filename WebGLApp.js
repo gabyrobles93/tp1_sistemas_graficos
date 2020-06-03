@@ -5,10 +5,8 @@ var mat4 = glMatrix.mat4;
 var mat3 = glMatrix.mat3;
 var vec3 = glMatrix.vec3;
 
-var modelMatrix = mat4.create();
 var viewMatrix = mat4.create();
 var projMatrix = mat4.create();
-var normalMatrix = mat3.create();
 
 var sphere = null;
 var sphere2 = null;

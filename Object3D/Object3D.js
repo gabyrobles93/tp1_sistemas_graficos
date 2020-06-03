@@ -20,10 +20,6 @@ class Object3D {
     this.material.setModelMatrixUniform(modelMatrix);
     
     var normalMatrix = mat3.create();
-    mat3.fromMat4(normalMatrix, modelMatrix);
-    mat3.invert(normalMatrix, normalMatrix);
-
-    mat3.transpose(normalMatrix, normalMatrix);
     this.material.setNormalMatrixUniform(normalMatrix);
 
     this.material.setVertexPositionAttribute(this.webgl_position_buffer);
