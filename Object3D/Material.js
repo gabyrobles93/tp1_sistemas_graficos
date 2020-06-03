@@ -18,24 +18,34 @@ class Material {
     }
 
     setModelMatrixUniform(modelMatrix) {
+        gl.useProgram(this.shaderProgram);
+
         gl.uniformMatrix4fv(this.shaderProgram.modelMatrixUniform, false, modelMatrix);
     }
 
     setNormalMatrixUniform(normalMatrix) {
+        gl.useProgram(this.shaderProgram);
+
         gl.uniformMatrix3fv(this.shaderProgram.normalMatrixUniform, false, normalMatrix);
     }
 
     setVertexPositionAttribute(webgl_position_buffer) {
+        gl.useProgram(this.shaderProgram);
+
         gl.bindBuffer(gl.ARRAY_BUFFER, webgl_position_buffer);
         gl.vertexAttribPointer(this.shaderProgram.vertexPositionAttribute, webgl_position_buffer.itemSize, gl.FLOAT, false, 0, 0);    
     }
 
     setVertexNormalAttribute(webgl_normal_buffer) {
+        gl.useProgram(this.shaderProgram);
+
         gl.bindBuffer(gl.ARRAY_BUFFER, webgl_normal_buffer);
         gl.vertexAttribPointer(this.shaderProgram.vertexNormalAttribute, webgl_normal_buffer.itemSize, gl.FLOAT, false, 0, 0);
     }
 
     setViewProjectionMatrix(projMatrix, viewMatrix) {
+        gl.useProgram(this.shaderProgram);
+        
         gl.uniformMatrix4fv(this.shaderProgram.projMatrixUniform, false, projMatrix);
         gl.uniformMatrix4fv(this.shaderProgram.viewMatrixUniform, false, viewMatrix);
     }
