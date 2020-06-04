@@ -13,7 +13,7 @@ class Circle {
     getNormal(u) {
         var x = this.radius * Math.cos(2*Math.PI * u);
         var y = this.radius * Math.sin(2*Math.PI * u);
-        return [x, y, 0];
+        return [x/(Math.sqrt(x*x+y*y)), y/(Math.sqrt(x*x+y*y)), 0];
     }
 
     getTangent(u) {

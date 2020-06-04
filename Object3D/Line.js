@@ -9,7 +9,7 @@ class Line {
     }
 
     getNormal(u) {
-        return [0, 1/Math.sqrt(2), 1/Math.sqrt(2)];
+        return [0, 1, 0];
     }
 
     getTangent(u) {
@@ -17,6 +17,6 @@ class Line {
     }
 
     getBinormal(u) {
-        return [0, 0, 0];
+        return [0, 0, 1];
     }
 }

@@ -58,10 +58,15 @@ class ExtrudedObject3D {
       var path_binormal = this.path.getBinormal(v);
       var path_normal = this.path.getNormal(v);
 
-      var level_matrix = mat4.fromValues(path_normal[0], path_binormal[0], path_tangent[0], path_pos[0],
-                                          path_normal[1], path_binormal[1], path_tangent[1], path_pos[1],
-                                          path_normal[2], path_binormal[2], path_tangent[2], path_pos[2],
-                                          0, 0, 0, 1);
+      var level_matrix = mat4.fromValues(
+        ...path_normal, 0,
+        ...path_binormal, 0,
+        ...path_tangent, 0,
+        ...path_pos, 1
+      )
+
+      console.log("Matriz de nivel " + level);
+      console.log(level_matrix);
 
       for (var vertex=0; vertex <= this.vertices; vertex++) {
         var u = vertex / this.vertices;
@@ -69,36 +74,30 @@ class ExtrudedObject3D {
         var vertex_pos = this.shape.getPosition(u);
         var vertex_normal = this.shape.getNormal(u);
 
+        console.log("Vertex viejo " + vertex);
+        console.log(vertex_pos);
+
         var new_vertex_pos = vec4.create();
         var vec4_vertex_pos = vec4.fromValues(vertex_pos[0], vertex_pos[1], vertex_pos[2], 1);
-        
-        new_vertex_pos[0] = level_matrix[0] * vec4_vertex_pos[0] + level_matrix[1] * vec4_vertex_pos[1]
-                            + level_matrix[2] * vec4_vertex_pos[2] + level_matrix[3] * vec4_vertex_pos[3];
-                          
-        new_vertex_pos[1] = level_matrix[4] * vec4_vertex_pos[0] + level_matrix[5] * vec4_vertex_pos[1]
-                            + level_matrix[6] * vec4_vertex_pos[2] + level_matrix[7] * vec4_vertex_pos[3];
 
-        new_vertex_pos[2] = level_matrix[8] * vec4_vertex_pos[0] + level_matrix[9] * vec4_vertex_pos[1]
-                            + level_matrix[10] * vec4_vertex_pos[2] + level_matrix[11] * vec4_vertex_pos[3];
+        vec4.transformMat4(new_vertex_pos, vec4_vertex_pos, level_matrix);
+
+        console.log("Vertex nuevo " + vertex);
+        console.log(new_vertex_pos);
 
         this.positionBuffer.push(new_vertex_pos[0]);
         this.positionBuffer.push(new_vertex_pos[1]);
         this.positionBuffer.push(new_vertex_pos[2]);
 
-        var normal_matrix = mat3.fromValues(path_normal[0], path_binormal[0], path_tangent[0],
-                                            path_normal[1], path_binormal[1], path_tangent[1],
-                                            path_normal[2], path_binormal[2], path_tangent[2])
+        var normal_matrix = mat3.fromValues(
+          path_normal[0], path_normal[1], path_normal[2],
+          path_binormal[0], path_binormal[1], path_binormal[2],
+          path_tangent[0], path_tangent[1], path_tangent[2]
+        )
 
         var new_vertex_normal = vec3.create();
 
-        new_vertex_normal[0] = normal_matrix[0] * vertex_normal[0] + normal_matrix[1] * vertex_normal[1]
-                              + normal_matrix[2] * vertex_normal[2];
-                          
-        new_vertex_normal[1] = normal_matrix[3] * vertex_normal[0] + normal_matrix[4] * vertex_normal[1]
-                              + normal_matrix[5] * vertex_normal[1];
-
-        new_vertex_normal[2] = normal_matrix[6] * vertex_normal[0] + normal_matrix[7] * vertex_normal[1]
-                              + normal_matrix[8] * vertex_normal[1];
+        vec3.transformMat3(new_vertex_normal, vertex_normal, normal_matrix);
 
         this.normalBuffer.push(new_vertex_normal[0]);
         this.normalBuffer.push(new_vertex_normal[1]);

@@ -14,6 +14,8 @@ var sphere = null;
 var linea = null;
 var circulo = null;
 var cilindro = null;
+var rectangulo = null;
+var triangulo = null;
 
 function setViewProjectionMatrix() {
     sphere.setViewProjectionMatrix(projMatrix, viewMatrix);
@@ -25,7 +27,7 @@ function setupSceneCamera() {
 
     mat4.identity(m_trans);
 
-    mat4.translate(viewMatrix, m_trans, [0, 0, -10]);
+    mat4.translate(viewMatrix, m_trans, [0, 0, -15]);
 
     setViewProjectionMatrix();
 }
@@ -46,12 +48,13 @@ function drawScene(){
 
     var m1 = mat4.create();
     mat4.identity(m1);
-    mat4.translate(m1, m1, [0, 0, 0]);
+    mat4.translate(m1, m1, [-2, 0, 0]);
 
     sphere.draw(m1);
 
     mat4.identity(m1);
-    mat4.translate(m1, m1, [-1, 0, 0]);
+    mat4.translate(m1, m1, [0, 0, 0]);
+    mat4.rotate(m1, m1, Math.PI/4, [0, -1, 0]);
 
     cilindro.draw(m1);
 }
@@ -64,8 +67,10 @@ function tick() {
 function initWorldObjects() {
     sphere = new Sphere(1, 50, 50, MaterialsList.DEFAULT);
 
-    linea = new Line(5, 10);
+    linea = new Line(3, 5);
     circulo = new Circle(10, 1);
+    rectangulo = new Rectangle(1, 1);
+    triangulo = new Triangle(1);
 
     cilindro = new ExtrudedObject3D(circulo, linea, MaterialsList.DEFAULT);
 }
