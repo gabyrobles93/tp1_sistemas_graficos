@@ -68,7 +68,7 @@ function initWorldObjects() {
     sphere = new Sphere(1, 50, 50, MaterialsList.DEFAULT);
 
     linea = new Line(3, 5);
-    circulo = new Circle(10, 1);
+    circulo = new Circle(20, 1);
     rectangulo = new Rectangle(1, 1);
     triangulo = new Triangle(1);
 
