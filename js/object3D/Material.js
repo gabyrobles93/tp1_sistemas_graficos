@@ -4,7 +4,6 @@ var MaterialsList = {
 
 class Material {
     constructor(type) {
-        console.log(type);
         this.vertex_program_name = 'vertex_shader_' + type + '.glsl';
         this.fragment_program_name = 'fragment_shader_' + type + '.glsl';
 

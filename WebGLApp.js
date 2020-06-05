@@ -72,7 +72,7 @@ function initWorldObjects() {
     rectangulo = new Rectangle(1, 1);
     triangulo = new Triangle(1);
 
-    cilindro = new ExtrudedObject3D(circulo, linea, MaterialsList.DEFAULT);
+    cilindro = new Extrusion(circulo, linea, MaterialsList.DEFAULT);
 }
 
 function initGL(canvas) {
