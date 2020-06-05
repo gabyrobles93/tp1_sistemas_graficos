@@ -10,16 +10,13 @@ var viewMatrix = mat4.create();
 var projMatrix = mat4.create();
 
 var sphere = null;
-
-var linea = null;
-var circulo = null;
 var cilindro = null;
-var rectangulo = null;
-var triangulo = null;
+var columna = null;
 
 function setViewProjectionMatrix() {
     sphere.setViewProjectionMatrix(projMatrix, viewMatrix);
     cilindro.setViewProjectionMatrix(projMatrix, viewMatrix);
+    columna.setViewProjectionMatrix(projMatrix, viewMatrix);
 }
 
 function setupSceneCamera() {
@@ -57,6 +54,12 @@ function drawScene(){
     mat4.rotate(m1, m1, Math.PI/4, [0, -1, 0]);
 
     cilindro.draw(m1);
+
+    mat4.identity(m1);
+    mat4.translate(m1, m1, [-6, 0, 0]);
+    mat4.rotate(m1, m1, Math.PI/2, [0, 1, 0]);
+
+    columna.draw(m1);
 }
 
 function tick() {
@@ -66,13 +69,8 @@ function tick() {
 
 function initWorldObjects() {
     sphere = new Sphere(1, 50, 50, MaterialsList.DEFAULT);
-
-    linea = new Line(3, 5);
-    circulo = new Circle(20, 1);
-    rectangulo = new Rectangle(1, 1);
-    triangulo = new Triangle(1);
-
-    cilindro = new Extrusion(circulo, linea, MaterialsList.DEFAULT);
+    cilindro = new Cilinder(1, 5, MaterialsList.DEFAULT);
+    columna = new Cube(1, 1, 5, MaterialsList.DEFAULT);
 }
 
 function initGL(canvas) {

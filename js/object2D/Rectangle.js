@@ -8,6 +8,12 @@ class Rectangle {
                 [-size_1, -size_2, 0],
                 [size_1, -size_2, 0],
                 [size_1, size_2, 0]];
+
+        this.normals = [[1, 0, 1], 
+                [0, 0, -1], 
+                [0, 0, -1],
+                [0, 0, 1],
+                [0, 0, 1]];
     }
 
     getPosition(u) {
@@ -15,7 +21,7 @@ class Rectangle {
     }
 
     getNormal(u) {
-        return [1, 0, 1];
+        return this.normals[u*4];
     }
 
     getTangent(u) {
