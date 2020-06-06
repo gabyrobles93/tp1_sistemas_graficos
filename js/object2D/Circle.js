@@ -27,4 +27,12 @@ class Circle {
         var y = 2 * Math.PI * this.radius * this.radius * Math.sin(2 * Math.PI * u) * Math.cos(2 * Math.PI *  u);
         return [x, y, 0];
     }
+
+    getCenterPosition(u) {
+        return [0, 0, 0];
+    }
+
+    getCenterNormal(u) {
+        return [1, 0, 0];
+    }
 }

@@ -69,8 +69,8 @@ function tick() {
 
 function initWorldObjects() {
     sphere = new Sphere(1, 50, 50, MaterialsList.DEFAULT);
-    cilindro = new Cilinder(1, 5, MaterialsList.DEFAULT);
-    columna = new Cube(1, 1, 5, MaterialsList.DEFAULT);
+    cilindro = new Cilinder(1, 5, true, MaterialsList.DEFAULT);
+    columna = new Cube(1, 1, 5, true, MaterialsList.DEFAULT);
 }
 
 function initGL(canvas) {

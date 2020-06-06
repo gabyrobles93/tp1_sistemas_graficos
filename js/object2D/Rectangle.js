@@ -31,4 +31,12 @@ class Rectangle {
     getBinormal(u) {
         return [0, 0, 0];
     }
+
+    getCenterPosition(u) {
+        return [0, 0, 0];
+    }
+
+    getCenterNormal(u) {
+        return [1, 0, 0];
+    }
 }
