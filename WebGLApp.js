@@ -6,6 +6,8 @@ var mat3 = glMatrix.mat3;
 var vec3 = glMatrix.vec3;
 var vec4 = glMatrix.vec4;
 
+var orbital_camera = null;
+
 var viewMatrix = mat4.create();
 var projMatrix = mat4.create();
 
@@ -24,7 +26,9 @@ function setupSceneCamera() {
 
     mat4.identity(m_trans);
 
-    mat4.translate(viewMatrix, m_trans, [0, 0, -15]);
+    //mat4.translate(viewMatrix, m_trans, [0, 0, -15]);
+
+    viewMatrix = orbital_camera.getViewMatrix();
 
     setViewProjectionMatrix();
 }
@@ -73,6 +77,10 @@ function initWorldObjects() {
     columna = new Cube(1, 1, 5, true, MaterialsList.DEFAULT);
 }
 
+function initWorldCameras(canvas) {
+    orbital_camera = new OrbitalCamera(canvas);
+}
+
 function initGL(canvas) {
     try {
         gl = canvas.getContext("webgl");
@@ -88,6 +96,7 @@ function initGL(canvas) {
 function webGLStart() {
     var canvas = document.getElementById("canvas");
     initGL(canvas);
+    initWorldCameras(canvas);
     initWorldObjects();
 
     // Pone en negro el fondo del canvas
