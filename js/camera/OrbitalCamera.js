@@ -33,14 +33,12 @@ class OrbitalCamera {
         window.onkeydown = (event) => {
             if (event.keyCode == 187) {
                 // zoom in
-                console.log("Zoom in event");
                 this.radius += this.speed_factor * 100;
                 this._updateCamera();
             }
 
             if (event.keyCode == 189) {
                 // zoom out
-                console.log("Zoom out event");
                 this.radius -= this.speed_factor * 100;
                 this._updateCamera();
             }
@@ -49,17 +47,13 @@ class OrbitalCamera {
 
         canvas.onmousedown = (event) => {
             this.is_mouse_down = true;
-            console.log("Mouse Down Event.");
         }
 
         canvas.onmouseup = (event) => {
             this.is_mouse_down = false;
-            console.log("Mouse Move Up Event.");
         }
 
         canvas.onmousemove = (event) => {
-            console.log("Mouse Move Event.");
-
             if (this.is_mouse_down) {
                 var delta_X=0;
                 var delta_Y=0;
@@ -72,9 +66,6 @@ class OrbitalCamera {
 
                 this.alfa = this.alfa + delta_X * this.speed_factor;
                 this.beta = this.beta + delta_Y * this.speed_factor;
-
-                console.log("alfa: " + this.alfa);
-                console.log("beta: " + this.beta);
 
                 if (this.beta < 0) this.beta = 0.01;
                 if (this.beta > Math.PI) this.beta = Math.PI;

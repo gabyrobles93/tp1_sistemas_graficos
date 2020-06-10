@@ -14,11 +14,10 @@ var projMatrix = mat4.create();
 var sphere = null;
 var cilindro = null;
 var columna = null;
+var catapult = null;
 
 function setViewProjectionMatrix() {
-    sphere.setViewProjectionMatrix(projMatrix, viewMatrix);
-    cilindro.setViewProjectionMatrix(projMatrix, viewMatrix);
-    columna.setViewProjectionMatrix(projMatrix, viewMatrix);
+    catapult.setViewProjectionMatrix(projMatrix, viewMatrix);
 }
 
 function setupSceneCamera() {
@@ -49,21 +48,8 @@ function drawScene(){
 
     var m1 = mat4.create();
     mat4.identity(m1);
-    mat4.translate(m1, m1, [-2, 0, 0]);
 
-    sphere.draw(m1);
-
-    mat4.identity(m1);
-    mat4.translate(m1, m1, [0, 0, 0]);
-    mat4.rotate(m1, m1, Math.PI/4, [0, -1, 0]);
-
-    cilindro.draw(m1);
-
-    mat4.identity(m1);
-    mat4.translate(m1, m1, [-6, 0, 0]);
-    mat4.rotate(m1, m1, Math.PI/2, [0, 1, 0]);
-
-    columna.draw(m1);
+    catapult.draw(m1);
 }
 
 function tick() {
@@ -72,9 +58,7 @@ function tick() {
 }
 
 function initWorldObjects() {
-    sphere = new Sphere(1, 50, 50, MaterialsList.DEFAULT);
-    cilindro = new Cilinder(1, 5, true, MaterialsList.DEFAULT);
-    columna = new Cube(1, 1, 5, true, MaterialsList.DEFAULT);
+    catapult = new Catapult();
 }
 
 function initWorldCameras(canvas) {
