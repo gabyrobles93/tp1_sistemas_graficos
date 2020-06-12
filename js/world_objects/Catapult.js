@@ -90,7 +90,9 @@ class Catapult {
 
         var m1 = mat4.clone(modelMatrix);
         mat4.rotate(m1, m1, -Math.PI/2, [0, 1, 0]);
-        mat4.translate(m1, m1, [-10, 4.6, -(this.CATAPULT_WHEEL_SEPARATION_2 / 2)]);
+        mat4.translate(m1, m1, [-7, 4.6, -(this.CATAPULT_WHEEL_SEPARATION_2 / 2)]);
+            // Rotación del brazo en su eje de catapulta
+        mat4.rotate(m1, m1, Math.PI/7, [0, 0, 1]);
         this.catapult_arm.draw(m1);
     }
 

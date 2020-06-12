@@ -6,11 +6,12 @@ class CatapultArm {
 
     draw(modelMatrix) {
         var m1 = mat4.clone(modelMatrix);
+        mat4.translate(m1, m1, [-2, 0, 0]);
         this.arm.draw(m1);
 
         var m1 = mat4.clone(modelMatrix);
         mat4.rotate(m1, m1, Math.PI/2, [0, 0, 1]);
-        mat4.translate(m1, m1, [-0.3, -(13 + 1.2), 0]);
+        mat4.translate(m1, m1, [-0.3, -(11 + 1.2), 0]);
         this.bucket.draw(m1);
     }
 
