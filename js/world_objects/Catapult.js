@@ -61,7 +61,7 @@ class Catapult {
         mat4.translate(m1, m1, [-7, 4.6, -(this.CATAPULT_WHEEL_SEPARATION_2 / 2)]);
             // Rotación del brazo en su eje de catapulta
         mat4.rotate(m1, m1,  ARM_ANGLE * Math.PI/180, [0, 0, 1]);
-        this.catapult_arm.draw(m1, rope_lookat);
+        this.catapult_arm.draw(m1, rope_lookat, ARM_ANGLE);
 
         // DIBUJO MANIVELA DE EJE DE SOGA 1
         var m1 = mat4.clone(modelMatrix);
