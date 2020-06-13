@@ -7,19 +7,23 @@ class CatapultArm {
     }
 
     draw(modelMatrix, rope_lookat) {
+        // DIBUJO BRAZO PRINCIPAL
         var m1 = mat4.clone(modelMatrix);
         mat4.translate(m1, m1, [-2, 0, 0]);
         this.arm.draw(m1);
 
+        // DIBUJO PORTA PROYECTIL
         var m1 = mat4.clone(modelMatrix);
         mat4.rotate(m1, m1, Math.PI/2, [0, 0, 1]);
         mat4.translate(m1, m1, [-0.3, -(11 + 1.2), 0]);
         this.bucket.draw(m1);
 
+        // DIBUJO FINAL DE SOGA
         var m1 = mat4.clone(modelMatrix);
         mat4.translate(m1, m1, [7.3, 0, 0]);
         this.rope_end.draw(m1);
 
+        // DIBUJO SOGA
         var m1 = mat4.clone(modelMatrix);
         mat4.translate(m1, m1, [7.55, 0, 0]);
 
@@ -27,14 +31,9 @@ class CatapultArm {
         var center = vec3.fromValues(rope_lookat[12], rope_lookat[13], rope_lookat[14]);
         var distance = vec3.distance(eye, center);
 
-        console.log(distance);
-
         mat4.targetTo(m1, eye, center, [1, 0, 0]);
         mat4.rotate(m1, m1, Math.PI/2, [0, 1, 0]);
-
-        console.log(m1);
         mat4.scale(m1, m1, [distance, 1, 1]);
-        console.log(m1);
 
         this.rope.draw(m1);      
     }
