@@ -4,6 +4,7 @@ var MaterialsList = {
     DARK_BROWN: 'dark_brown',
     GREY: 'grey',
     WHITE: 'white',
+    BEIGE: 'beige',
 };
 
 class Material {
