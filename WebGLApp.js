@@ -11,13 +11,12 @@ var orbital_camera = null;
 var viewMatrix = mat4.create();
 var projMatrix = mat4.create();
 
-var sphere = null;
-var cilindro = null;
-var columna = null;
+var castle = null;
 var catapult = null;
 
 function setViewProjectionMatrix() {
     catapult.setViewProjectionMatrix(projMatrix, viewMatrix);
+    castle.setViewProjectionMatrix(projMatrix, viewMatrix);
 }
 
 function setupSceneCamera() {
@@ -48,7 +47,12 @@ function drawScene(){
 
     var m1 = mat4.create();
     mat4.identity(m1);
-    catapult.draw(m1);
+    //catapult.draw(m1);
+
+    var m1 = mat4.create();
+    mat4.identity(m1);
+    mat4.translate(m1, m1, [0, 0, 0]);
+    castle.draw(m1);
 }
 
 function tick() {
@@ -58,6 +62,7 @@ function tick() {
 
 function initWorldObjects() {
     catapult = new Catapult();
+    castle = new Castle(12, 5, 1);
 }
 
 function initWorldCameras(canvas) {
