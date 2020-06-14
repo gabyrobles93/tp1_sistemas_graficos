@@ -48,7 +48,6 @@ function drawScene(){
 
     var m1 = mat4.create();
     mat4.identity(m1);
-
     catapult.draw(m1);
 }
 
