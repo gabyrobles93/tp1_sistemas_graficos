@@ -1,10 +1,14 @@
 var MaterialsList = {
     DEFAULT: 'default',
+    LIGHT_BROWN: 'light_brown',
+    DARK_BROWN: 'dark_brown',
+    GREY: 'grey',
+    WHITE: 'white',
 };
 
 class Material {
     constructor(type) {
-        this.vertex_program_name = 'vertex_shader_' + type + '.glsl';
+        this.vertex_program_name = 'vertex_shader_' + 'default' + '.glsl';
         this.fragment_program_name = 'fragment_shader_' + type + '.glsl';
 
         this.shaderProgram = utils.addShaderProg(gl, this.vertex_program_name, this.fragment_program_name);

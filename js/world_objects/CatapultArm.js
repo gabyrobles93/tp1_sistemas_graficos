@@ -1,9 +1,9 @@
 class CatapultArm {
     constructor() {
-        this.arm = new Cube(0.3, 0.3, 13, true, MaterialsList.DEFAULT);
-        this.bucket = new Cube(1.2, 1.2, 0.6, true, MaterialsList.DEFAULT);
-        this.rope_end = new Cilinder(0.6, 0.5, true, MaterialsList.DEFAULT);
-        this.rope = new Cilinder(0.05, 1, true, MaterialsList.DEFAULT);
+        this.arm = new Cube(0.3, 0.3, 13, true, MaterialsList.LIGHT_BROWN);
+        this.bucket = new Cube(1.2, 1.2, 0.6, true, MaterialsList.LIGHT_BROWN);
+        this.rope_end = new Cilinder(0.6, 0.5, true, MaterialsList.WHITE);
+        this.rope = new Cilinder(0.05, 1, true, MaterialsList.WHITE);
         this.counterweight = new CatapultCounterweight();
     }
 

@@ -5,8 +5,8 @@ class CatapultWheel {
         this.CATAPULT_WHEEL_RADIUS = 1;
         this.CATAPULT_WHEEL_HUB_RADIUS = 1/6;
 
-        this.wheel = new Cilinder(this.CATAPULT_WHEEL_RADIUS, this.CATAPULT_WHEEL_WIDTH, true, MaterialsList.DEFAULT)
-        this.wheel_hub = new Cilinder (this.CATAPULT_WHEEL_HUB_RADIUS, this.CATAPULT_WHEEL_HUB_WIDTH, true, MaterialsList.DEFAULT)
+        this.wheel = new Cilinder(this.CATAPULT_WHEEL_RADIUS, this.CATAPULT_WHEEL_WIDTH, true, MaterialsList.LIGHT_BROWN)
+        this.wheel_hub = new Cilinder (this.CATAPULT_WHEEL_HUB_RADIUS, this.CATAPULT_WHEEL_HUB_WIDTH, true, MaterialsList.DARK_BROWN)
     }
 
     draw(modelMatrix) {

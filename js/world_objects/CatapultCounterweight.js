@@ -2,10 +2,8 @@ class CatapultCounterweight {
     constructor() {
         this.counterweight_column_1 = new CatapultColumn();
         this.counterweight_column_2 = new CatapultColumn();
-        this.counterweight_hub = new Cilinder(0.15, 1.1, true, MaterialsList.DEFAULT);
-        this.counterweight = new Cube(0.7, 0.7, 1.4, true, MaterialsList.DEFAULT);
-
-        this.referencia = new Cilinder(0.01, 0.8, true, MaterialsList.DEFAULT);
+        this.counterweight_hub = new Cilinder(0.15, 1.1, true, MaterialsList.DARK_BROWN);
+        this.counterweight = new Cube(0.7, 0.7, 1.4, true, MaterialsList.GREY);
     }
 
     draw(modelMatrix, arm_angle) {
@@ -50,8 +48,6 @@ class CatapultCounterweight {
         this.counterweight_column_2.setViewProjectionMatrix(projMatrix, viewMatrix);
         this.counterweight_hub.setViewProjectionMatrix(projMatrix, viewMatrix);
         this.counterweight.setViewProjectionMatrix(projMatrix, viewMatrix);
-
-        this.referencia.setViewProjectionMatrix(projMatrix, viewMatrix);
     }
 
 }
