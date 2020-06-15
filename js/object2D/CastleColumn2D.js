@@ -1,6 +1,6 @@
 class CastleColumn2D {
     constructor() {
-        this.arc = new BezierCubicCurve([0, 0, 0], [1, 0, 0], [2, 1, 0], [3, 1, 0]);
+        this.arc = new BezierCubicCurve([1, 0, 0], [1, 1.5, 0], [0, 1.5, 0], [0, 3, 0]);
         this.arc_vertices = 15;
         this.vertices = (this.arc_vertices + 1) + 4;
         this.points = [];
@@ -29,7 +29,7 @@ class CastleColumn2D {
     }
 
     getCenterPosition(u) {
-        return [0, 1, 0];
+        return [1, 0, 0];
     }
 
     getCenterNormal(u) {
@@ -43,11 +43,19 @@ class CastleColumn2D {
             this.points.push(this.arc.getPosition(u));
         }
 
-        this.points.push([this.COLUMN_NARROW_PART_SIZE, 1, 0]);
-        this.points.push([this.COLUMN_NARROW_PART_SIZE, 1.5, 0]);
-        this.points.push([0-this.COLUMN_WIDE_PART_SIZE, 1.5, 0]);
-        this.points.push([0-this.COLUMN_WIDE_PART_SIZE, 0, 0]);
-        this.points.push([0, 0, 0]);
+        //this.points.push([this.COLUMN_NARROW_PART_SIZE, 1, 0]);
+        this.points.push([0, this.COLUMN_NARROW_PART_SIZE, 0]);
+
+        //this.points.push([this.COLUMN_NARROW_PART_SIZE, 1.5, 0]);
+        this.points.push([-0.5, this.COLUMN_NARROW_PART_SIZE, 0]);
+
+        //this.points.push([0-this.COLUMN_WIDE_PART_SIZE, 1.5, 0]);
+        this.points.push([-0.5, 0-this.COLUMN_WIDE_PART_SIZE, 0]);
+
+        //this.points.push([0-this.COLUMN_WIDE_PART_SIZE, 0, 0]);
+        this.points.push([1, 0-this.COLUMN_WIDE_PART_SIZE, 0]);
+
+        this.points.push([1, 0, 0]);
 
         console.log(this.points);
     }
