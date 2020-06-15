@@ -6,7 +6,7 @@ class OrbitalCamera {
         this.is_mouse_down = false;
         this.pressedKeys = new Set();
 
-        this.radius = -60;
+        this.radius = -80;
         this.alfa = -Math.PI/4;
         this.beta = 0.6 * Math.PI;
 

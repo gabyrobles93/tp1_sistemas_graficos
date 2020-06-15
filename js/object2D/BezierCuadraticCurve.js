@@ -33,7 +33,7 @@ class BezierCuadraticCurve {
     }
 
     getCenterPosition(u) {
-        return [this.curvature_radius, 0, 0];
+        return [this.end_control_point[0] - this.start_control_point[0], 0, 0];
     }
 
     getCenterNormal(u) {
