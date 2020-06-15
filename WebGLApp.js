@@ -47,7 +47,8 @@ function drawScene(){
 
     var m1 = mat4.create();
     mat4.identity(m1);
-    //catapult.draw(m1);
+    mat4.translate(m1, m1, [0, 0, 30]);
+    catapult.draw(m1);
 
     var m1 = mat4.create();
     mat4.identity(m1);

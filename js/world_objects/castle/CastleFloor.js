@@ -62,7 +62,7 @@ class CastleFloor {
             } else {
                 windows_position = this.window_points_size_1[i] - this.WINDOW_SIZE/2;
             }
-            mat4.translate(m1, m1, [-(this.size_2 + 0.3), windows_position, 0.38 * this.height]);
+            mat4.translate(m1, m1, [-(this.size_2 + 0.3), windows_position, 0.6 * this.height]);
             this.windows_size_1_front[i].draw(m1);
         }
 
@@ -75,7 +75,7 @@ class CastleFloor {
             } else {
                 windows_position = this.window_points_size_1[i] - this.WINDOW_SIZE/2;
             }
-            mat4.translate(m1, m1, [(this.size_2 + 0.3), windows_position, 0.38 * this.height]);
+            mat4.translate(m1, m1, [(this.size_2 + 0.3), windows_position, 0.6 * this.height]);
             this.windows_size_1_back[i].draw(m1);
         }
     }
@@ -91,7 +91,7 @@ class CastleFloor {
             } else {
                 windows_position = this.window_points_size_2[i] - this.WINDOW_SIZE/2;
             }
-            mat4.translate(m1, m1, [this.size_1, windows_position, 0.38 * this.height]);
+            mat4.translate(m1, m1, [this.size_1, windows_position, 0.6 * this.height]);
             this.windows_size_2_front[i].draw(m1);
         }
 
@@ -105,7 +105,7 @@ class CastleFloor {
             } else {
                 windows_position = this.window_points_size_2[i] - this.WINDOW_SIZE/2;
             }
-            mat4.translate(m1, m1, [-(this.size_1 + 0.3), windows_position, 0.38 * this.height]);
+            mat4.translate(m1, m1, [-(this.size_1 + 0.3), windows_position, 0.6 * this.height]);
             this.windows_size_2_back[i].draw(m1);
         }
     }
