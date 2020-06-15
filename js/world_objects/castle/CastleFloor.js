@@ -12,21 +12,10 @@ class CastleFloor {
         this.BORDER_MARGIN = 3;
         this.MIN_WINDOW_BETWEEN_SIZE = 2;
         this.WINDOW_SIZE = 1.8;
-        
-        var step = this.size_1 * 2;
-        var prev_step = 0;
+
         this.window_points_size_1 = [];
-        while (step/2 >= this.BORDER_MARGIN) {
-            step = step/2;
-            this.window_points_size_1.push(step);
-            if (step + prev_step < this.size_1) {
-                this.window_points_size_1.push(step + prev_step);
-            }
-            prev_step = step;
-        }
-
-        console.log(this.window_points_size_1);
-
+        
+        this._calcWindowSize1Points();
         this._createWindows(this.window_points_size_1);
     }
 
@@ -49,7 +38,13 @@ class CastleFloor {
         for (var i = 0; i < this.windows_size_1.length; i++) {
             var m1 = mat4.clone(modelMatrix);
             mat4.rotate(m1, m1, Math.PI/2, [0, 1, 0]);
-            mat4.translate(m1, m1, [-(this.size_2 + 0.3), this.size_1 - this.window_points_size_1[i] - this.WINDOW_SIZE/2, 0.38 * this.height]);
+            var windows_position = 0;
+            if (this.window_points_size_1[i] > 0) {
+                windows_position = this.size_1 - this.window_points_size_1[i] - this.WINDOW_SIZE/2;
+            } else {
+                windows_position = this.window_points_size_1[i] - this.WINDOW_SIZE/2;
+            }
+            mat4.translate(m1, m1, [-(this.size_2 + 0.3), windows_position, 0.38 * this.height]);
             this.windows_size_1[i].draw(m1);
         }
     }
@@ -63,7 +58,29 @@ class CastleFloor {
 
     // PRIVATE
 
+    _calcWindowSize1Points() {
+        var step = this.size_1 * 2;
+        var prev_step = 0;
+        while (step/2 >= this.BORDER_MARGIN) {
+            step = step/2;
+            this.window_points_size_1.push(step);
+            if (step + prev_step < this.size_1) {
+                this.window_points_size_1.push(step + prev_step);
+            }
+            prev_step = step;
+        }
+    }
+
     _createWindows(window_points_size_1) {
-        window_points_size_1.forEach(point => this.windows_size_1.push(new CastleWindow()));
+        var simetric_points = [];
+        for (var i = 0; i < window_points_size_1.length; i++) {
+            this.windows_size_1.push(new CastleWindow());
+            if (i != 0) {
+                this.windows_size_1.push(new CastleWindow());
+                simetric_points.push(window_points_size_1[i] * -1);
+            }
+        }
+        this.window_points_size_1 = this.window_points_size_1.concat(simetric_points);
+        console.log(this.window_points_size_1);
     }
 }
