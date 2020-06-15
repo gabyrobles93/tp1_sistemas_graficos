@@ -50,8 +50,5 @@ class CastleWindow2D {
         this.points.push([1.5, -2.5, 0]);
         this.points.push([0, -2.5, 0]);
         this.points.push([0, 0, 0]);
-
-        console.log(this.points);
-        console.log(this.vertices)
     }
 }

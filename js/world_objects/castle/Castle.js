@@ -7,8 +7,6 @@ class Castle {
         this.floors = [];
 
         this._createFloors();
-
-        console.log(this.floors.length);
     }
 
     draw(modelMatrix) {

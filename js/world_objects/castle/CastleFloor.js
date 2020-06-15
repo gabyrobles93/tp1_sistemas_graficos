@@ -22,7 +22,7 @@ class CastleFloor {
         
         this._calcWindowSize1Points();
         this._calcWindowSize2Points();
-        console.log(this.window_points_size_2);
+
         this._createWindows(this.window_points_size_1, this.window_points_size_2);
     }
 
