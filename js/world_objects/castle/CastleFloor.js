@@ -11,8 +11,6 @@ class CastleFloor {
         this.windows_size_2_front = [];
         this.windows_size_2_back = [];
 
-        this.window_test = new CastleWindow();
-
         this.BORDER_MARGIN = 3;
         this.MIN_WINDOW_BETWEEN_SIZE = 2;
         this.WINDOW_SIZE = 1.8;
@@ -43,7 +41,6 @@ class CastleFloor {
     setViewProjectionMatrix(projMatrix, viewMatrix) {
         this.floor.setViewProjectionMatrix(projMatrix, viewMatrix);
         this.roof.setViewProjectionMatrix(projMatrix, viewMatrix);
-        this.window_test.setViewProjectionMatrix(projMatrix, viewMatrix);
         this.windows_size_1_front.forEach(window => window.setViewProjectionMatrix(projMatrix, viewMatrix));
         this.windows_size_1_back.forEach(window => window.setViewProjectionMatrix(projMatrix, viewMatrix));
         this.windows_size_2_front.forEach(window => window.setViewProjectionMatrix(projMatrix, viewMatrix));
