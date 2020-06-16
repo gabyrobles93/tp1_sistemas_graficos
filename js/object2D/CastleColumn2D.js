@@ -1,12 +1,12 @@
 class CastleColumn2D {
-    constructor() {
-        this.arc = new BezierCubicCurve([1, 0, 0], [1, 1.5, 0], [0, 1.5, 0], [0, 3, 0]);
+    constructor(column_height) {
+        this.arc = new BezierCubicCurve([2, 0, 0], [2, 1.5, 0], [1, 1.5, 0], [1, 3, 0]);
         this.arc_vertices = 15;
-        this.vertices = (this.arc_vertices + 1) + 4;
+        this.vertices = (this.arc_vertices + 1) + 1;
         this.points = [];
 
-        this.COLUMN_WIDE_PART_SIZE = 1;
-        this.COLUMN_NARROW_PART_SIZE = 6;
+        this.COLUMN_WIDE_PART_SIZE = 4;
+        this.COLUMN_NARROW_PART_SIZE = column_height;
 
         this._fillPoints();
     }
@@ -38,25 +38,13 @@ class CastleColumn2D {
 
     // Private
     _fillPoints() {
+        this.points.push([2, 0-this.COLUMN_WIDE_PART_SIZE, 0]);
+
         for (var i = 0; i <= this.arc_vertices; i++) {
             var u = i / this.arc_vertices;
             this.points.push(this.arc.getPosition(u));
         }
 
-        //this.points.push([this.COLUMN_NARROW_PART_SIZE, 1, 0]);
-        this.points.push([0, this.COLUMN_NARROW_PART_SIZE, 0]);
-
-        //this.points.push([this.COLUMN_NARROW_PART_SIZE, 1.5, 0]);
-        this.points.push([-0.5, this.COLUMN_NARROW_PART_SIZE, 0]);
-
-        //this.points.push([0-this.COLUMN_WIDE_PART_SIZE, 1.5, 0]);
-        this.points.push([-0.5, 0-this.COLUMN_WIDE_PART_SIZE, 0]);
-
-        //this.points.push([0-this.COLUMN_WIDE_PART_SIZE, 0, 0]);
-        this.points.push([1, 0-this.COLUMN_WIDE_PART_SIZE, 0]);
-
-        this.points.push([1, 0, 0]);
-
-        console.log(this.points);
+        this.points.push([1, this.COLUMN_NARROW_PART_SIZE, 0]);
     }
 }

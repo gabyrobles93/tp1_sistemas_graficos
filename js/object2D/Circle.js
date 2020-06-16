@@ -39,8 +39,6 @@ class Circle {
         vec3.cross(binormal, normal_vector, tangent_vector);
         vec3.normalize(binormal, binormal);
 
-        console.log(binormal);
-
         return [0, 0, 1];
         return [binormal.x, binormal.y, binormal.z];
     }
