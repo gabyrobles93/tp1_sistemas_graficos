@@ -6,6 +6,7 @@ var MaterialsList = {
     WHITE: 'white',
     BEIGE: 'beige',
     BLUE: 'blue',
+    WALL_GREY: 'wall_grey',
 };
 
 class Material {
