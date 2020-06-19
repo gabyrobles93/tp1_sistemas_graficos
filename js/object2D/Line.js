@@ -4,7 +4,7 @@ class Line {
         this.longitude = longitude;
     }
 
-    getPosition(u) {
+    getPosition(u, level) {
         return [this.longitude * u, 0, 0];
     }
 

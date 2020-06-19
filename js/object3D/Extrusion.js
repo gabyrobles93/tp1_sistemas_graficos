@@ -52,7 +52,7 @@ class Extrusion extends Object3D {
 
       for (var vertex=0; vertex <= this.vertices; vertex++) {
         var u = vertex / this.vertices;      
-        var vertex_pos = this.shape.getPosition(u);
+        var vertex_pos = this.shape.getPosition(u, v);
         var vertex_normal = this.shape.getNormal(u);
 
 /*         console.log("Vertex viejo " + vertex);

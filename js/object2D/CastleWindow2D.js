@@ -9,7 +9,7 @@ class CastleWindow2D {
         this._fillPoints();
     }
 
-    getPosition(u) {
+    getPosition(u, level) {
         return this.points[u * this.vertices];
     }
 

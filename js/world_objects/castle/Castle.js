@@ -16,6 +16,8 @@ class Castle {
         this.column_ceiling_2 = new CastleColumnCeiling();
         this.column_ceiling_3 = new CastleColumnCeiling();
         this.column_ceiling_4 = new CastleColumnCeiling();
+
+        this.ceiling = new CastleCeiling(size_1, size_2);
     }
 
     draw(modelMatrix) {
@@ -51,28 +53,34 @@ class Castle {
         // DIBUJAMOS LOS TECHOS DE LAS COLUMNAS
         var m1 = mat4.clone(modelMatrix);
         mat4.rotate(m1, m1, Math.PI/2, [-1, 0, 0]);
-        mat4.translate(m1, m1, [-this.size_1, this.size_2, this.floors_qty * this.FLOOR_HEIGHT + 2.5]);
+        mat4.translate(m1, m1, [-this.size_1, this.size_2, this.floors_qty * this.FLOOR_HEIGHT + 3.5]);
         mat4.scale(m1, m1, [3.2, 3.2, 3.2]);
         this.column_ceiling_1.draw(m1);
 
         var m1 = mat4.clone(modelMatrix);
         mat4.rotate(m1, m1, Math.PI/2, [-1, 0, 0]);
-        mat4.translate(m1, m1, [this.size_1, this.size_2, this.floors_qty * this.FLOOR_HEIGHT + 2.5]);
+        mat4.translate(m1, m1, [this.size_1, this.size_2, this.floors_qty * this.FLOOR_HEIGHT + 3.5]);
         mat4.scale(m1, m1, [3.2, 3.2, 3.2]);
         this.column_ceiling_2.draw(m1);
 
         var m1 = mat4.clone(modelMatrix);
         mat4.rotate(m1, m1, Math.PI/2, [-1, 0, 0]);
-        mat4.translate(m1, m1, [-this.size_1, -this.size_2, this.floors_qty * this.FLOOR_HEIGHT + 2.5]);
+        mat4.translate(m1, m1, [-this.size_1, -this.size_2, this.floors_qty * this.FLOOR_HEIGHT + 3.5]);
         mat4.scale(m1, m1, [3.2, 3.2, 3.2]);
         this.column_ceiling_3.draw(m1);
 
         var m1 = mat4.clone(modelMatrix);
         mat4.rotate(m1, m1, Math.PI/2, [-1, 0, 0]);
-        mat4.translate(m1, m1, [this.size_1, -this.size_2, this.floors_qty * this.FLOOR_HEIGHT + 2.5]);
+        mat4.translate(m1, m1, [this.size_1, -this.size_2, this.floors_qty * this.FLOOR_HEIGHT + 3.5]);
         mat4.scale(m1, m1, [3.2, 3.2, 3.2]);
         this.column_ceiling_4.draw(m1);
 
+        // DIBUJO TECHO DEL CASTILLO
+
+        var m1 = mat4.clone(modelMatrix);
+        mat4.rotate(m1, m1, Math.PI/2, [0, 0, -1]);
+        mat4.translate(m1, m1, [-this.floors_qty * this.FLOOR_HEIGHT - 7, 0, 0]);
+        this.ceiling.draw(m1);
     }
 
     setViewProjectionMatrix(projMatrix, viewMatrix) {
@@ -89,6 +97,8 @@ class Castle {
         this.column_ceiling_2.setViewProjectionMatrix(projMatrix, viewMatrix);
         this.column_ceiling_3.setViewProjectionMatrix(projMatrix, viewMatrix);
         this.column_ceiling_4.setViewProjectionMatrix(projMatrix, viewMatrix);
+
+        this.ceiling.setViewProjectionMatrix(projMatrix, viewMatrix);
     }
 
     // Private

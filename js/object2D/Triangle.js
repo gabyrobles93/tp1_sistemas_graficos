@@ -8,7 +8,7 @@ class Triangle {
                 [size, 0, 0]];
     }
 
-    getPosition(u) {
+    getPosition(u, level) {
         return this.sides[u*3];
     }
 

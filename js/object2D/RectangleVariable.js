@@ -1,7 +1,8 @@
-class Rectangle {
-    constructor(size_1, size_2) {
+class RectangleVariable {
+    constructor(size_1, size_2, percentage_size_variation) {
         this.size_1 = size_1;
         this.size_2 = size_2;
+        this.percentage_size_variation = percentage_size_variation;
         this.vertices = 4;
         this.sides = [[size_1, size_2, 0], 
                 [-size_1, size_2, 0], 
@@ -17,7 +18,16 @@ class Rectangle {
     }
 
     getPosition(u, level) {
-        return this.sides[u*4];
+        var side = this.sides[u*4];
+        var final_side = [side[0] * (1 + level * this.percentage_size_variation),
+                          side[1] * (1 + level * this.percentage_size_variation),
+                          side[2] * (1 + level * this.percentage_size_variation)];
+        if (level == 1) {
+            console.log(this.size_1);
+            console.log(this.size_2);
+            console.log(final_side);
+        }
+        return final_side;
     }
 
     getNormal(u) {

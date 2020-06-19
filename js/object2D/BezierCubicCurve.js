@@ -8,7 +8,7 @@ class BezierCubicCurve {
         this.vertices = 30;
     }
 
-    getPosition(u) {
+    getPosition(u, level) {
         var base_0 = (1-u) * (1-u) * (1-u);
         var base_1 = (1-u) * (1-u) * u * 3;
         var base_2 = (1-u) * u * u * 3;

@@ -5,13 +5,13 @@ class CastleColumn2D {
         this.vertices = (this.arc_vertices + 1) + 1;
         this.points = [];
 
-        this.COLUMN_WIDE_PART_SIZE = 2.5;
+        this.COLUMN_WIDE_PART_SIZE = 3.5;
         this.COLUMN_NARROW_PART_SIZE = column_height;
 
         this._fillPoints();
     }
 
-    getPosition(u) {
+    getPosition(u, level) {
         return this.points[u * this.vertices];
     }
 

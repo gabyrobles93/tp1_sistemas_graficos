@@ -30,7 +30,7 @@ class RoundedSquare {
                         [0, 0, 1]];
     }
 
-    getPosition(u) {
+    getPosition(u, level) {
         return this.sides[u*12];
     }
 

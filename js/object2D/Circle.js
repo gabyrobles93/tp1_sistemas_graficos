@@ -4,7 +4,7 @@ class Circle {
         this.radius = radius;
     }
 
-    getPosition(u) {
+    getPosition(u, level) {
         var x = this.radius * Math.cos(2*Math.PI * u);
         var y = this.radius * Math.sin(2*Math.PI * u);
         return [x, y, 0];

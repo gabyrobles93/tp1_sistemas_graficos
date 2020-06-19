@@ -5,7 +5,7 @@ class BezierCuadraticCurve {
         this.end_control_point = end_control_point;
     }
 
-    getPosition(u) {
+    getPosition(u, level) {
         var base_0 = (1-u) * (1-u);
         var base_1 = (1-u) * u * 2;
         var base_2 = u * u;
