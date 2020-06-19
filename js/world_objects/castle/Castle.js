@@ -1,6 +1,8 @@
 class Castle {
     constructor(size_1, size_2, floors_qty) {
         this.FLOOR_HEIGHT = 10;
+        this.TOP_FLOOR_EXTRA_HEIGHT = 1.5;
+
         this.size_1 = size_1;
         this.size_2 = size_2;
         this.floors_qty = floors_qty;
@@ -53,25 +55,25 @@ class Castle {
         // DIBUJAMOS LOS TECHOS DE LAS COLUMNAS
         var m1 = mat4.clone(modelMatrix);
         mat4.rotate(m1, m1, Math.PI/2, [-1, 0, 0]);
-        mat4.translate(m1, m1, [-this.size_1, this.size_2, this.floors_qty * this.FLOOR_HEIGHT + 3.5]);
+        mat4.translate(m1, m1, [-this.size_1, this.size_2, this.floors_qty * this.FLOOR_HEIGHT + 4.5]);
         mat4.scale(m1, m1, [3.2, 3.2, 3.2]);
         this.column_ceiling_1.draw(m1);
 
         var m1 = mat4.clone(modelMatrix);
         mat4.rotate(m1, m1, Math.PI/2, [-1, 0, 0]);
-        mat4.translate(m1, m1, [this.size_1, this.size_2, this.floors_qty * this.FLOOR_HEIGHT + 3.5]);
+        mat4.translate(m1, m1, [this.size_1, this.size_2, this.floors_qty * this.FLOOR_HEIGHT + 4.5]);
         mat4.scale(m1, m1, [3.2, 3.2, 3.2]);
         this.column_ceiling_2.draw(m1);
 
         var m1 = mat4.clone(modelMatrix);
         mat4.rotate(m1, m1, Math.PI/2, [-1, 0, 0]);
-        mat4.translate(m1, m1, [-this.size_1, -this.size_2, this.floors_qty * this.FLOOR_HEIGHT + 3.5]);
+        mat4.translate(m1, m1, [-this.size_1, -this.size_2, this.floors_qty * this.FLOOR_HEIGHT + 4.5]);
         mat4.scale(m1, m1, [3.2, 3.2, 3.2]);
         this.column_ceiling_3.draw(m1);
 
         var m1 = mat4.clone(modelMatrix);
         mat4.rotate(m1, m1, Math.PI/2, [-1, 0, 0]);
-        mat4.translate(m1, m1, [this.size_1, -this.size_2, this.floors_qty * this.FLOOR_HEIGHT + 3.5]);
+        mat4.translate(m1, m1, [this.size_1, -this.size_2, this.floors_qty * this.FLOOR_HEIGHT + 4.5]);
         mat4.scale(m1, m1, [3.2, 3.2, 3.2]);
         this.column_ceiling_4.draw(m1);
 
@@ -79,7 +81,7 @@ class Castle {
 
         var m1 = mat4.clone(modelMatrix);
         mat4.rotate(m1, m1, Math.PI/2, [0, 0, -1]);
-        mat4.translate(m1, m1, [-this.floors_qty * this.FLOOR_HEIGHT - 7, 0, 0]);
+        mat4.translate(m1, m1, [-this.floors_qty * this.FLOOR_HEIGHT - 10.3, 0, 0]);
         this.ceiling.draw(m1);
     }
 
@@ -105,7 +107,11 @@ class Castle {
 
     _createFloors() {
         for (var i = 0; i < this.floors_qty; i++) {
-            this.floors.push(new CastleFloor(this.size_1, this.size_2, this.FLOOR_HEIGHT));
+            var extra_floor_height = 0;
+            if (i == this.floors_qty - 1) {
+                extra_floor_height = this.TOP_FLOOR_EXTRA_HEIGHT;
+            }
+            this.floors.push(new CastleFloor(this.size_1, this.size_2, this.FLOOR_HEIGHT, extra_floor_height));
         }
     }
 }
