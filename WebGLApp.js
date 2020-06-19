@@ -63,7 +63,7 @@ function tick() {
 
 function initWorldObjects() {
     catapult = new Catapult();
-    castle = new Castle(12, 6, 2);
+    castle = new Castle(12, 6, 3);
 }
 
 function initWorldCameras(canvas) {

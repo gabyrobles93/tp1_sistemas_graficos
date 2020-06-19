@@ -81,7 +81,7 @@ class Castle {
 
         var m1 = mat4.clone(modelMatrix);
         mat4.rotate(m1, m1, Math.PI/2, [0, 0, -1]);
-        mat4.translate(m1, m1, [-this.floors_qty * this.FLOOR_HEIGHT - 10.3, 0, 0]);
+        mat4.translate(m1, m1, [-this.floors_qty * this.FLOOR_HEIGHT - 10 - 0.3 * (this.floors_qty - 1), 0, 0]);
         this.ceiling.draw(m1);
     }
 
