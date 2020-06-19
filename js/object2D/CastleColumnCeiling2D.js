@@ -1,12 +1,10 @@
-class CastleColumn2D {
-    constructor(column_height) {
-        this.arc = new BezierCubicCurve([0, 1.5, 0], [0, 0.3, 0], [0.5, 0.144, 0], [0.5, 0, 0]);
+class CastleColumnCeiling2D {
+    constructor() {
+        this.top_offset = 0.02
+        this.arc = new BezierCubicCurve([0 + this.top_offset, 2, 0], [0.05 + this.top_offset, 1.2, 0], [0.5 + this.top_offset, 0.4, 0], [0.75 + this.top_offset, 0, 0]);
         this.arc_vertices = 15;
-        this.vertices = (this.arc_vertices + 1) + 1;
+        this.vertices = (this.arc_vertices);
         this.points = [];
-
-        this.COLUMN_WIDE_PART_SIZE = 2.5;
-        this.COLUMN_NARROW_PART_SIZE = column_height;
 
         this._fillPoints();
     }
@@ -29,7 +27,7 @@ class CastleColumn2D {
     }
 
     getCenterPosition(u) {
-        return [1, 0, 0];
+        return [0, 2, 0];
     }
 
     getCenterNormal(u) {
@@ -38,13 +36,9 @@ class CastleColumn2D {
 
     // Private
     _fillPoints() {
-        this.points.push([2, 0-this.COLUMN_WIDE_PART_SIZE, 0]);
-
         for (var i = 0; i <= this.arc_vertices; i++) {
             var u = i / this.arc_vertices;
             this.points.push(this.arc.getPosition(u));
         }
-
-        this.points.push([1, this.COLUMN_NARROW_PART_SIZE, 0]);
     }
 }
