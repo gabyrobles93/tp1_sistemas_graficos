@@ -49,9 +49,9 @@ class CastleTower2D {
             this.vertices = this.vertices + 1;
         }
 
-        this.points.push([5.5, 18, 0]);
-        this.points.push([4, 18, 0]);
-        this.points.push([4, 16, 0]);
-        this.points.push([0, 16, 0]);
+        this.points.push([5.5, 16, 0]);
+        this.points.push([4.5, 16, 0]);
+        this.points.push([4.5, 14, 0]);
+        this.points.push([0, 14, 0]);
     }
 }
