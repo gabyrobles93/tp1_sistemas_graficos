@@ -7,6 +7,7 @@ class CastleWall {
         this.GENERAL_ROTATION = Math.PI/2 - (2*Math.PI - 2*Math.PI * this.WALL_DOOR_PROPORTION) / 2;
 
         this.wall = new Extrusion(new CastleWall2D(), new CircleIncomplete(this.sides_qty - 2, this.side_size, this.WALL_DOOR_PROPORTION), false, MaterialsList.WALL_GREY);
+        this.door = new CastleWallDoor(this.side_size);
 
         this._createTowers();
     }
@@ -27,6 +28,11 @@ class CastleWall {
             mat4.scale(m2, m2, [1, 1, 1.4]);
             this.towers[i].draw(m2);
         }
+
+        var m3 = mat4.clone(m1);
+        mat4.rotate(m3, m3, this.GENERAL_ROTATION, [0, 0, 1]);
+        mat4.translate(m3, m3, [-this.side_size/2, -(this.side_size/2 + 4), 0]);
+        this.door.draw(m3);
     }
 
     setViewProjectionMatrix(projMatrix, viewMatrix) {
@@ -35,6 +41,8 @@ class CastleWall {
         for (var i = 0; i < this.sides_qty; i++) {
             this.towers[i].setViewProjectionMatrix(projMatrix, viewMatrix);
         }
+
+        this.door.setViewProjectionMatrix(projMatrix, viewMatrix);
     }
 
     // Private
