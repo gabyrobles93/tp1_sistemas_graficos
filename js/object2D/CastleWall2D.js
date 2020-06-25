@@ -37,7 +37,7 @@ class CastleWall2D {
     }
 
     getCenterPosition(u) {
-        return [1, 0, 0];
+        return [0, 0, 0];
     }
 
     getCenterNormal(u) {
