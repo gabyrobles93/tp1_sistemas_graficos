@@ -14,24 +14,36 @@ class Object3D {
     this.webgl_index_buffer = null;
     
     this.gl_draw_mode = gl.TRIANGLE_STRIP;
+
+    this.visible = true;
   }
   
   draw(modelMatrix) {
-    this.material.setModelMatrixUniform(modelMatrix);
+    if(this.visible) {
+      this.material.setModelMatrixUniform(modelMatrix);
     
-    var normalMatrix = mat3.create();
-    this.material.setNormalMatrixUniform(normalMatrix);
-
-    this.material.setVertexPositionAttribute(this.webgl_position_buffer);
-
-    this.material.setVertexNormalAttribute(this.webgl_normal_buffer);
-
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.webgl_index_buffer);
-    gl.drawElements(this.gl_draw_mode, this.webgl_index_buffer.numItems, gl.UNSIGNED_SHORT, 0);
+      var normalMatrix = mat3.create();
+      this.material.setNormalMatrixUniform(normalMatrix);
+  
+      this.material.setVertexPositionAttribute(this.webgl_position_buffer);
+  
+      this.material.setVertexNormalAttribute(this.webgl_normal_buffer);
+  
+      gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.webgl_index_buffer);
+      gl.drawElements(this.gl_draw_mode, this.webgl_index_buffer.numItems, gl.UNSIGNED_SHORT, 0);
+    }
   }
 
   setViewProjectionMatrix(projMatrix, viewMatrix) {
     this.material.setViewProjectionMatrix(projMatrix, viewMatrix);
+  }
+
+  setVisible() {
+    this.visible = true;
+  }
+
+  setInvisible() {
+    this.visible = false;
   }
 
   // Private

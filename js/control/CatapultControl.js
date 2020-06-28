@@ -32,8 +32,16 @@ class CatapultControl {
             this.catapult_arm_angle = 0;
         }
 
+        if (this.catapult_arm_angle >= this.max_catapult_arm_angle) {
+            catapult.hideProjectile();
+        }
+
         catapult.setCatapultArmAngle(this.catapult_arm_angle);
         catapult.draw(this.catapult_model_matrix);
+    }
+
+    getProjectileModelMatrix(catapult) {
+        return catapult.getProjectileModelMatrix();
     }
 
     // Private

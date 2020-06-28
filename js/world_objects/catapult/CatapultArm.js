@@ -7,6 +7,7 @@ class CatapultArm {
         this.projectile = new Sphere(0.9, 30, 30, MaterialsList.GREY);
 
         this.counterweight = new CatapultCounterweight();
+        this.projectile_model_matrix = mat4.create();
     }
 
     draw(modelMatrix, rope_lookat, arm_angle) {
@@ -46,10 +47,19 @@ class CatapultArm {
         mat4.rotate(m1, m1, arm_angle * Math.PI/180, [0, 0, -1]);
         this.counterweight.draw(m1);
 
-        // DIBUJO CONTRAPESO
+        // DIBUJO PROYECTIL
         var m1 = mat4.clone(modelMatrix);
         mat4.translate(m1, m1, [11.75, 1.2, 0]);
+        this.projectile_model_matrix = mat4.clone(m1);
         this.projectile.draw(m1);
+    }
+
+    getProjectileModelMatrix() {
+        return this.projectile_model_matrix;
+    }
+
+    hideProjectile() {
+        this.projectile.setInvisible();
     }
 
     setViewProjectionMatrix(projMatrix, viewMatrix) {

@@ -39,6 +39,14 @@ class Catapult {
         this.catapult_arm_angle = catapult_arm_angle;
     }
 
+    getProjectileModelMatrix() {
+        return this.catapult_arm.getProjectileModelMatrix();
+    }
+
+    hideProjectile() {
+        this.catapult_arm.hideProjectile();
+    }
+
     setViewProjectionMatrix(projMatrix, viewMatrix) {
         this.catapult_wheel_br.setViewProjectionMatrix(projMatrix, viewMatrix);
         this.catapult_wheel_fr.setViewProjectionMatrix(projMatrix, viewMatrix);
