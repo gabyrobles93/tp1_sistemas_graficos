@@ -44,6 +44,13 @@ class CatapultControl {
         return catapult.getProjectileModelMatrix();
     }
 
+    getArmAngle() {
+        return this.catapult_arm_angle;
+    }
+    getMaxArmAngle() {
+        return this.max_catapult_arm_angle;
+    }
+
     // Private
 
     _setEventListeners(canvas) {
