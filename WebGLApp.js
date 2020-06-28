@@ -123,8 +123,8 @@ function initGL(canvas) {
 function webGLStart() {
     var canvas = document.getElementById("canvas");
     initGL(canvas);
-    initWorldCameras(canvas);
     initControllers(canvas);
+    initWorldCameras(canvas);
     initWorldObjects();
 
     // Pone en negro el fondo del canvas
