@@ -15,17 +15,19 @@ var CASTLE_SIZE_1 = 12;
 var CASTLE_SIZE_2 = 6;
 var CASTLE_FLOORS = 3;
 
-var CASTLE_WALL_SIDES = 6;
+var CASTLE_WALL_SIDES = 5;
 var CASTLE_WALL_SIZE = 50;
 
 var castle = null;
 var catapult = null;
 var castle_wall = null;
+var world_floor = null;
 
 function setViewProjectionMatrix() {
     catapult.setViewProjectionMatrix(projMatrix, viewMatrix);
     castle.setViewProjectionMatrix(projMatrix, viewMatrix);
     castle_wall.setViewProjectionMatrix(projMatrix, viewMatrix);
+    world_floor.setViewProjectionMatrix(projMatrix, viewMatrix);
 }
 
 function setupSceneCamera() {
@@ -69,6 +71,12 @@ function drawScene(){
     mat4.translate(m1, m1, [-CASTLE_WALL_SIZE/2, 0, CASTLE_WALL_SIZE/2]);
     mat4.rotate(m1, m1, -Math.PI/2, [1, 0, 0]);
     castle_wall.draw(m1);
+
+    var m1 = mat4.create();
+    mat4.identity(m1);
+    mat4.rotate(m1, m1, Math.PI/2, [0, 0, 1]);
+    mat4.translate(m1, m1, [-1.5, 0, 0]);
+    world_floor.draw(m1);
 }
 
 function tick() {
@@ -80,6 +88,8 @@ function initWorldObjects() {
     catapult = new Catapult();
     castle = new Castle(CASTLE_SIZE_1, CASTLE_SIZE_2, CASTLE_FLOORS);
     castle_wall = new CastleWall(CASTLE_WALL_SIDES, CASTLE_WALL_SIZE);
+
+    world_floor = new WorldFloor(CASTLE_WALL_SIZE);
 }
 
 function initWorldCameras(canvas) {
