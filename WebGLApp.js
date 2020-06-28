@@ -6,7 +6,11 @@ var mat3 = glMatrix.mat3;
 var vec3 = glMatrix.vec3;
 var vec4 = glMatrix.vec4;
 
+// Cámaras
 var orbital_camera = null;
+
+// Controladores
+var catapult_control = null;
 
 var viewMatrix = mat4.create();
 var projMatrix = mat4.create();
@@ -58,10 +62,12 @@ function drawScene(){
     // Definimos la ubicación de la camara
     setupSceneCamera();	
 
-    var m1 = mat4.create();
+/*     var m1 = mat4.create();
     mat4.identity(m1);
     mat4.translate(m1, m1, [-2.5, 0.5, 95]);
-    catapult.draw(m1);
+    catapult.draw(m1); */
+
+    this.catapult_control.drawCatapult(catapult);
 
     var m1 = mat4.create();
     mat4.identity(m1);
@@ -98,6 +104,10 @@ function initWorldCameras(canvas) {
     orbital_camera = new OrbitalCamera(canvas);
 }
 
+function initControllers(canvas) {
+    this.catapult_control = new CatapultControl(canvas);
+}
+
 function initGL(canvas) {
     try {
         gl = canvas.getContext("webgl");
@@ -114,6 +124,7 @@ function webGLStart() {
     var canvas = document.getElementById("canvas");
     initGL(canvas);
     initWorldCameras(canvas);
+    initControllers(canvas);
     initWorldObjects();
 
     // Pone en negro el fondo del canvas
