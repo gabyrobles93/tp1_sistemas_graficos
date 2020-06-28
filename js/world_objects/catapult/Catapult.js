@@ -49,7 +49,7 @@ class Catapult {
     // Private
 
     _drawDynamicParts(modelMatrix) {
-        var ARM_ANGLE = 45;
+        var ARM_ANGLE = 0;
 
         // REFERENCIA NO DIBUJABLE: CENTRO DEL EJE MOVIL, ENTRE LAS MANIVELAS
         var rope_lookat = mat4.clone(modelMatrix);

@@ -15,7 +15,7 @@ var projMatrix = mat4.create();
 var CASTLE_SIZE_1 = 12;
 var CASTLE_SIZE_2 = 6;
 var CASTLE_FLOORS = 3;
-var CASTLE_WALL_SIDES = 6;
+var CASTLE_WALL_SIDES = 6; // Entre 4 y 8 lados
 // Fin de Parámetros del mundo
 
 var CASTLE_WALL_SIZE = 50;
