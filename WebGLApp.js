@@ -11,11 +11,13 @@ var orbital_camera = null;
 var viewMatrix = mat4.create();
 var projMatrix = mat4.create();
 
+// Parámetros del mundo
 var CASTLE_SIZE_1 = 12;
 var CASTLE_SIZE_2 = 6;
 var CASTLE_FLOORS = 3;
+var CASTLE_WALL_SIDES = 6;
+// Fin de Parámetros del mundo
 
-var CASTLE_WALL_SIDES = 5;
 var CASTLE_WALL_SIZE = 50;
 
 var castle = null;
@@ -58,7 +60,7 @@ function drawScene(){
 
     var m1 = mat4.create();
     mat4.identity(m1);
-    mat4.translate(m1, m1, [0, 0, 80]);
+    mat4.translate(m1, m1, [-2.5, 0.5, 95]);
     catapult.draw(m1);
 
     var m1 = mat4.create();
