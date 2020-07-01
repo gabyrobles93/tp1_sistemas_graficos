@@ -1,9 +1,10 @@
 class CameraControl {
-    constructor(canvas) {
+    constructor(canvas, catapult_control) {
         this.CHANGE_CAMERA_KEY = "KeyC";         // c
 
         this.canvas = canvas;
         this.cameras = [];
+        this.cameras.push(new CatapultCamera(catapult_control));
         this.cameras.push(new FirstPersonCamera(canvas));
         this.cameras.push(new OrbitalCamera(canvas));
 

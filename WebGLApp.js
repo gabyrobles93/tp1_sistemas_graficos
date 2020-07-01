@@ -110,7 +110,7 @@ function initWorldObjects() {
 function initControllers(canvas) {
     catapult_control = new CatapultControl(canvas);
     projectile_control = new ProjectileControl(canvas);
-    camera_control = new CameraControl(canvas);
+    camera_control = new CameraControl(canvas, catapult_control);
 }
 
 function initGL(canvas) {

@@ -4,6 +4,7 @@ class CatapultControl {
         this.max_catapult_arm_angle = 45;
         this.catapult_arm_angle = 0;
         this.catapult_angle = 0;
+        this.catapult_frontal = [0, 0, 1];
 
         this.catapult_position_x = 95;
         this.catapult_position_y = 0.5;
@@ -47,8 +48,19 @@ class CatapultControl {
     getArmAngle() {
         return this.catapult_arm_angle;
     }
+
     getMaxArmAngle() {
         return this.max_catapult_arm_angle;
+    }
+
+    getCatapultPosition() {
+        var catapult_position = vec3.create();
+        mat4.getTranslation(catapult_position, this.catapult_model_matrix);
+        return catapult_position;
+    }
+
+    getCatapultFrontal() {
+        return this.catapult_frontal;
     }
 
     // Private
@@ -57,8 +69,21 @@ class CatapultControl {
         document.addEventListener('keydown', (e) => {
             if(e.code === this.CATAPULT_ADVANCE_KEY) mat4.translate(this.catapult_model_matrix, this.catapult_model_matrix, [0, 0, -1]);
             if(e.code === this.CATAPULT_RECOIL_KEY) mat4.translate(this.catapult_model_matrix, this.catapult_model_matrix, [0, 0, 1]);
-            if(e.code === this.CATAPULT_LEFT_ROTATION_KEY) mat4.rotate(this.catapult_model_matrix, this.catapult_model_matrix, 1 * Math.PI/180, [0, 1, 0]);
-            if(e.code === this.CATAPULT_RIGHT_ROTATION_KEY) mat4.rotate(this.catapult_model_matrix, this.catapult_model_matrix, -1 * Math.PI/180, [0, 1, 0]);
+
+            if(e.code === this.CATAPULT_LEFT_ROTATION_KEY) {
+                mat4.rotate(this.catapult_model_matrix, this.catapult_model_matrix, 1 * Math.PI/180, [0, 1, 0]);
+                var m1 = mat4.create();
+                mat4.fromYRotation(m1, 1 * Math.PI/180);
+                vec3.transformMat4(this.catapult_frontal, this.catapult_frontal, m1);
+            } 
+
+            if(e.code === this.CATAPULT_RIGHT_ROTATION_KEY) {
+                mat4.rotate(this.catapult_model_matrix, this.catapult_model_matrix, -1 * Math.PI/180, [0, 1, 0]);
+                var m1 = mat4.create();
+                mat4.fromYRotation(m1, -1 * Math.PI/180);
+                vec3.transformMat4(this.catapult_frontal, this.catapult_frontal, m1);
+            } 
+
             if(e.code === this.CATAPULT_SHOOT_KEY) this.catapult_is_shooting = true;
             if(e.code === this.CATAPULT_LOAD_PROJECTILE) this.catapult_is_shooting = false;
         });
