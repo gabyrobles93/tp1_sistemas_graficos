@@ -27,6 +27,10 @@ class OrbitalCamera {
         return this.viewMatrix;
     }
 
+    use(canvas) {
+        this._setEventListeners(canvas);
+    }
+
     // Private
 
     _setEventListeners(canvas) {

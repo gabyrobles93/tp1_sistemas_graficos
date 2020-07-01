@@ -9,12 +9,10 @@ var vec4 = glMatrix.vec4;
 var FPS = 25;
 var t = 0;
 
-// Cámaras
-var the_camera = null;
-
 // Controladores
 var catapult_control = null;
 var projectile_control = null;
+var camera_control = null;
 
 var viewMatrix = mat4.create();
 var projMatrix = mat4.create();
@@ -49,7 +47,7 @@ function setupSceneCamera() {
 
     //mat4.translate(viewMatrix, m_trans, [0, 0, -15]);
 
-    viewMatrix = the_camera.getViewMatrix();
+    viewMatrix = camera_control.getViewMatrix();
 
     setViewProjectionMatrix();
 }
@@ -109,14 +107,10 @@ function initWorldObjects() {
     projectile = new Sphere(0.9, 30, 30, MaterialsList.GREY); 
 }
 
-function initWorldCameras(canvas) {
-    //the_camera = new OrbitalCamera(canvas);
-    the_camera = new FirstPersonCamera(canvas);
-}
-
 function initControllers(canvas) {
     catapult_control = new CatapultControl(canvas);
     projectile_control = new ProjectileControl(canvas);
+    camera_control = new CameraControl(canvas);
 }
 
 function initGL(canvas) {
@@ -135,7 +129,6 @@ function webGLStart() {
     var canvas = document.getElementById("canvas");
     initGL(canvas);
     initControllers(canvas);
-    initWorldCameras(canvas);
     initWorldObjects();
 
     // Pone en negro el fondo del canvas
