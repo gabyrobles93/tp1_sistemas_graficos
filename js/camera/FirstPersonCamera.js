@@ -2,11 +2,10 @@ class FirstPersonCamera {
     constructor(canvas) {
         this.is_mouse_down = false;
 
-        this.CAMERA_HEIGHT = 0;
-        this.TARGET_DISTANCE = 2;
+        this.CAMERA_HEIGHT = 2;
+        this.TARGET_DISTANCE = 5;
 
-        this.mouse_X = 0;
-        this.mouse_Y = 0;
+        this.mouse = { x:0, y:0 };
         this.last_client_x = 0;
         this.last_client_y = 0;
 
@@ -16,11 +15,12 @@ class FirstPersonCamera {
 
         this.target = mat4.create();
         //mat4.identity(this.target);
-        mat4.translate(this.target, this.target, [0, 0, -this.TARGET_DISTANCE]);
+        mat4.translate(this.target, this.target, [0, 0, this.TARGET_DISTANCE]);
     
         this.alfa = 0;
         this.beta = Math.PI/2;
-        this.speed_factor = 0.0001;
+        this.x_speed_factor = 0.00001;
+        this.y_speed_factor = 0.01;
 
         this.frontal = [0, 0, 1];
         this.lateral = [1, 0, 0];
@@ -59,13 +59,65 @@ class FirstPersonCamera {
         }
 
         canvas.onmousemove = (event) => {
-            if (this.is_mouse_down) {
-                this.mouse_X = event.clientX || event.pageX;
-                this.mouse_Y = event.clientY || event.pageY;
+            this.mouse.x = event.clientX;
+            this.mouse.y = event.clientY;
+        
+            this._updateAlfaAndBeta();
+            this._updatePosition();
+            this._updateTarget();
+        }
 
-                this._updateAlfaAndBeta();
-                this._updatePosition();
-                this._updateTarget();
+        window.onkeydown = (event) => {
+            if (event.keyCode == 87) {
+                // w
+                console.log("apretaste w");
+                var current_position = vec3.create();
+                mat4.getTranslation(current_position, this.position);
+
+                var x = this.frontal[0];
+                var y = 0;
+                var z = this.frontal[2];
+
+                mat4.translate(this.position, this.position, [x, y ,z]);
+            }
+
+            if (event.keyCode == 83) {
+                // s
+                console.log("apretaste s");
+                var current_position = vec3.create();
+                mat4.getTranslation(current_position, this.position);
+
+                var x = - this.frontal[0];
+                var y = 0;
+                var z = - this.frontal[2];
+
+                mat4.translate(this.position, this.position, [x, y ,z]);
+            }
+
+            if (event.keyCode == 65) {
+                // a
+                console.log("apretaste a");
+                var current_position = vec3.create();
+                mat4.getTranslation(current_position, this.position);
+
+                var x = this.lateral[0];
+                var y = 0;
+                var z = this.lateral[2];
+
+                mat4.translate(this.position, this.position, [x, y ,z]);
+            }
+
+            if (event.keyCode == 68) {
+                // d
+                console.log("apretaste d");
+                var current_position = vec3.create();
+                mat4.getTranslation(current_position, this.position);
+
+                var x = - this.lateral[0];
+                var y = 0;
+                var z = - this.lateral[2];
+
+                mat4.translate(this.position, this.position, [x, y ,z]);
             }
         }
     }
@@ -74,17 +126,17 @@ class FirstPersonCamera {
             var delta_X = 0;
             var delta_Y = 0;
 
-            if (this.last_client_x) delta_X = this.mouse_X - this.last_client_x;
-            if (this.last_client_y) delta_Y = this.mouse_Y - this.last_client_y;
+            if (this.last_client_x) delta_X = this.last_client_x - this.mouse.x;
+            if (this.last_client_y) delta_Y = -(this.last_client_y - this.mouse.y);
 
-            this.last_client_x = this.mouse_X;
-            this.last_client_y = this.mouse_Y;
+            this.last_client_x = this.mouse.x;
+            this.last_client_y = this.mouse.y;
 
-            this.alfa = this.alfa + delta_X * this.speed_factor;
-            this.beta = this.beta + delta_Y * this.speed_factor;
+            this.alfa = delta_X * this.y_speed_factor;
+            this.beta = this.beta + delta_Y * this.y_speed_factor;
 
-            console.log(this.alfa);
-            console.log(this.beta);
+            console.log("alfa: " + this.alfa);
+            console.log("beta: " + this.beta);
 
             if (this.beta < 0) this.beta = 0;
             if (this.beta > Math.PI) this.beta = Math.PI;
@@ -103,10 +155,11 @@ class FirstPersonCamera {
     }
 
     _updateTarget() {
-        var x = this.TARGET_DISTANCE * Math.sin(this.alfa * this.speed_factor) * Math.sin(this.beta);
+        var x = this.TARGET_DISTANCE * Math.sin(this.alfa * this.x_speed_factor) * Math.sin(this.beta);
         var y = this.TARGET_DISTANCE * Math.cos(this.beta) + this.CAMERA_HEIGHT;
-        var z = this.TARGET_DISTANCE * Math.cos(this.alfa * this.speed_factor) * Math.sin(this.beta);
+        var z = this.TARGET_DISTANCE * Math.cos(this.alfa * this.x_speed_factor) * Math.sin(this.beta);
 
-        mat4.translate(this.target, this.target, [x, y, z]);
+        var m1 = mat4.create();
+        mat4.translate(this.target, m1, [x, y, z]);
     }
 }

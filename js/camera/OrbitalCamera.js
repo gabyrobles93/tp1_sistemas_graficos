@@ -55,8 +55,8 @@ class OrbitalCamera {
 
         canvas.onmousemove = (event) => {
             if (this.is_mouse_down) {
-                var delta_X = 0;
-                var delta_Y = 0;
+                var delta_X=0;
+                var delta_Y=0;
 
                 if (this.last_mouse_X) delta_X = mouse.x - this.last_mouse_X;
                 if (this.last_mouse_Y) delta_Y = mouse.y - this.last_mouse_Y;
