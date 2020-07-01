@@ -10,7 +10,7 @@ var FPS = 25;
 var t = 0;
 
 // Cámaras
-var orbital_camera = null;
+var the_camera = null;
 
 // Controladores
 var catapult_control = null;
@@ -49,7 +49,7 @@ function setupSceneCamera() {
 
     //mat4.translate(viewMatrix, m_trans, [0, 0, -15]);
 
-    viewMatrix = orbital_camera.getViewMatrix();
+    viewMatrix = the_camera.getViewMatrix();
 
     setViewProjectionMatrix();
 }
@@ -110,7 +110,8 @@ function initWorldObjects() {
 }
 
 function initWorldCameras(canvas) {
-    orbital_camera = new OrbitalCamera(canvas);
+    //the_camera = new OrbitalCamera(canvas);
+    the_camera = new FirstPersonCamera(canvas);
 }
 
 function initControllers(canvas) {
