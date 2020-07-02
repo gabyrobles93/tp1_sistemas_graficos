@@ -4,9 +4,10 @@ class CameraControl {
 
         this.canvas = canvas;
         this.cameras = [];
+
+        this.cameras.push(new OrbitalCamera(canvas));
         this.cameras.push(new CatapultCamera(catapult_control));
         this.cameras.push(new FirstPersonCamera(canvas));
-        this.cameras.push(new OrbitalCamera(canvas));
 
         this._setEventListeners(canvas);
 
