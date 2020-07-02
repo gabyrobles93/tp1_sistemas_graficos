@@ -13,6 +13,7 @@ var t = 0;
 var catapult_control = null;
 var projectile_control = null;
 var camera_control = null;
+var menu_control = null;
 
 var viewMatrix = mat4.create();
 var projMatrix = mat4.create();
@@ -111,6 +112,7 @@ function initControllers(canvas) {
     catapult_control = new CatapultControl(canvas);
     projectile_control = new ProjectileControl(canvas);
     camera_control = new CameraControl(canvas, catapult_control);
+    menu_control = new MenuControl();
 }
 
 function initGL(canvas) {
