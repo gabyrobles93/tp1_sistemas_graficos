@@ -2,6 +2,7 @@ class FirstPersonCamera {
     constructor(canvas) {
         this.CAMERA_HEIGHT = 3;
         this.TARGET_DISTANCE = 5;
+        this.is_mouse_down = false
 
         this.MOVE_FORWARD_KEY = 87; // w
         this.MOVE_BACK_KEY = 83;    // s
@@ -54,12 +55,22 @@ class FirstPersonCamera {
 
     _setEventListeners(canvas) {
         canvas.onmousemove = (event) => {
-            this.mouse.x = event.clientX;
-            this.mouse.y = event.clientY;
-        
-            this._updateAlfaAndBeta();
-            this._updatePosition();
-            this._updateTarget();
+            if (this.is_mouse_down) {
+                this.mouse.x = event.clientX;
+                this.mouse.y = event.clientY;
+            
+                this._updateAlfaAndBeta();
+                this._updatePosition();
+                this._updateTarget();
+            }
+        }
+
+        canvas.onmousedown = (event) => {
+            this.is_mouse_down = true;
+        }
+
+        canvas.onmouseup = (event) => {
+            this.is_mouse_down = false;
         }
 
         window.onkeydown = (event) => {
