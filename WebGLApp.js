@@ -32,6 +32,7 @@ var catapult = null;
 var castle_wall = null;
 var world_floor = null;
 var projectile = null;
+var sky = null;
 
 function setViewProjectionMatrix() {
     catapult.setViewProjectionMatrix(projMatrix, viewMatrix);
@@ -39,6 +40,7 @@ function setViewProjectionMatrix() {
     castle_wall.setViewProjectionMatrix(projMatrix, viewMatrix);
     world_floor.setViewProjectionMatrix(projMatrix, viewMatrix);
     projectile.setViewProjectionMatrix(projMatrix, viewMatrix);
+    sky.setViewProjectionMatrix(projMatrix, viewMatrix);
 }
 
 function setupSceneCamera() {
@@ -87,6 +89,10 @@ function drawScene(){
     world_floor.draw(m1);
 
     projectile_control.drawProjectile(projectile, catapult_control.getProjectileModelMatrix(catapult), catapult_control.getArmAngle(), catapult_control.getMaxArmAngle());
+
+    var m1 = mat4.create();
+    mat4.identity(m1);
+    sky.draw(m1);
 }
 
 function animate(t) {
@@ -105,7 +111,8 @@ function initWorldObjects() {
     castle = new Castle(CASTLE_SIZE_1, CASTLE_SIZE_2, CASTLE_FLOORS);
     castle_wall = new CastleWall(CASTLE_WALL_SIDES, CASTLE_WALL_SIZE);
     world_floor = new WorldFloor(CASTLE_WALL_SIZE);
-    projectile = new Sphere(0.9, 30, 30, MaterialsList.GREY); 
+    projectile = new Sphere(0.9, 30, 30, MaterialsList.GREY);
+    sky = new Sphere(300, 30, 30, MaterialsList.BLUE);
 }
 
 function initControllers(canvas) {
