@@ -8,6 +8,9 @@ var MaterialsList = {
     BLUE: 'blue',
     WALL_GREY: 'wall_grey',
     GREEN: 'green',
+    AXIS_RED: 'axis_red',
+    AXIS_GREEN: 'axis_green',
+    AXIS_BLUE: 'axis_blue'
 };
 
 class Material {
@@ -33,7 +36,7 @@ class Material {
     setNormalMatrixUniform(normalMatrix) {
         gl.useProgram(this.shaderProgram);
 
-        gl.uniformMatrix3fv(this.shaderProgram.normalMatrixUniform, false, normalMatrix);
+        gl.uniformMatrix4fv(this.shaderProgram.normalMatrixUniform, false, normalMatrix);
     }
 
     setVertexPositionAttribute(webgl_position_buffer) {

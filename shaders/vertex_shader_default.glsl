@@ -6,14 +6,16 @@ attribute vec3 aVertexNormal;
 uniform mat4 modelMatrix;            
 uniform mat4 viewMatrix;
 uniform mat4 projMatrix;
-uniform mat3 normalMatrix;
+
+uniform mat4 normalMatrix;
 
 varying vec3 vNormal;    
-varying vec4 vPosWorld;  
+varying vec3 vPosWorld;  
 
 void main(void) {
-    vPosWorld = viewMatrix * modelMatrix * vec4(aVertexPosition, 1.0);
-    gl_Position = projMatrix * vPosWorld;
+    gl_Position = projMatrix * viewMatrix * modelMatrix * vec4(aVertexPosition, 1.0);
 
-    vNormal = normalize(normalMatrix * normalize(aVertexNormal));                              
+    vPosWorld=(modelMatrix*vec4(aVertexPosition,1.0)).xyz;    //la posicion en coordenadas de mundo
+    vNormal=(normalMatrix*vec4(aVertexNormal,1.0)).xyz;       //la normal en coordenadas de mundo                
+    
 }

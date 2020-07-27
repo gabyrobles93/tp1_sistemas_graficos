@@ -9,6 +9,9 @@ class Object3D {
     this.normal_buffer = null;
     this.index_buffer = null;
 
+    this.normalMatrix = mat4.create();
+    this.modelMatrix = mat4.create();
+
     this.webgl_position_buffer = null;
     this.webgl_normal_buffer = null;
     this.webgl_index_buffer = null;
@@ -17,13 +20,59 @@ class Object3D {
 
     this.visible = true;
   }
+
+  translate(relative_to, x, y, z) {
+    mat4.translate(this.modelMatrix, relative_to, [x, y, z]);
+
+    mat4.invert(this.normalMatrix, this.modelMatrix);
+    mat4.transpose(this.normalMatrix, this.normalMatrix);
+
+    return this.modelMatrix;
+  }
+
+  rotate_x(relative_to, x) {
+    mat4.rotate(this.modelMatrix, relative_to, x * Math.PI/180, [1, 0, 0]);
+   
+    mat4.invert(this.normalMatrix, this.modelMatrix);
+    mat4.transpose(this.normalMatrix, this.normalMatrix);
+
+    return this.modelMatrix;
+  }
+
+  rotate_y(relative_to, y) {
+    mat4.rotate(this.modelMatrix, relative_to, y * Math.PI/180, [0, 1, 0]);
+
+    mat4.invert(this.normalMatrix, this.modelMatrix);
+    mat4.transpose(this.normalMatrix, this.normalMatrix);
+
+    return this.modelMatrix;
+  }
+
+  rotate_z(relative_to, z) {
+    mat4.rotate(this.modelMatrix, relative_to, z * Math.PI/180, [0, 0, 1]); 
+
+    mat4.invert(this.normalMatrix, this.modelMatrix);
+    mat4.transpose(this.normalMatrix, this.normalMatrix);
+
+    return this.modelMatrix;
+  }
+
+  scale(relative_to, x, y, z) {
+    mat4.scale(this.modelMatrix, relative_to, [x, 1, 1]);
+    mat4.scale(this.modelMatrix, relative_to, [1, y, 1]);
+    mat4.scale(this.modelMatrix, relative_to, [1, 1, z]);    
+
+    mat4.invert(this.normalMatrix, this.modelMatrix);
+    mat4.transpose(this.normalMatrix, this.normalMatrix);
+
+    return this.modelMatrix;
+  }
   
-  draw(modelMatrix) {
+  draw() {
     if(this.visible) {
-      this.material.setModelMatrixUniform(modelMatrix);
+      this.material.setModelMatrixUniform(this.modelMatrix);
     
-      var normalMatrix = mat3.create();
-      this.material.setNormalMatrixUniform(normalMatrix);
+      this.material.setNormalMatrixUniform(this.normalMatrix);
   
       this.material.setVertexPositionAttribute(this.webgl_position_buffer);
   
