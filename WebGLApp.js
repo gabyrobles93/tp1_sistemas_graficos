@@ -66,8 +66,8 @@ function drawScene(){
     var m1 = mat4.create();
     mat4.identity(m1);
 
-    m1 = castle.translate(m1, 50, 0, 0);
-    castle.rotate_z(m1, 90);
+    m1 = castle.translate(m1, 0, 0, 0);
+    castle.rotate_z(m1, 0);
     castle.draw();
 }
 
