@@ -59,7 +59,8 @@ function drawScene(){
     mat4.identity(m1);
 
     m1 = cube.translate(m1, 5, 0, 0);
-    /* mat4.rotate(m1, m1, Math.PI/2, [1, 0, 0]); */
+    m1 = cube.rotate_y(m1, 45);
+    m1 = cube.scale(m1, 2, 1, 1);
     cube.draw();
 }
 
@@ -76,7 +77,7 @@ function initWorldObjects() {
     axis = new Axis();
 
     sphere = new Sphere(0.9, 30, 30, MaterialsList.LIGHT_BROWN);
-    cube = new Cube(1, 1, 2, false, MaterialsList.LIGHT_BROWN);
+    cube = new Cube(1, 1, 2, false, MaterialsList.TEST_NORMAL);
     cilinder = new Cilinder(0.6, 5, true, MaterialsList.LIGHT_BROWN);
 }
 

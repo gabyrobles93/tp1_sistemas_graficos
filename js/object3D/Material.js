@@ -10,7 +10,8 @@ var MaterialsList = {
     GREEN: 'green',
     AXIS_RED: 'axis_red',
     AXIS_GREEN: 'axis_green',
-    AXIS_BLUE: 'axis_blue'
+    AXIS_BLUE: 'axis_blue',
+    TEST_NORMAL: 'test_normal'
 };
 
 class Material {
