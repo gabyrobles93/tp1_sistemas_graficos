@@ -91,6 +91,9 @@ class Extrusion extends Object3D {
 
       var center_vertex_pos = this.shape.getCenterPosition(u);
       var center_vertex_normal = this.shape.getCenterNormal(u);
+      center_vertex_normal[0] = center_vertex_normal[0] * -1;
+      center_vertex_normal[1] = center_vertex_normal[1] * -1;
+      center_vertex_normal[2] = center_vertex_normal[2] * -1;
 
       var new_center_vertex_pos = vec4.create();
       var new_center_vertex_normal = vec3.create();
@@ -114,6 +117,9 @@ class Extrusion extends Object3D {
 
       var center_vertex_pos = this.shape.getPosition(u);
       var center_vertex_normal = this.shape.getCenterNormal(u);
+      center_vertex_normal[0] = center_vertex_normal[0] * -1;
+      center_vertex_normal[1] = center_vertex_normal[1] * -1;
+      center_vertex_normal[2] = center_vertex_normal[2] * -1;
 
       var new_center_vertex_pos = vec4.create();
       var new_center_vertex_normal = vec3.create();
