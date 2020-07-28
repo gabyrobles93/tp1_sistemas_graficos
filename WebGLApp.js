@@ -58,10 +58,10 @@ function drawScene(){
     var m1 = mat4.create();
     mat4.identity(m1);
 
-    m1 = cube.translate(m1, 5, 0, 0);
-    m1 = cube.rotate_y(m1, 45);
-    m1 = cube.scale(m1, 2, 1, 1);
-    cube.draw();
+    m1 = cilinder.translate(m1, 0, 0, 0);
+    m1 = cilinder.rotate_y(m1, 45);
+    /* m1 = cilinder.scale(m1, 2, 1, 1); */
+    cilinder.draw();
 }
 
 function animate(t) {
@@ -76,9 +76,9 @@ function tick() {
 function initWorldObjects() {
     axis = new Axis();
 
-    sphere = new Sphere(0.9, 30, 30, MaterialsList.LIGHT_BROWN);
+    sphere = new Sphere(0.9, 30, 30, MaterialsList.TEST_NORMAL);
     cube = new Cube(1, 1, 2, false, MaterialsList.TEST_NORMAL);
-    cilinder = new Cilinder(0.6, 5, true, MaterialsList.LIGHT_BROWN);
+    cilinder = new Cilinder(0.6, 5, true, MaterialsList.TEST_NORMAL);
 }
 
 function initControllers(canvas) {

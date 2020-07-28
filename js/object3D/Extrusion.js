@@ -1,7 +1,7 @@
 class Extrusion extends Object3D {
   constructor(shape, path, with_top, material_type) {
     if (with_top) {
-      super(path.vertices + 1 + 2, shape.vertices, material_type);
+      super(path.vertices + 1 + 2 + 2, shape.vertices, material_type);
     } else {
       super(path.vertices + 1, shape.vertices, material_type);
     }
@@ -47,7 +47,7 @@ class Extrusion extends Object3D {
       console.log(level_matrix); */
 
       if (this.with_top == true && level == 0) {
-        this._fillPositionAndNormalBuffersForTop(level_matrix, normal_matrix);
+        this._fillPositionAndNormalBuffersForTopStart(level_matrix, normal_matrix);
       }
 
       for (var vertex=0; vertex <= this.vertices; vertex++) {
@@ -80,12 +80,83 @@ class Extrusion extends Object3D {
       }
 
       if (this.with_top == true && level == this.levels) {
-        this._fillPositionAndNormalBuffersForTop(level_matrix, normal_matrix);
+        this._fillPositionAndNormalBuffersForTopEnd(level_matrix, normal_matrix);
       }
     }
   }
 
-  _fillPositionAndNormalBuffersForTop(level_matrix, normal_matrix) {
+  _fillPositionAndNormalBuffersForTopStart(level_matrix, normal_matrix) {
+    for (var vertex=0; vertex <= this.vertices; vertex++) {
+      var u = vertex / this.vertices;      
+
+      var center_vertex_pos = this.shape.getCenterPosition(u);
+      var center_vertex_normal = this.shape.getCenterNormal(u);
+
+      var new_center_vertex_pos = vec4.create();
+      var new_center_vertex_normal = vec3.create();
+
+      var vec4_center_vertex_pos = vec4.fromValues(center_vertex_pos[0], center_vertex_pos[1], center_vertex_pos[2], 1);
+      vec4.transformMat4(new_center_vertex_pos, vec4_center_vertex_pos, level_matrix);
+
+      vec3.transformMat3(new_center_vertex_normal, center_vertex_normal, normal_matrix);
+
+      this.positionBuffer.push(new_center_vertex_pos[0]);
+      this.positionBuffer.push(new_center_vertex_pos[1]);
+      this.positionBuffer.push(new_center_vertex_pos[2]);
+
+      this.normalBuffer.push(new_center_vertex_normal[0]);
+      this.normalBuffer.push(new_center_vertex_normal[1]);
+      this.normalBuffer.push(new_center_vertex_normal[2]);
+    }
+
+    for (var vertex=0; vertex <= this.vertices; vertex++) {
+      var u = vertex / this.vertices;      
+
+      var center_vertex_pos = this.shape.getPosition(u);
+      var center_vertex_normal = this.shape.getCenterNormal(u);
+
+      var new_center_vertex_pos = vec4.create();
+      var new_center_vertex_normal = vec3.create();
+
+      var vec4_center_vertex_pos = vec4.fromValues(center_vertex_pos[0], center_vertex_pos[1], center_vertex_pos[2], 1);
+      vec4.transformMat4(new_center_vertex_pos, vec4_center_vertex_pos, level_matrix);
+
+      vec3.transformMat3(new_center_vertex_normal, center_vertex_normal, normal_matrix);
+
+      this.positionBuffer.push(new_center_vertex_pos[0]);
+      this.positionBuffer.push(new_center_vertex_pos[1]);
+      this.positionBuffer.push(new_center_vertex_pos[2]);
+
+      this.normalBuffer.push(new_center_vertex_normal[0]);
+      this.normalBuffer.push(new_center_vertex_normal[1]);
+      this.normalBuffer.push(new_center_vertex_normal[2]);
+    }
+  }
+
+  _fillPositionAndNormalBuffersForTopEnd(level_matrix, normal_matrix) {
+    for (var vertex=0; vertex <= this.vertices; vertex++) {
+      var u = vertex / this.vertices;      
+
+      var center_vertex_pos = this.shape.getPosition(u);
+      var center_vertex_normal = this.shape.getCenterNormal(u);
+
+      var new_center_vertex_pos = vec4.create();
+      var new_center_vertex_normal = vec3.create();
+
+      var vec4_center_vertex_pos = vec4.fromValues(center_vertex_pos[0], center_vertex_pos[1], center_vertex_pos[2], 1);
+      vec4.transformMat4(new_center_vertex_pos, vec4_center_vertex_pos, level_matrix);
+
+      vec3.transformMat3(new_center_vertex_normal, center_vertex_normal, normal_matrix);
+
+      this.positionBuffer.push(new_center_vertex_pos[0]);
+      this.positionBuffer.push(new_center_vertex_pos[1]);
+      this.positionBuffer.push(new_center_vertex_pos[2]);
+
+      this.normalBuffer.push(new_center_vertex_normal[0]);
+      this.normalBuffer.push(new_center_vertex_normal[1]);
+      this.normalBuffer.push(new_center_vertex_normal[2]);
+    }
+
     for (var vertex=0; vertex <= this.vertices; vertex++) {
       var u = vertex / this.vertices;      
 

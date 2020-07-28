@@ -48,6 +48,6 @@ class Circle {
     }
 
     getCenterNormal(u) {
-        return [1, 0, 0];
+        return [0, 0, 1];
     }
 }
