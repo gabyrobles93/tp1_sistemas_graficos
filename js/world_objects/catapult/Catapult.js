@@ -18,6 +18,9 @@ class Catapult {
 
         this.catapult_column_3 = new CatapultColumn();
         this.catapult_column_4 = new CatapultColumn();
+
+        this.catapult_hub_principal = new Cilinder(0.4, this.CATAPULT_WHEEL_SEPARATION_2 * 0.84, true, MaterialsList.TEST_NORMAL);
+        this.catapult_hub_rope = new Cilinder(0.25, this.CATAPULT_WHEEL_SEPARATION_2 * 0.84 * 0.6, true, MaterialsList.TEST_NORMAL);
     }
 
     draw() {
@@ -26,44 +29,24 @@ class Catapult {
 
     translate(relative_to, x, y, z) {
         mat4.translate(this.modelMatrix, relative_to, [x, y, z]);
-    
-        this.catapult_wheel_br.translate(this.modelMatrix, [x, y, z]);
-        this.catapult_wheel_fr.translate(this.modelMatrix, [x, y, z]);
-        this.catapult_wheel_bl.translate(this.modelMatrix, [x, y, z]);
-        this.catapult_wheel_fl.translate(this.modelMatrix, [x, y, z]);
 
         return this.modelMatrix;
     }
     
       rotate_x(relative_to, x) {
         mat4.rotate(this.modelMatrix, relative_to, x * Math.PI/180, [1, 0, 0]);
-       
-        this.catapult_wheel_br.rotate_x(this.modelMatrix, x);
-        this.catapult_wheel_fr.rotate_x(this.modelMatrix, x);
-        this.catapult_wheel_bl.rotate_x(this.modelMatrix, x);
-        this.catapult_wheel_fl.rotate_x(this.modelMatrix, x);
-    
+     
         return this.modelMatrix;
       }
     
       rotate_y(relative_to, y) {
         mat4.rotate(this.modelMatrix, relative_to, y * Math.PI/180, [0, 1, 0]);
     
-        this.catapult_wheel_br.rotate_y(this.modelMatrix, y);
-        this.catapult_wheel_fr.rotate_y(this.modelMatrix, y);
-        this.catapult_wheel_bl.rotate_y(this.modelMatrix, y);
-        this.catapult_wheel_fl.rotate_y(this.modelMatrix, y);
-    
         return this.modelMatrix;
       }
     
       rotate_z(relative_to, z) {
         mat4.rotate(this.modelMatrix, relative_to, z * Math.PI/180, [0, 0, 1]); 
-    
-        this.catapult_wheel_br.rotate_z(this.modelMatrix, z);
-        this.catapult_wheel_fr.rotate_z(this.modelMatrix, z);
-        this.catapult_wheel_bl.rotate_z(this.modelMatrix, z);
-        this.catapult_wheel_fl.rotate_z(this.modelMatrix, z);
     
         return this.modelMatrix;
       }
@@ -72,11 +55,6 @@ class Catapult {
         mat4.scale(this.modelMatrix, relative_to, [x, 1, 1]);
         mat4.scale(this.modelMatrix, relative_to, [1, y, 1]);
         mat4.scale(this.modelMatrix, relative_to, [1, 1, z]);    
-    
-        this.catapult_wheel_br.scale(this.modelMatrix, x, y, z);
-        this.catapult_wheel_fr.scale(this.modelMatrix, x, y, z);
-        this.catapult_wheel_bl.scale(this.modelMatrix, x, y, z);
-        this.catapult_wheel_fl.scale(this.modelMatrix, x, y, z);
     
         return this.modelMatrix;
       }
@@ -107,6 +85,8 @@ class Catapult {
         this.catapult_column_2.setViewProjectionMatrix(projMatrix, viewMatrix);
         this.catapult_column_3.setViewProjectionMatrix(projMatrix, viewMatrix);
         this.catapult_column_4.setViewProjectionMatrix(projMatrix, viewMatrix);
+        this.catapult_hub_principal.setViewProjectionMatrix(projMatrix, viewMatrix);
+        this.catapult_hub_rope.setViewProjectionMatrix(projMatrix, viewMatrix);
     }
 
     // Private
@@ -163,5 +143,17 @@ class Catapult {
         m1 = this.catapult_column_4.translate(m1, this.CATAPULT_WHEEL_SEPARATION_2 - this.CATAPULT_WHEEL_SEPARATION_2 * 1/3, -1.2, this.CATAPULT_FLOOR_WIDTH);
         this.catapult_column_4.scale(m1, 1, 1.2, 1);
         this.catapult_column_4.draw();
+
+        // DIBUJO EJE PRINCIPAL
+
+        var m1 = mat4.clone(this.modelMatrix);
+        this.catapult_hub_principal.translate(m1, this.catapult_wheel_bl.CATAPULT_WHEEL_WIDTH * 1.55, 4.2, -this.CATAPULT_WHEEL_SEPARATION_1 * 0.775);
+        this.catapult_hub_principal.draw();
+
+        // DIBUJO EJE DE SOGA
+
+        var m1 = mat4.clone(this.modelMatrix);
+        this.catapult_hub_rope.translate(m1, this.CATAPULT_WHEEL_SEPARATION_1 * 0.181, 1.8, 0.57);
+        this.catapult_hub_rope.draw();
     }
 }
