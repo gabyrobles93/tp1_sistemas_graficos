@@ -21,6 +21,7 @@ var camera_control = null;
 var menu_control = null;
 
 var castle = null;
+var catapult = null;
 
 var axis = null;
 var sphere = null;
@@ -28,6 +29,7 @@ var cube = null;
 var cilinder = null;
 
 function setViewProjectionMatrix() {
+    catapult.setViewProjectionMatrix(projMatrix, viewMatrix);
     castle.setViewProjectionMatrix(projMatrix, viewMatrix);
     axis.setViewProjectionMatrix(projMatrix, viewMatrix);
     sphere.setViewProjectionMatrix(projMatrix, viewMatrix);
@@ -66,9 +68,9 @@ function drawScene(){
     var m1 = mat4.create();
     mat4.identity(m1);
 
-    m1 = castle.translate(m1, 0, 0, 0);
-    castle.rotate_z(m1, 0);
-    castle.draw();
+    //catapult.translate(m1, 1, 0, 0);
+    catapult.translate(m1, 10, 10, 0);
+    catapult.draw()
 }
 
 function animate(t) {
@@ -83,6 +85,7 @@ function tick() {
 function initWorldObjects() {
     axis = new Axis();
 
+    catapult = new Catapult();
     castle = new Castle(CASTLE_SIZE_1, CASTLE_SIZE_2, CASTLE_FLOORS);
     sphere = new Sphere(0.9, 30, 30, MaterialsList.TEST_NORMAL);
     cube = new Cube(1, 1, 2, true, MaterialsList.TEST_NORMAL);
