@@ -12,6 +12,12 @@ class Catapult {
         this.catapult_wheel_fl = new CatapultWheel();
 
         this.catapult_floor = new Cube(6, 2.7, 0.3, true, MaterialsList.TEST_NORMAL);
+
+        this.catapult_column_1 = new CatapultColumn();
+        this.catapult_column_2 = new CatapultColumn();
+
+        this.catapult_column_3 = new CatapultColumn();
+        this.catapult_column_4 = new CatapultColumn();
     }
 
     draw() {
@@ -97,6 +103,10 @@ class Catapult {
         this.catapult_wheel_bl.setViewProjectionMatrix(projMatrix, viewMatrix);
         this.catapult_wheel_fl.setViewProjectionMatrix(projMatrix, viewMatrix);
         this.catapult_floor.setViewProjectionMatrix(projMatrix, viewMatrix);
+        this.catapult_column_1.setViewProjectionMatrix(projMatrix, viewMatrix);
+        this.catapult_column_2.setViewProjectionMatrix(projMatrix, viewMatrix);
+        this.catapult_column_3.setViewProjectionMatrix(projMatrix, viewMatrix);
+        this.catapult_column_4.setViewProjectionMatrix(projMatrix, viewMatrix);
     }
 
     // Private
@@ -125,10 +135,33 @@ class Catapult {
         this.catapult_floor.translate(m1, 0, -this.CATAPULT_WHEEL_SEPARATION_1 / 2, this.CATAPULT_WHEEL_SEPARATION_2 / 2);
         this.catapult_floor.draw();
 
-/*         var m1 = mat4.clone(modelMatrix);
-        mat4.rotate(m1, m1, Math.PI/2, [1, 0, 0]);
-        mat4.rotate(m1, m1, Math.PI/2, [0, 1, 0]);
-        mat4.translate(m1, m1, [0, -this.CATAPULT_WHEEL_SEPARATION_1 / 2, this.CATAPULT_WHEEL_SEPARATION_2 / 2]);
-        this.catapult_floor.draw(m1); */
+        // DIBUJO COLUMNAS DE BRAZO
+
+        var m1 = mat4.clone(this.modelMatrix);
+        m1 = this.catapult_column_1.rotate_x(m1, -90);
+        m1 = this.catapult_column_1.translate(m1, this.catapult_wheel_bl.CATAPULT_WHEEL_WIDTH * 2, this.CATAPULT_WHEEL_SEPARATION_1 * 0.65, this.CATAPULT_FLOOR_WIDTH);
+        this.catapult_column_1.scale(m1, 1, 2.3, 2.3);
+        this.catapult_column_1.draw();
+
+
+        var m1 = mat4.clone(this.modelMatrix);
+        m1 = this.catapult_column_2.rotate_x(m1, -90);
+        m1 = this.catapult_column_2.translate(m1, this.CATAPULT_WHEEL_SEPARATION_2 - this.catapult_wheel_bl.CATAPULT_WHEEL_WIDTH * 3, this.CATAPULT_WHEEL_SEPARATION_1 * 0.65, this.CATAPULT_FLOOR_WIDTH);
+        this.catapult_column_2.scale(m1, 1, 2.3, 2.3);
+        this.catapult_column_2.draw();
+
+        // DIBUJO COLUMNAS DE SOGA
+
+        var m1 = mat4.clone(this.modelMatrix);
+        m1 = this.catapult_column_3.rotate_x(m1, -90);
+        m1 = this.catapult_column_3.translate(m1, this.CATAPULT_WHEEL_SEPARATION_2 * 1/3, -1.2, this.CATAPULT_FLOOR_WIDTH);
+        this.catapult_column_3.scale(m1, 1, 1.2, 1);
+        this.catapult_column_3.draw();
+
+        var m1 = mat4.clone(this.modelMatrix);
+        m1 = this.catapult_column_4.rotate_x(m1, -90);
+        m1 = this.catapult_column_4.translate(m1, this.CATAPULT_WHEEL_SEPARATION_2 - this.CATAPULT_WHEEL_SEPARATION_2 * 1/3, -1.2, this.CATAPULT_FLOOR_WIDTH);
+        this.catapult_column_4.scale(m1, 1, 1.2, 1);
+        this.catapult_column_4.draw();
     }
 }

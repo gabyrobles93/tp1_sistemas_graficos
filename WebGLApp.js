@@ -69,7 +69,7 @@ function drawScene(){
     mat4.identity(m1);
 
     //catapult.translate(m1, 1, 0, 0);
-    catapult.translate(m1, 10, 10, 0);
+    catapult.rotate_x(m1, 0);
     catapult.draw()
 }
 
