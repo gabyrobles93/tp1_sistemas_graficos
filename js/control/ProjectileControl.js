@@ -19,6 +19,7 @@ class ProjectileControl {
             this.projectile_flying = false;
             mat4.rotate(original_projectile_model_matrix, original_projectile_model_matrix, max_arm_angle * Math.PI/180, [0, 0, 1]);
             this.projectile_model_matrix = mat4.clone(original_projectile_model_matrix);
+            projectile.modelMatrix = this.projectile_model_matrix;
         }
 
         projectile.draw(this.projectile_model_matrix);
