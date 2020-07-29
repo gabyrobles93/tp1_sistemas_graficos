@@ -1,5 +1,6 @@
 class CatapultCounterweight {
     constructor() {
+        
         this.counterweight_column_1 = new CatapultColumn();
         this.counterweight_column_2 = new CatapultColumn();
         this.counterweight_hub = new Cilinder(0.15, 1.1, true, MaterialsList.DARK_BROWN);

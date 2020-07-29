@@ -21,10 +21,16 @@ class Catapult {
 
         this.catapult_hub_principal = new Cilinder(0.4, this.CATAPULT_WHEEL_SEPARATION_2 * 0.84, true, MaterialsList.TEST_NORMAL);
         this.catapult_hub_rope = new Cilinder(0.25, this.CATAPULT_WHEEL_SEPARATION_2 * 0.84 * 0.6, true, MaterialsList.TEST_NORMAL);
+
+        this.catapult_crank_1 = new Cilinder(0.05, 1.2, true, MaterialsList.TEST_NORMAL);
+        this.catapult_crank_2 = new Cilinder(0.05, 1.2, true, MaterialsList.TEST_NORMAL);
+
+        this.catapult_arm = new CatapultArm();
     }
 
     draw() {
         this._drawStaticsParts();
+        this._drawDynamicParts();
     }
 
     translate(relative_to, x, y, z) {
@@ -87,6 +93,9 @@ class Catapult {
         this.catapult_column_4.setViewProjectionMatrix(projMatrix, viewMatrix);
         this.catapult_hub_principal.setViewProjectionMatrix(projMatrix, viewMatrix);
         this.catapult_hub_rope.setViewProjectionMatrix(projMatrix, viewMatrix);
+        this.catapult_crank_1.setViewProjectionMatrix(projMatrix, viewMatrix);
+        this.catapult_crank_2.setViewProjectionMatrix(projMatrix, viewMatrix);
+        this.catapult_arm.setViewProjectionMatrix(projMatrix, viewMatrix);
     }
 
     // Private
@@ -156,4 +165,40 @@ class Catapult {
         this.catapult_hub_rope.translate(m1, this.CATAPULT_WHEEL_SEPARATION_1 * 0.181, 1.8, 0.57);
         this.catapult_hub_rope.draw();
     }
+
+    _drawDynamicParts() {
+      // REFERENCIA NO DIBUJABLE: CENTRO DEL EJE MOVIL, ENTRE LAS MANIVELAS
+      var rope_lookat = mat4.clone(this.modelMatrix);
+      mat4.translate(rope_lookat, rope_lookat, [this.CATAPULT_WHEEL_SEPARATION_1 * 0.35, 1.6, 0.57]);
+
+      var m1 = mat4.clone(this.modelMatrix);
+      m1 = this.catapult_arm.rotate_y(m1, -90);
+      m1 = this.catapult_arm.translate(m1, -7, 4.6, -(this.CATAPULT_WHEEL_SEPARATION_2 / 2));
+      this.catapult_arm.rotate_z(m1, this.catapult_arm_angle);
+      this.catapult_arm.draw(rope_lookat, this.catapult_arm_angle);
+
+      // DIBUJO BRAZO DE CATAPULTA
+/*       var m1 = mat4.clone(modelMatrix);
+      mat4.rotate(m1, m1, -Math.PI/2, [0, 1, 0]);
+      mat4.translate(m1, m1, [-7, 4.6, -(this.CATAPULT_WHEEL_SEPARATION_2 / 2)]);
+          // Rotación del brazo en su eje de catapulta
+      mat4.rotate(m1, m1,  this.catapult_arm_angle * Math.PI/180, [0, 0, 1]);
+      this.catapult_arm.draw(m1, rope_lookat, this.catapult_arm_angle); */
+
+      // DIBUJO MANIVELA DE EJE DE SOGA 1
+      var m1 = mat4.clone(this.modelMatrix);
+      m1 = this.catapult_crank_1.translate(m1, 1.8, 1.8, 0.57);
+      m1 = this.catapult_crank_1.rotate_z(m1, 90);
+      m1 = this.catapult_crank_1.rotate_y(m1, 5 * this.catapult_arm_angle);
+      this.catapult_crank_1.translate(m1, -0.6, 0, 0);
+      this.catapult_crank_1.draw();
+
+      // DIBUJO MANIVELA DE EJE DE SOGA 2
+      var m1 = mat4.clone(this.modelMatrix);
+      m1 = this.catapult_crank_2.translate(m1, 4.5, 1.8, 0.57);
+      m1 = this.catapult_crank_2.rotate_z(m1, 90);
+      m1 = this.catapult_crank_2.rotate_y(m1, 5 * this.catapult_arm_angle);
+      this.catapult_crank_2.translate(m1, -0.6, 0, 0);
+      this.catapult_crank_2.draw();
+  }
 }
