@@ -68,9 +68,7 @@ function drawScene(){
     var m1 = mat4.create();
     mat4.identity(m1);
 
-    m1 = catapult.translate(m1, 0, 0, 0);
-    //m1 = catapult.rotate_x(m1, 90);
-    catapult.draw()
+    catapult_control.drawCatapult();
 }
 
 function animate(t) {
@@ -86,6 +84,8 @@ function initWorldObjects() {
     axis = new Axis();
 
     catapult = new Catapult();
+    catapult_control.setCatapult(catapult);
+    
     castle = new Castle(CASTLE_SIZE_1, CASTLE_SIZE_2, CASTLE_FLOORS);
     sphere = new Sphere(0.9, 30, 30, MaterialsList.TEST_NORMAL);
     cube = new Cube(1, 1, 2, true, MaterialsList.TEST_NORMAL);

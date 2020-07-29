@@ -1,5 +1,7 @@
 class CatapultControl {
     constructor(canvas) {
+        this.catapult = null;
+
         this.catapult_is_shooting = false;
         this.max_catapult_arm_angle = 45;
         this.catapult_arm_angle = 0;
@@ -9,9 +11,6 @@ class CatapultControl {
         this.catapult_position_x = 95;
         this.catapult_position_y = 0.5;
         this.catapult_model_matrix = mat4.create();
-        mat4.identity(this.catapult_model_matrix);
-        mat4.translate(this.catapult_model_matrix, this.catapult_model_matrix, [-2.5, this.catapult_position_y, this.catapult_position_x]);
-        mat4.rotate(this.catapult_model_matrix, this.catapult_model_matrix, this.catapult_angle * Math.PI/180, [0, 1, 0]);
 
         this.CATAPULT_ADVANCE_KEY = "KeyU";         // k
         this.CATAPULT_RECOIL_KEY = "KeyJ";          // j
@@ -24,7 +23,15 @@ class CatapultControl {
         this._setEventListeners(canvas);
     }
 
-    drawCatapult(catapult) {
+    setCatapult(catapult) {
+        this.catapult = catapult;
+
+        var m1 = mat4.clone(this.catapult.modelMatrix);
+        m1 = this.catapult.translate(m1, -2.5, this.catapult_position_y, this.catapult_position_x);
+        this.catapult.rotate_y(m1, this.catapult_angle);
+    }
+
+    drawCatapult() {
         if (this.catapult_is_shooting && this.catapult_arm_angle <= this.max_catapult_arm_angle) {
             this.catapult_arm_angle = this.catapult_arm_angle + 1;
         }
@@ -38,11 +45,11 @@ class CatapultControl {
         }
 
         catapult.setCatapultArmAngle(this.catapult_arm_angle);
-        catapult.draw(this.catapult_model_matrix);
+        catapult.draw();
     }
 
-    getProjectileModelMatrix(catapult) {
-        return catapult.getProjectileModelMatrix();
+    getProjectileModelMatrix() {
+        return this.catapult.getProjectileModelMatrix();
     }
 
     getArmAngle() {
@@ -55,7 +62,7 @@ class CatapultControl {
 
     getCatapultPosition() {
         var catapult_position = vec3.create();
-        mat4.getTranslation(catapult_position, this.catapult_model_matrix);
+        mat4.getTranslation(catapult_position, this.catapult.modelMatrix);
         return catapult_position;
     }
 
@@ -67,18 +74,18 @@ class CatapultControl {
 
     _setEventListeners(canvas) {
         document.addEventListener('keydown', (e) => {
-            if(e.code === this.CATAPULT_ADVANCE_KEY) mat4.translate(this.catapult_model_matrix, this.catapult_model_matrix, [0, 0, -1]);
-            if(e.code === this.CATAPULT_RECOIL_KEY) mat4.translate(this.catapult_model_matrix, this.catapult_model_matrix, [0, 0, 1]);
+            if(e.code === this.CATAPULT_ADVANCE_KEY) this.catapult.translate(this.catapult.modelMatrix, 0, 0, -1);
+            if(e.code === this.CATAPULT_RECOIL_KEY) this.catapult.translate(this.catapult.modelMatrix, 0, 0, 1);
 
             if(e.code === this.CATAPULT_LEFT_ROTATION_KEY) {
-                mat4.rotate(this.catapult_model_matrix, this.catapult_model_matrix, 1 * Math.PI/180, [0, 1, 0]);
+                this.catapult.rotate_y(this.catapult.modelMatrix, 1);
                 var m1 = mat4.create();
                 mat4.fromYRotation(m1, 1 * Math.PI/180);
                 vec3.transformMat4(this.catapult_frontal, this.catapult_frontal, m1);
             } 
 
             if(e.code === this.CATAPULT_RIGHT_ROTATION_KEY) {
-                mat4.rotate(this.catapult_model_matrix, this.catapult_model_matrix, -1 * Math.PI/180, [0, 1, 0]);
+                this.catapult.rotate_y(this.catapult.modelMatrix, -1);
                 var m1 = mat4.create();
                 mat4.fromYRotation(m1, -1 * Math.PI/180);
                 vec3.transformMat4(this.catapult_frontal, this.catapult_frontal, m1);
