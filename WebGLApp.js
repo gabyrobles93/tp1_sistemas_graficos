@@ -73,6 +73,8 @@ function drawScene(){
     var m1 = mat4.create();
     mat4.identity(m1);
 
+    //castle.draw();
+
     catapult_control.drawCatapult();
 
     console.log(catapult_control.getProjectileModelMatrix());
