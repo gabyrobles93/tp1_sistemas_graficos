@@ -7,6 +7,7 @@ class CatapultArm {
         this.rope_end = new Cilinder(0.6, 0.5, true, MaterialsList.TEST_NORMAL);
         this.rope = new Cilinder(0.05, 1, true, MaterialsList.TEST_NORMAL);
         this.projectile = new Sphere(0.9, 30, 30, MaterialsList.TEST_NORMAL);
+        this.counterweight = new CatapultCounterweight();
     }
 
     draw(rope_lookat, arm_angle) {
@@ -41,24 +42,16 @@ class CatapultArm {
         this.rope.draw();
 
         // DIBUJO CONTRAPESO
-/*         var m1 = mat4.clone(this.modelMatrix);
+        var m1 = mat4.clone(this.modelMatrix);
         m1 = this.counterweight.translate(m1, -2, 0, 0);
         this.counterweight.rotate_z(m1, -arm_angle);
-        this.counterweight.draw(); */
-
-/* 
-
-        // DIBUJO CONTRAPESO
-        var m1 = mat4.clone(modelMatrix);
-        mat4.translate(m1, m1, [-2, 0, 0]);
-        mat4.rotate(m1, m1, arm_angle * Math.PI/180, [0, 0, -1]);
-        this.counterweight.draw(m1);
+        this.counterweight.draw();
 
         // DIBUJO PROYECTIL
-        var m1 = mat4.clone(modelMatrix);
-        mat4.translate(m1, m1, [11.75, 1.2, 0]);
+        var m1 = mat4.clone(this.modelMatrix);
+        m1 = this.projectile.translate(m1, 11.75, 1.2, 0);
         this.projectile_model_matrix = mat4.clone(m1);
-        this.projectile.draw(m1); */
+        this.projectile.draw();
     }
 
     translate(relative_to, x, y, z) {
@@ -106,7 +99,7 @@ class CatapultArm {
         this.bucket.setViewProjectionMatrix(projMatrix, viewMatrix);
         this.rope_end.setViewProjectionMatrix(projMatrix, viewMatrix);
         this.rope.setViewProjectionMatrix(projMatrix, viewMatrix);
-/*         this.counterweight.setViewProjectionMatrix(projMatrix, viewMatrix);
-        this.projectile.setViewProjectionMatrix(projMatrix, viewMatrix); */
+        this.counterweight.setViewProjectionMatrix(projMatrix, viewMatrix);
+        this.projectile.setViewProjectionMatrix(projMatrix, viewMatrix);
     }
 }
