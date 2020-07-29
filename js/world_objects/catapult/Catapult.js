@@ -10,6 +10,8 @@ class Catapult {
         this.catapult_wheel_fr = new CatapultWheel();
         this.catapult_wheel_bl = new CatapultWheel();
         this.catapult_wheel_fl = new CatapultWheel();
+
+        this.catapult_floor = new Cube(6, 2.7, 0.3, true, MaterialsList.TEST_NORMAL);
     }
 
     draw() {
@@ -94,6 +96,7 @@ class Catapult {
         this.catapult_wheel_fr.setViewProjectionMatrix(projMatrix, viewMatrix);
         this.catapult_wheel_bl.setViewProjectionMatrix(projMatrix, viewMatrix);
         this.catapult_wheel_fl.setViewProjectionMatrix(projMatrix, viewMatrix);
+        this.catapult_floor.setViewProjectionMatrix(projMatrix, viewMatrix);
     }
 
     // Private
@@ -115,5 +118,17 @@ class Catapult {
         m1 = this.catapult_wheel_fl.translate(m1, this.CATAPULT_WHEEL_SEPARATION_2, 0, -this.CATAPULT_WHEEL_SEPARATION_1);
         m1 = this.catapult_wheel_fl.rotate_y(m1, 180);
         this.catapult_wheel_fl.draw();
+
+        var m1 = mat4.clone(this.modelMatrix);
+        m1 = this.catapult_floor.rotate_x(m1, 90);
+        m1 = this.catapult_floor.rotate_y(m1, 90);
+        this.catapult_floor.translate(m1, 0, -this.CATAPULT_WHEEL_SEPARATION_1 / 2, this.CATAPULT_WHEEL_SEPARATION_2 / 2);
+        this.catapult_floor.draw();
+
+/*         var m1 = mat4.clone(modelMatrix);
+        mat4.rotate(m1, m1, Math.PI/2, [1, 0, 0]);
+        mat4.rotate(m1, m1, Math.PI/2, [0, 1, 0]);
+        mat4.translate(m1, m1, [0, -this.CATAPULT_WHEEL_SEPARATION_1 / 2, this.CATAPULT_WHEEL_SEPARATION_2 / 2]);
+        this.catapult_floor.draw(m1); */
     }
 }
