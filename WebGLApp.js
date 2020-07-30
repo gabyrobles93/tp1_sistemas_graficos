@@ -31,10 +31,8 @@ var axis = null;
 var sphere = null;
 var cube = null;
 var cilinder = null;
-var castle_column_ceiling = null;
 
 function setViewProjectionMatrix() {
-    castle_column_ceiling.setViewProjectionMatrix(projMatrix, viewMatrix);
     catapult.setViewProjectionMatrix(projMatrix, viewMatrix);
     castle.setViewProjectionMatrix(projMatrix, viewMatrix);
     axis.setViewProjectionMatrix(projMatrix, viewMatrix);
@@ -77,9 +75,9 @@ function drawScene(){
 
     castle.draw();
 
-    catapult_control.drawCatapult();
+    //catapult_control.drawCatapult();
 
-    projectile_control.drawProjectile(projectile, catapult_control.getProjectileModelMatrix(), catapult_control.getArmAngle(), catapult_control.getMaxArmAngle());
+    //projectile_control.drawProjectile(projectile, catapult_control.getProjectileModelMatrix(), catapult_control.getArmAngle(), catapult_control.getMaxArmAngle());
 }
 
 function animate(t) {
@@ -101,7 +99,6 @@ function initWorldObjects() {
     castle = new Castle(CASTLE_SIZE_1, CASTLE_SIZE_2, CASTLE_FLOORS);
     projectile = new Sphere(0.9, 30, 30, MaterialsList.TEST_NORMAL);
 
-    castle_column_ceiling = new CastleColumnCeiling();
     sphere = new Sphere(0.9, 30, 30, MaterialsList.TEST_NORMAL);
     cube = new Cube(1, 1, 2, true, MaterialsList.TEST_NORMAL);
     cilinder = new Cilinder(0.6, 5, true, MaterialsList.LIGHT_BROWN);
