@@ -62,8 +62,8 @@ class Object3D {
     mat4.scale(this.modelMatrix, relative_to, [1, y, 1]);
     mat4.scale(this.modelMatrix, relative_to, [1, 1, z]);    
 
-    mat4.invert(this.normalMatrix, this.modelMatrix);
-    mat4.transpose(this.normalMatrix, this.normalMatrix);
+/*     mat4.invert(this.normalMatrix, this.modelMatrix);
+    mat4.transpose(this.normalMatrix, this.normalMatrix); */
 
     return this.modelMatrix;
   }

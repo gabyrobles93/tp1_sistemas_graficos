@@ -25,18 +25,75 @@ class BezierCubicCurve {
     }
 
     getNormal(u) {
-        // TO DO: CALCULO DE NORMAL
-        return [0, 0, 1];
+        var base_0 = (-6 * u) + 6;
+        var base_1 = (18 * u) - 12;
+        var base_2 = (-18 * u) + 6;
+        var base_3 = 6 * u;
+
+        var x = base_0 * this.start_control_point[0] + 
+                base_1 * this.center_control_point_1[0] + 
+                base_2 * this.center_control_point_2[0] + 
+                base_3 * this.end_control_point[0];
+
+        var y = base_0 * this.start_control_point[1] + 
+                base_1 * this.center_control_point_1[1] + 
+                base_2 * this.center_control_point_2[1] + 
+                base_3 * this.end_control_point[1];
+
+        var z = base_0 * this.start_control_point[2] + 
+                base_1 * this.center_control_point_1[2] + 
+                base_2 * this.center_control_point_2[2] + 
+                base_3 * this.end_control_point[2];
+
+        var normal = vec3.fromValues(x, y, z);
+        vec3.normalize(normal, normal);
+
+        // No funciona:
+        // vec3.rotateZ(normal, this.getTangent(u), [0, 0, 0], Math.PI / 2);
+        
+        // Devuelvo normal aproximada ya que no funciona bien el calculo
+        return [1, 0, 0];
+        return [normal.z, normal.y, normal.x];
     }
 
     getTangent(u) {
-        // TO DO: CALCULO DE TANGENTE 
-        return [1, 0, 0];
+        var base_0 = -3 * u * u + 6 * u - 3;
+        var base_1 = 9 * u * u - 12 * u + 3;
+        var base_2 = -9 * u * u + 6 * u ;
+        var base_3 = 3 * u * u;
+
+        var x = base_0 * this.start_control_point[0] + 
+                base_1 * this.center_control_point_1[0] + 
+                base_2 * this.center_control_point_2[0] + 
+                base_3 * this.end_control_point[0];
+
+        var y = base_0 * this.start_control_point[1] + 
+                base_1 * this.center_control_point_1[1] + 
+                base_2 * this.center_control_point_2[1] + 
+                base_3 * this.end_control_point[1];
+
+        var z = base_0 * this.start_control_point[2] + 
+                base_1 * this.center_control_point_1[2] + 
+                base_2 * this.center_control_point_2[2] + 
+                base_3 * this.end_control_point[2];
+
+        var tangent = vec3.fromValues(x, y, z);
+        vec3.normalize(tangent, tangent);
+        
+        return [tangent.x, tangent.y, tangent.z];
     }
 
     getBinormal(u) {
-        // TO DO: CALCULO DE BINORMAL 
-        return [x, y, 0];
+        var binormal = vec3.create();
+        var normal = this.getNormal(u);
+        var tangent = this.getTangent(u);
+
+        var v_normal = vec3.fromValues(normal[0], normal[1], normal[2]);
+        var v_tangent = vec3.fromValues(tangent[0], tangent[1], tangent[2]);
+
+        vec3.cross(binormal, v_normal, v_tangent);
+
+        return [binormal.x, binormal.y, binormal.z];
     }
 
     getCenterPosition(u) {
@@ -44,7 +101,6 @@ class BezierCubicCurve {
     }
 
     getCenterNormal(u) {
-        // TO DO: CALCULO DE NORMAL
         return [0, 0, 1];
     }
 }
