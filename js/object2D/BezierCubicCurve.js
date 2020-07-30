@@ -25,35 +25,12 @@ class BezierCubicCurve {
     }
 
     getNormal(u) {
-        var base_0 = (-6 * u) + 6;
-        var base_1 = (18 * u) - 12;
-        var base_2 = (-18 * u) + 6;
-        var base_3 = 6 * u;
+        var normal = vec3.fromValues(0, 0, 0);
 
-        var x = base_0 * this.start_control_point[0] + 
-                base_1 * this.center_control_point_1[0] + 
-                base_2 * this.center_control_point_2[0] + 
-                base_3 * this.end_control_point[0];
-
-        var y = base_0 * this.start_control_point[1] + 
-                base_1 * this.center_control_point_1[1] + 
-                base_2 * this.center_control_point_2[1] + 
-                base_3 * this.end_control_point[1];
-
-        var z = base_0 * this.start_control_point[2] + 
-                base_1 * this.center_control_point_1[2] + 
-                base_2 * this.center_control_point_2[2] + 
-                base_3 * this.end_control_point[2];
-
-        var normal = vec3.fromValues(x, y, z);
+        vec3.rotateZ(normal, this.getTangent(u), [0, 0, 0], Math.PI / 2);
         vec3.normalize(normal, normal);
-
-        // No funciona:
-        // vec3.rotateZ(normal, this.getTangent(u), [0, 0, 0], Math.PI / 2);
         
-        // Devuelvo normal aproximada ya que no funciona bien el calculo
-        return [1, 0, 0];
-        return [normal.z, normal.y, normal.x];
+        return [normal[0], normal[1], normal[2]];
     }
 
     getTangent(u) {
@@ -80,7 +57,7 @@ class BezierCubicCurve {
         var tangent = vec3.fromValues(x, y, z);
         vec3.normalize(tangent, tangent);
         
-        return [tangent.x, tangent.y, tangent.z];
+        return [tangent[0], tangent[1], tangent[2]];
     }
 
     getBinormal(u) {
@@ -93,7 +70,7 @@ class BezierCubicCurve {
 
         vec3.cross(binormal, v_normal, v_tangent);
 
-        return [binormal.x, binormal.y, binormal.z];
+        return [binormal[0], binormal[1], binormal[2]];
     }
 
     getCenterPosition(u) {
