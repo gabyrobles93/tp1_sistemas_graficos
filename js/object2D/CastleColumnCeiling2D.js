@@ -3,7 +3,7 @@ class CastleColumnCeiling2D {
         this.top_offset = 0.02
         this.arc = new BezierCubicCurve([0 + this.top_offset, 2.3, 0], [0.05 + this.top_offset, 1.2, 0], [0.5 + this.top_offset, 0.4, 0], [0.75 + this.top_offset, 0, 0]);
         this.arc_vertices = 15;
-        this.vertices = (this.arc_vertices) + 1;
+        this.vertices = (this.arc_vertices) + 2;
         this.position_points = [];
         this.normal_points = [];
         this.tangent_points = [];
@@ -33,14 +33,16 @@ class CastleColumnCeiling2D {
     }
 
     getCenterNormal(u) {
-        return [1, 0, 0];
+        return [0, 0, 1];
     }
 
     // Private
     _fillPoints() {
         this.position_points.push([0, 2.3, 0]);
+        this.normal_points.push([0, 1, 0]);
 
-        this.normal_points.push([1, 0, 0]);
+        this.position_points.push(this.arc.getPosition(0));
+        this.normal_points.push([0, 1, 0]);
 
         for (var i = 0; i <= this.arc_vertices; i++) {
             var u = i / this.arc_vertices;
