@@ -8,7 +8,7 @@ class CatapultControl {
         this.catapult_angle = 0;
         this.catapult_frontal = [0, 0, 1];
 
-        this.catapult_position_x = 0;//95;
+        this.catapult_position_x = 95;
         this.catapult_position_y = 0.5;
         this.catapult_model_matrix = mat4.create();
 

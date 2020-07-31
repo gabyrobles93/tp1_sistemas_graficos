@@ -83,16 +83,15 @@ function drawScene(){
     castle_ceiling.rotate_x(m1, 90);
     castle_ceiling.draw(); */
     
-    //castle.draw();
+    castle.draw();
 
     mat4.identity(m1);
     m1 = castle_wall.translate(m1, -CASTLE_WALL_SIZE/2, 0, CASTLE_WALL_SIZE/2);
     castle_wall.rotate_x(m1, -90);
     castle_wall.draw();
 
-    //catapult_control.drawCatapult();
-
-    //projectile_control.drawProjectile(projectile, catapult_control.getProjectileModelMatrix(), catapult_control.getArmAngle(), catapult_control.getMaxArmAngle());
+    catapult_control.drawCatapult();
+    projectile_control.drawProjectile(projectile, catapult_control.getProjectileModelMatrix(), catapult_control.getArmAngle(), catapult_control.getMaxArmAngle());
 }
 
 function animate(t) {
@@ -122,8 +121,8 @@ function initWorldObjects() {
 }
 
 function initControllers(canvas) {
-    camera_control = new CameraControl(canvas, catapult_control);
     catapult_control = new CatapultControl(canvas);
+    camera_control = new CameraControl(canvas, catapult_control);
     projectile_control = new ProjectileControl(canvas);
     
     menu_control = new MenuControl();
