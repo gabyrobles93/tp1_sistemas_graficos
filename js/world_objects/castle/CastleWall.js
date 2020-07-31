@@ -2,17 +2,18 @@ class CastleWall {
     constructor(sides_qty, side_size) {
         this.sides_qty = sides_qty;
         this.side_size = side_size;
+        this.modelMatrix = mat4.create();
         this.towers = [];
         this.WALL_DOOR_PROPORTION = 0.82;
         this.GENERAL_ROTATION = Math.PI/2 - (2*Math.PI - 2*Math.PI * this.WALL_DOOR_PROPORTION) / 2;
 
-        this.wall = new Extrusion(new CastleWall2D(), new CircleIncomplete(this.sides_qty - 2, this.side_size, this.WALL_DOOR_PROPORTION), false, MaterialsList.WALL_GREY);
+        this.wall = new Extrusion(new CastleWall2D(), new CircleIncomplete(this.sides_qty - 2, this.side_size, this.WALL_DOOR_PROPORTION), false, MaterialsList.TEST_NORMAL);
         this.door = new CastleWallDoor(this.side_size);
 
         this._createTowers();
     }
 
-    draw(modelMatrix) {
+    draw() {
         var m1 = mat4.clone(modelMatrix);
         mat4.translate(m1, m1, [0, 0, 0]);
         mat4.translate(m1, m1, [this.side_size/2, this.side_size/2, 0]);

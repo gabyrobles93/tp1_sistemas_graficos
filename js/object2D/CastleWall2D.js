@@ -15,6 +15,7 @@ class CastleWall2D {
         this.arc_vertices = 15;
         this.vertices = 2;
         this.points = [];
+        this.normal_points = [];
 
         this._fillPoints();
     }
@@ -25,7 +26,7 @@ class CastleWall2D {
 
     getNormal(u) {
         //TODO: CALCULAR NORMALES
-        return [1, 0, 0];
+        return this.normal_points[Math.round(u * this.vertices)];
     }
 
     getTangent(u) {
@@ -49,52 +50,65 @@ class CastleWall2D {
         for (var i = 0; i <= this.arc_vertices; i++) {
             var u = i / this.arc_vertices;
             this.points.push(this.arc_1.getPosition(u));
+            this.normal_points.push(this.arc_1.getNormal(u));
             this.vertices = this.vertices + 1;
         }
 
         for (var i = 0; i <= this.arc_vertices; i++) {
             var u = i / this.arc_vertices;
             this.points.push(this.arc_2.getPosition(u));
+            this.normal_points.push(this.arc_2.getNormal(u));
             this.vertices = this.vertices + 1;
         }
 
         for (var i = 0; i <= this.arc_vertices; i++) {
             var u = i / this.arc_vertices;
             this.points.push(this.arc_3.getPosition(u));
+            this.normal_points.push(this.arc_3.getNormal(u));
             this.vertices = this.vertices + 1;
         }
 
         for (var i = 0; i <= this.arc_vertices; i++) {
             var u = i / this.arc_vertices;
             this.points.push(this.arc_4.getPosition(u));
+            this.normal_points.push(this.arc_4.getNormal(u));
             this.vertices = this.vertices + 1;
         }
 
         this.points.push([-5.5, 16, 0]);
+        this.normal_points.push([0, 1, 0]);
+
         this.points.push([-9, 16, 0]);
+        this.normal_points.push([0, 1, 0]);
+
         this.points.push([-9, 17, 0]);
+        this.normal_points.push([1, 0, 0]);
 
         for (var i = 0; i <= this.arc_vertices; i++) {
             var u = i / this.arc_vertices;
             this.points.push(this.arc_5.getPosition(u));
+            this.normal_points.push(this.arc_5.getNormal(u));
             this.vertices = this.vertices + 1;
         }
 
         for (var i = 0; i <= this.arc_vertices; i++) {
             var u = i / this.arc_vertices;
             this.points.push(this.arc_6.getPosition(u));
+            this.normal_points.push(this.arc_6.getNormal(u));
             this.vertices = this.vertices + 1;
         }
 
         for (var i = 0; i <= this.arc_vertices; i++) {
             var u = i / this.arc_vertices;
             this.points.push(this.arc_7.getPosition(u));
+            this.normal_points.push(this.arc_7.getNormal(u));
             this.vertices = this.vertices + 1;
         }
 
         for (var i = 0; i <= this.arc_vertices; i++) {
             var u = i / this.arc_vertices;
             this.points.push(this.arc_8.getPosition(u));
+            this.normal_points.push(this.arc_8.getNormal(u));
             this.vertices = this.vertices + 1;
         }
     }

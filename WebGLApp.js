@@ -17,6 +17,8 @@ var CASTLE_SIZE_2 = 6;
 var CASTLE_FLOORS = 3;
 var CASTLE_WALL_SIDES = 6; // Entre 4 y 8 lados
 
+var CASTLE_WALL_SIZE = 50;
+
 // Controladores
 var catapult_control = null;
 var projectile_control = null;
@@ -27,14 +29,14 @@ var castle = null;
 var catapult = null;
 var projectile = null;
 
-var castle_ceiling = null;
+var castle_wall = null;
 var axis = null;
 var sphere = null;
 var cube = null;
 var cilinder = null;
 
 function setViewProjectionMatrix() {
-    castle_ceiling.setViewProjectionMatrix(projMatrix, viewMatrix);
+    castle_wall.setViewProjectionMatrix(projMatrix, viewMatrix);
     catapult.setViewProjectionMatrix(projMatrix, viewMatrix);
     castle.setViewProjectionMatrix(projMatrix, viewMatrix);
     axis.setViewProjectionMatrix(projMatrix, viewMatrix);
@@ -79,7 +81,6 @@ function drawScene(){
     castle_ceiling.rotate_x(m1, 90);
     castle_ceiling.draw(); */
     
-
     castle.draw();
 
     //catapult_control.drawCatapult();
@@ -106,7 +107,7 @@ function initWorldObjects() {
     castle = new Castle(CASTLE_SIZE_1, CASTLE_SIZE_2, CASTLE_FLOORS);
     projectile = new Sphere(0.9, 30, 30, MaterialsList.TEST_NORMAL);
 
-    castle_ceiling = new CastleCeiling(CASTLE_SIZE_1, CASTLE_SIZE_2);
+    castle_wall = new CastleWall(CASTLE_WALL_SIDES, CASTLE_WALL_SIZE);
     sphere = new Sphere(0.9, 30, 30, MaterialsList.TEST_NORMAL);
     cube = new Cube(1, 1, 2, true, MaterialsList.TEST_NORMAL);
     cilinder = new Cilinder(0.6, 5, true, MaterialsList.LIGHT_BROWN);

@@ -7,16 +7,16 @@ class CastleWallDoor {
         this.OFFSET = 5;
         this.DOOR_ANGLE = Math.PI/2;
 
-        this.wall_1 = new Extrusion(new CastleWall2D(), new Line(2, this.size * this.WALL_PROPORTION), true, MaterialsList.WALL_GREY);
-        this.wall_2 = new Extrusion(new CastleWall2D(), new Line(2, this.size * this.WALL_PROPORTION), true, MaterialsList.WALL_GREY);
+        this.wall_1 = new Extrusion(new CastleWall2D(), new Line(2, this.size * this.WALL_PROPORTION), true, MaterialsList.TEST_NORMAL);
+        this.wall_2 = new Extrusion(new CastleWall2D(), new Line(2, this.size * this.WALL_PROPORTION), true, MaterialsList.TEST_NORMAL);
 
-        this.door_frame_1 = new Cube(this.DOOR_FRAME_WIDTH, 8.5, 6.5, true, MaterialsList.WALL_GREY);
-        this.door_frame_2 = new Cube(this.DOOR_FRAME_WIDTH, 8.5, 6.5, true, MaterialsList.WALL_GREY);
-        this.door_frame_3 = new Cube(this.DOOR_FRAME_WIDTH, (this.size/2) - (this.size * this.WALL_PROPORTION) - this.OFFSET, 6.5, true, MaterialsList.WALL_GREY);
+        this.door_frame_1 = new Cube(this.DOOR_FRAME_WIDTH, 8.5, 6.5, true, MaterialsList.TEST_NORMAL);
+        this.door_frame_2 = new Cube(this.DOOR_FRAME_WIDTH, 8.5, 6.5, true, MaterialsList.TEST_NORMAL);
+        this.door_frame_3 = new Cube(this.DOOR_FRAME_WIDTH, (this.size/2) - (this.size * this.WALL_PROPORTION) - this.OFFSET, 6.5, true, MaterialsList.TEST_NORMAL);
 
-        this.door = new Cube(this.DOOR_WIDTH, 8, this.size/2 - this.size * this.WALL_PROPORTION + 0.2, true, MaterialsList.LIGHT_BROWN);
+        this.door = new Cube(this.DOOR_WIDTH, 8, this.size/2 - this.size * this.WALL_PROPORTION + 0.2, true, MaterialsList.TEST_NORMAL);
 
-        this.referencia = new Cilinder(0.1, 1, true, MaterialsList.DEFAULT);
+        this.referencia = new Cilinder(0.1, 1, true, MaterialsList.TEST_NORMAL);
     }
 
     draw(modelMatrix) {
