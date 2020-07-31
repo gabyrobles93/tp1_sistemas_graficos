@@ -81,14 +81,14 @@ class CatapultControl {
             if(e.code === this.CATAPULT_LEFT_ROTATION_KEY) {
                 this.catapult.rotate_y(this.catapult.modelMatrix, 1);
                 var m1 = mat4.create();
-                mat4.fromYRotation(m1, 3 * Math.PI/180);
+                mat4.fromYRotation(m1, 1 * Math.PI/180);
                 vec3.transformMat4(this.catapult_frontal, this.catapult_frontal, m1);
             } 
 
             if(e.code === this.CATAPULT_RIGHT_ROTATION_KEY) {
                 this.catapult.rotate_y(this.catapult.modelMatrix, -1);
                 var m1 = mat4.create();
-                mat4.fromYRotation(m1, -3 * Math.PI/180);
+                mat4.fromYRotation(m1, -1 * Math.PI/180);
                 vec3.transformMat4(this.catapult_frontal, this.catapult_frontal, m1);
             } 
 
