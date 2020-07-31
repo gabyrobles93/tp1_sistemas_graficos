@@ -50,7 +50,6 @@ class RectangleVariable {
     }
 
     getCenterPosition(u) {
-        console.log("HOLA");
         return [0, 0, 0];
     }
 

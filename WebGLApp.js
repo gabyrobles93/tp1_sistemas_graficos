@@ -75,7 +75,10 @@ function drawScene(){
     var m1 = mat4.create();
     mat4.identity(m1);
 
-    //castle_ceiling.draw();
+/*     castle_ceiling.translate(m1, 5, 0, 0);
+    castle_ceiling.rotate_x(m1, 90);
+    castle_ceiling.draw(); */
+    
 
     castle.draw();
 
