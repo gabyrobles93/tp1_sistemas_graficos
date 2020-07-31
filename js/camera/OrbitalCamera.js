@@ -55,6 +55,8 @@ class OrbitalCamera {
 
         canvas.onmouseup = (event) => {
             this.is_mouse_down = false;
+            this.last_mouse_X = 0;
+            this.last_mouse_Y = 0;
         }
 
         canvas.onmousemove = (event) => {

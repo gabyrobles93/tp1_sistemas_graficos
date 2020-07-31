@@ -71,6 +71,8 @@ class FirstPersonCamera {
 
         canvas.onmouseup = (event) => {
             this.is_mouse_down = false;
+            this.last_client_x = 0;
+            this.last_client_y = 0;
         }
 
         window.onkeydown = (event) => {
