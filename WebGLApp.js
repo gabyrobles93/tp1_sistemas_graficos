@@ -31,6 +31,7 @@ var projectile = null;
 var castle_wall = null;
 var axis = null;
 var world_floor = null;
+var sky = null;
 
 function setViewProjectionMatrix() {
     castle_wall.setViewProjectionMatrix(projMatrix, viewMatrix);
@@ -39,6 +40,7 @@ function setViewProjectionMatrix() {
     axis.setViewProjectionMatrix(projMatrix, viewMatrix);
     world_floor.setViewProjectionMatrix(projMatrix, viewMatrix);
     projectile.setViewProjectionMatrix(projMatrix, viewMatrix);
+    sky.setViewProjectionMatrix(projMatrix, viewMatrix);
 }
 
 function setupSceneCamera() {
@@ -72,6 +74,7 @@ function drawScene(){
     var m1 = mat4.create();
     mat4.identity(m1);
     
+    sky.draw();
     castle.draw();
 
     mat4.identity(m1);
@@ -108,7 +111,7 @@ function initWorldObjects() {
     projectile = new Sphere(0.9, 30, 30, MaterialsList.TEST_NORMAL);
     castle_wall = new CastleWall(CASTLE_WALL_SIDES, CASTLE_WALL_SIZE);
     world_floor = new WorldFloor(CASTLE_WALL_SIZE);
-
+    sky = new Sphere(300, 30, 30, MaterialsList.TEST_NORMAL);
 }
 
 function initControllers(canvas) {
