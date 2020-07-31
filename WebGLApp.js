@@ -83,6 +83,14 @@ function drawScene(){
     
     castle.draw();
 
+    mat4.identity(m1);
+    m1 = castle_wall.translate(m1, -CASTLE_WALL_SIZE/2, 0, CASTLE_WALL_SIZE/2);
+    castle_wall.rotate_x(m1, -90);
+    castle_wall.draw();
+/*     mat4.translate(m1, m1, [-CASTLE_WALL_SIZE/2, 0, CASTLE_WALL_SIZE/2]);
+    mat4.rotate(m1, m1, -Math.PI/2, [1, 0, 0]);
+    castle_wall.draw(m1); */
+
     //catapult_control.drawCatapult();
 
     //projectile_control.drawProjectile(projectile, catapult_control.getProjectileModelMatrix(), catapult_control.getArmAngle(), catapult_control.getMaxArmAngle());
