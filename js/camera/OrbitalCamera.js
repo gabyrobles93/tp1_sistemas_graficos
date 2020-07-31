@@ -73,7 +73,7 @@ class OrbitalCamera {
                 this.alfa = this.alfa + delta_X * this.speed_factor;
                 this.beta = this.beta + delta_Y * this.speed_factor;
 
-                if (this.beta < 0) this.beta = 0.01;
+                if (this.beta < Math.PI/2) this.beta = Math.PI/2;
                 if (this.beta > Math.PI) this.beta = Math.PI;
 
                 this._updateCamera();
