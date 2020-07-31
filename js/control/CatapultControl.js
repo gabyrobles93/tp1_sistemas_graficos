@@ -12,10 +12,10 @@ class CatapultControl {
         this.catapult_position_y = 0.5;
         this.catapult_model_matrix = mat4.create();
 
-        this.CATAPULT_ADVANCE_KEY = "KeyU";         // k
-        this.CATAPULT_RECOIL_KEY = "KeyJ";          // j
-        this.CATAPULT_LEFT_ROTATION_KEY = "KeyH";   // h
-        this.CATAPULT_RIGHT_ROTATION_KEY = "KeyK";  // k
+        this.CATAPULT_ADVANCE_KEY = "KeyI";         // i
+        this.CATAPULT_RECOIL_KEY = "KeyK";          // k
+        this.CATAPULT_LEFT_ROTATION_KEY = "KeyJ";   // j
+        this.CATAPULT_RIGHT_ROTATION_KEY = "KeyL";  // l
 
         this.CATAPULT_SHOOT_KEY = "Space";           // spacebar
         this.CATAPULT_LOAD_PROJECTILE = "KeyO";     // o
@@ -81,14 +81,14 @@ class CatapultControl {
             if(e.code === this.CATAPULT_LEFT_ROTATION_KEY) {
                 this.catapult.rotate_y(this.catapult.modelMatrix, 1);
                 var m1 = mat4.create();
-                mat4.fromYRotation(m1, 1 * Math.PI/180);
+                mat4.fromYRotation(m1, 3 * Math.PI/180);
                 vec3.transformMat4(this.catapult_frontal, this.catapult_frontal, m1);
             } 
 
             if(e.code === this.CATAPULT_RIGHT_ROTATION_KEY) {
                 this.catapult.rotate_y(this.catapult.modelMatrix, -1);
                 var m1 = mat4.create();
-                mat4.fromYRotation(m1, -1 * Math.PI/180);
+                mat4.fromYRotation(m1, -3 * Math.PI/180);
                 vec3.transformMat4(this.catapult_frontal, this.catapult_frontal, m1);
             } 
 

@@ -10,7 +10,8 @@ class OrbitalCamera {
         this.alfa = -Math.PI/4;
         this.beta = 0.6 * Math.PI;
 
-        this.speed_factor = 0.01;
+        this.move_speed_factor = 0.01;
+        this.zoom_speed_factor = 0.025;
 
         this.viewMatrix = mat4.create();
         mat4.identity(this.viewMatrix);
@@ -35,15 +36,15 @@ class OrbitalCamera {
 
     _setEventListeners(canvas) {
         window.onkeydown = (event) => {
-            if (event.keyCode == 187) {
-                // zoom in
-                this.radius += this.speed_factor * 100;
+            if (event.keyCode == 81) {
+                // zoom in [q]
+                this.radius += this.zoom_speed_factor * 100;
                 this._updateCamera();
             }
 
-            if (event.keyCode == 189) {
-                // zoom out
-                this.radius -= this.speed_factor * 100;
+            if (event.keyCode == 69) {
+                // zoom out [e]
+                this.radius -= this.zoom_speed_factor * 100;
                 this._updateCamera();
             }
         }
@@ -70,8 +71,8 @@ class OrbitalCamera {
                 this.last_mouse_X = mouse.x;
                 this.last_mouse_Y = mouse.y;
 
-                this.alfa = this.alfa + delta_X * this.speed_factor;
-                this.beta = this.beta + delta_Y * this.speed_factor;
+                this.alfa = this.alfa + delta_X * this.move_speed_factor;
+                this.beta = this.beta + delta_Y * this.move_speed_factor;
 
                 if (this.beta < Math.PI/2) this.beta = Math.PI/2;
                 if (this.beta > Math.PI) this.beta = Math.PI;

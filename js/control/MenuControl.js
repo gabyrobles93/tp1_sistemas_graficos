@@ -19,8 +19,8 @@ class MenuControl {
             this.controls_info = function() {
                 alert(`
                 Press [C] to change the camera type
-                Press [+]/[-] to zoom in/out in orbital camera
-                Press [U, H, J, K] to move catapult
+                Press [Q]/[E] to zoom in/out in orbital camera
+                Press [I, J, K, L] to move catapult
                 Press [W, A, S, D] to move in first person camera
                 Press [SPACEBAR] to shoot the catapult
                 Press [O] to reload catapult projectile
