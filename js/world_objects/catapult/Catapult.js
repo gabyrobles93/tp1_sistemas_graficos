@@ -81,6 +81,10 @@ class Catapult {
         this.catapult_arm.hideProjectile();
     }
 
+    showProjectile() {
+      this.catapult_arm.showProjectile();
+    }
+
     setViewProjectionMatrix(projMatrix, viewMatrix) {
         this.catapult_wheel_br.setViewProjectionMatrix(projMatrix, viewMatrix);
         this.catapult_wheel_fr.setViewProjectionMatrix(projMatrix, viewMatrix);

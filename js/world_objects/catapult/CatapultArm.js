@@ -94,6 +94,10 @@ class CatapultArm {
         this.projectile.setInvisible();
     }
 
+    showProjectile() {
+        this.projectile.setVisible();
+    }
+
     setViewProjectionMatrix(projMatrix, viewMatrix) {
         this.arm.setViewProjectionMatrix(projMatrix, viewMatrix);
         this.bucket.setViewProjectionMatrix(projMatrix, viewMatrix);

@@ -38,6 +38,7 @@ class CatapultControl {
 
         if (!this.catapult_is_shooting) {
             this.catapult_arm_angle = 0;
+            catapult.showProjectile();
         }
 
         if (this.catapult_arm_angle >= this.max_catapult_arm_angle) {
