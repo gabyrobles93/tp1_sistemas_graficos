@@ -28,6 +28,10 @@ class ProjectileControl {
             this.projectile.setInvisible();
         }
 
+        var vec3_projectile_position = vec3.create();
+        mat4.getTranslation(vec3_projectile_position, this.projectile.modelMatrix);
+        PROJECTILE_POSITION = vec3_projectile_position;
+
         this.projectile.draw();
     }
 

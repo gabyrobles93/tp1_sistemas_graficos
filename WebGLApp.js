@@ -17,6 +17,10 @@ var CASTLE_SIZE_2 = 6;
 var CASTLE_FLOORS = 3;
 var CASTLE_WALL_SIDES = 6; // Entre 4 y 8 lados
 var CASTLE_WALL_DOOR_OPENING = 100; // 0 a 100%
+var SUN_POSITION = [0, 0, 0];
+var TORCH_1_POSITION = [0, 0, 0];
+var TORCH_2_POSITION = [0, 0, 0];
+var PROJECTILE_POSITION = [0, 0, 0];
 
 var CASTLE_WALL_SIZE = 50;
 
