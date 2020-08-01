@@ -9,6 +9,8 @@ class CastleWall {
 
         this.wall = new Extrusion(new CastleWall2D(), new CircleIncomplete(this.sides_qty - 2, this.side_size, this.WALL_DOOR_PROPORTION), false, MaterialsList.COLOR_WALL_GREY);
         this.door = new CastleWallDoor(this.side_size);
+        this.torch_1 = new Torch();
+        this.torch_2 = new Torch();
 
         this._createTowers();
     }
@@ -34,6 +36,30 @@ class CastleWall {
         m3 = this.door.rotate_z(m3, this.GENERAL_ROTATION * 180/Math.PI);
         this.door.translate(m3, -this.side_size/2, -(this.side_size/2 + 4), 0);
         this.door.draw();
+
+        var m4 = mat4.clone(m1);
+        m4 = this.door.rotate_z(m4, this.GENERAL_ROTATION * 180/Math.PI);
+        m4 = this.torch_1.translate(m4, 12, -29, 6);
+        m4 = this.torch_1.rotate_y(m4, 90);
+        m4 = this.torch_1.rotate_z(m4, -45);
+        m4 = this.torch_1.translate(m4, -2, 0, 0);
+        this.torch_1.draw();
+
+        var m4 = mat4.clone(m1);
+        m4 = this.door.rotate_z(m4, this.GENERAL_ROTATION * 180/Math.PI);
+        m4 = this.torch_2.translate(m4, -12, -29, 6);
+        m4 = this.torch_2.rotate_y(m4, 90);
+        m4 = this.torch_2.rotate_z(m4, -45);
+        m4 = this.torch_2.translate(m4, -2, 0, 0);
+        this.torch_2.draw();
+    }
+
+    getTorch1Position() {
+      return this.torch_1.getPosition();
+    }
+
+    getTorch2Position() {
+      return this.torch_2.getPosition();
     }
 
     translate(relative_to, x, y, z) {
@@ -76,6 +102,8 @@ class CastleWall {
         }
 
         this.door.setViewProjectionMatrix(projMatrix, viewMatrix);
+        this.torch_1.setViewProjectionMatrix(projMatrix, viewMatrix);
+        this.torch_2.setViewProjectionMatrix(projMatrix, viewMatrix);
     }
 
     // Private
