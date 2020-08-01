@@ -10,7 +10,8 @@ var MaterialsList = {
     COLOR_GREEN: ['color', [0.2627, 0.5607, 0.2862]],
     COLOR_AXIS_RED: ['color', [1, 0, 0]],
     COLOR_AXIS_GREEN: ['color', [0, 1, 0]],
-    COLOR_AXIS_BLUE: ['color', [0, 0, 1]]
+    COLOR_AXIS_BLUE: ['color', [0, 0, 1]],
+    LIGHT_FIRE: ['light', 'fire']
 };
 
 class Material {
@@ -71,6 +72,10 @@ class Material {
     }
 
     setColorUniform(color = this.type[1]) {
+        if (this.type[0] != 'color') {
+            color = [255, 255, 255];
+        }
+        
         gl.useProgram(this.shaderProgram);
 
         gl.uniform3fv(this.shaderProgram.uColor, color);
