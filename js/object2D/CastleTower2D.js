@@ -1,7 +1,7 @@
 class CastleTower2D {
     constructor() {
-        this.arc_1 = new BSplineCuadraticCurveConvex([8, -5, 0], [8, 4, 0], [4, 12, 0]);
-        this.arc_2 = new BSplineCuadraticCurveConvex([8, 4, 0], [4, 12, 0], [7, 17, 0]);
+        this.arc_1 = new BSplineCuadraticCurve([8, -5, 0], [8, 4, 0], [4, 12, 0]);
+        this.arc_2 = new BSplineCuadraticCurve([8, 4, 0], [4, 12, 0], [7, 17, 0]);
 
         this.arc_vertices = 15;
         this.vertices = 7;

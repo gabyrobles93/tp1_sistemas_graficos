@@ -20,7 +20,7 @@ class BSplineCuadraticCurve {
     getNormal(u) {
         var normal = vec3.fromValues(0, 0, 0);
 
-        vec3.rotateZ(normal, this.getTangent(u), [0, 0, 0], Math.PI / 2);
+        vec3.rotateZ(normal, this.getTangent(u), [0, 0, 0], -Math.PI / 2);
         vec3.normalize(normal, normal);
         
         return [normal[0], normal[1], normal[2]];

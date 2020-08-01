@@ -6,7 +6,7 @@ var MaterialsList = {
     COLOR_WHITE: ['color', [1.0, 1.0, 1.0]],
     COLOR_BEIGE: ['color', [0.7607, 0.7450, 0.5529]],
     COLOR_BLUE: ['color', [0.3607, 0.3725, 0.5882]],
-    COLOR_WALL_GREY: ['color', [0.6235, 0.6274, 0.6470]],
+    COLOR_WALL_GREY: ['color', [0.5607, 0.5647, 0.5843]],
     COLOR_GREEN: ['color', [0.2627, 0.5607, 0.2862]],
     COLOR_AXIS_RED: ['color', [1, 0, 0]],
     COLOR_AXIS_GREEN: ['color', [0, 1, 0]],

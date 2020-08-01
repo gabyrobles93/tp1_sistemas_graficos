@@ -7,7 +7,7 @@ class CastleWall {
         this.WALL_DOOR_PROPORTION = 0.82;
         this.GENERAL_ROTATION = Math.PI/2 - (2*Math.PI - 2*Math.PI * this.WALL_DOOR_PROPORTION) / 2;
 
-        this.wall = new Extrusion(new CastleWall2D(), new CircleIncomplete(this.sides_qty - 2, this.side_size, this.WALL_DOOR_PROPORTION), false, MaterialsList.TEST_NORMAL);
+        this.wall = new Extrusion(new CastleWall2D(), new CircleIncomplete(this.sides_qty - 2, this.side_size, this.WALL_DOOR_PROPORTION), false, MaterialsList.COLOR_WALL_GREY);
         this.door = new CastleWallDoor(this.side_size);
 
         this._createTowers();
