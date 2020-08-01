@@ -52,7 +52,7 @@ class CastleWallDoor {
         var m1 = mat4.clone(this.modelMatrix);
         m1 = this.door.translate(m1, 0, -6 - this.DOOR_WIDTH, 0);
         m1 = this.door.translate(m1, this.OFFSET + this.size * this.WALL_PROPORTION + this.DOOR_FRAME_WIDTH * 2, 0, 0);
-        m1 = this.door.rotate_x(m1, this.DOOR_ANGLE * 180/Math.PI);
+        m1 = this.door.rotate_x(m1, CASTLE_WALL_DOOR_OPENING/100 * 90);
         this.door.translate(m1, 0, 0, 7);
         this.door.draw();
     }
