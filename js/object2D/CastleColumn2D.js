@@ -1,6 +1,6 @@
 class CastleColumn2D {
     constructor(column_height) {
-        this.arc = new BezierCubicCurve([2, 0, 0], [2, 1.5, 0], [1, 1.5, 0], [1, 3, 0])
+        this.arc = new BezierCubicCurveConvex([2, 0, 0], [2, 1.5, 0], [1, 1.5, 0], [1, 3, 0])
         this.arc_vertices = 15;
         this.vertices = (this.arc_vertices + 1) + 3;
         this.points = [];

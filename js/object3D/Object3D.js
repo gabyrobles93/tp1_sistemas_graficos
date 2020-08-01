@@ -3,6 +3,8 @@ class Object3D {
     this.rows = rows;
     this.columns = columns;
 
+    console.log(material_type);
+
     this.material = new Material(material_type);
     
     this.position_buffer = null;
@@ -77,6 +79,16 @@ class Object3D {
       this.material.setVertexPositionAttribute(this.webgl_position_buffer);
   
       this.material.setVertexNormalAttribute(this.webgl_normal_buffer);
+
+      this.material.setProjectilePositionUniform(vec3.fromValues(0, 0, 0));
+
+      this.material.setSunPositionUniform(vec3.fromValues(0, 200, 50));
+
+      this.material.setTorch1Uniform(vec3.fromValues(0, 0, 0));
+
+      this.material.setTorch2Uniform(vec3.fromValues(0, 0, 0));
+
+      this.material.setColorUniform();
   
       gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.webgl_index_buffer);
       gl.drawElements(this.gl_draw_mode, this.webgl_index_buffer.numItems, gl.UNSIGNED_SHORT, 0);

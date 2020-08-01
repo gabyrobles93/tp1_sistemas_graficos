@@ -4,7 +4,7 @@ class CatapultFloor {
         this.CATAPULT_FLOOR_SIZE_B = 2;
         this.CATAPULT_FLOOR_WIDTH = 0.3;
 
-        this.catapult_floor = new Cube(this.CATAPULT_FLOOR_SIZE_A, this.CATAPULT_FLOOR_SIZE_B, this.CATAPULT_FLOOR_WIDTH, true, MaterialsList.DEFAULT);
+        this.catapult_floor = new Cube(this.CATAPULT_FLOOR_SIZE_A, this.CATAPULT_FLOOR_SIZE_B, this.CATAPULT_FLOOR_WIDTH, true, MaterialsList.COLOR_LIGHT_BROWN);
     }
 
     draw(modelMatrix) {

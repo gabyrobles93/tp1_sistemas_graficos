@@ -1,8 +1,8 @@
 class Axis {
     constructor() {
-        this.x = new Cilinder(0.02, 3, true, MaterialsList.AXIS_RED);
-        this.y = new Cilinder(0.02, 3, true, MaterialsList.AXIS_GREEN);
-        this.z = new Cilinder(0.02, 3, true, MaterialsList.AXIS_BLUE);
+        this.x = new Cilinder(0.02, 3, true, MaterialsList.COLOR_LIGHT_BROWN);
+        this.y = new Cilinder(0.02, 3, true, MaterialsList.COLOR_LIGHT_BROWN);
+        this.z = new Cilinder(0.02, 3, true, MaterialsList.COLOR_LIGHT_BROWN);
     }
 
     draw() {

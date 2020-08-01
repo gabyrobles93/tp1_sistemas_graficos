@@ -11,7 +11,7 @@ class Catapult {
         this.catapult_wheel_bl = new CatapultWheel();
         this.catapult_wheel_fl = new CatapultWheel();
 
-        this.catapult_floor = new Cube(6, 2.7, 0.3, true, MaterialsList.TEST_NORMAL);
+        this.catapult_floor = new Cube(6, 2.7, 0.3, true, MaterialsList.COLOR_LIGHT_BROWN);
 
         this.catapult_column_1 = new CatapultColumn();
         this.catapult_column_2 = new CatapultColumn();
@@ -19,11 +19,11 @@ class Catapult {
         this.catapult_column_3 = new CatapultColumn();
         this.catapult_column_4 = new CatapultColumn();
 
-        this.catapult_hub_principal = new Cilinder(0.4, this.CATAPULT_WHEEL_SEPARATION_2 * 0.84, true, MaterialsList.TEST_NORMAL);
-        this.catapult_hub_rope = new Cilinder(0.25, this.CATAPULT_WHEEL_SEPARATION_2 * 0.84 * 0.6, true, MaterialsList.TEST_NORMAL);
+        this.catapult_hub_principal = new Cilinder(0.4, this.CATAPULT_WHEEL_SEPARATION_2 * 0.84, true, MaterialsList.COLOR_DARK_BROWN);
+        this.catapult_hub_rope = new Cilinder(0.25, this.CATAPULT_WHEEL_SEPARATION_2 * 0.84 * 0.6, true, MaterialsList.COLOR_DARK_BROWN);
 
-        this.catapult_crank_1 = new Cilinder(0.05, 1.2, true, MaterialsList.TEST_NORMAL);
-        this.catapult_crank_2 = new Cilinder(0.05, 1.2, true, MaterialsList.TEST_NORMAL);
+        this.catapult_crank_1 = new Cilinder(0.05, 1.2, true, MaterialsList.COLOR_LIGHT_BROWN);
+        this.catapult_crank_2 = new Cilinder(0.05, 1.2, true, MaterialsList.COLOR_LIGHT_BROWN);
 
         this.catapult_arm = new CatapultArm();
     }

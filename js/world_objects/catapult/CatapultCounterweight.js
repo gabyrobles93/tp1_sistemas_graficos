@@ -3,8 +3,8 @@ class CatapultCounterweight {
         this.modelMatrix = this.modelMatrix = mat4.create();
         this.counterweight_column_1 = new CatapultColumn();
         this.counterweight_column_2 = new CatapultColumn();
-        this.counterweight_hub = new Cilinder(0.15, 1.1, true, MaterialsList.TEST_NORMAL);
-        this.counterweight = new Cube(0.7, 0.7, 1.4, true, MaterialsList.TEST_NORMAL);
+        this.counterweight_hub = new Cilinder(0.15, 1.1, true, MaterialsList.COLOR_DARK_BROWN);
+        this.counterweight = new Cube(0.7, 0.7, 1.4, true, MaterialsList.COLOR_GREY);
     }
 
     draw() {

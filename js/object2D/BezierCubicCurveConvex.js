@@ -1,4 +1,4 @@
-class BezierCubicCurve {
+class BezierCubicCurveConvex {
     constructor(start_control_point, center_control_point_1, center_control_point_2, end_control_point) {
         this.start_control_point = start_control_point;
         this.center_control_point_1 = center_control_point_1;
@@ -27,7 +27,7 @@ class BezierCubicCurve {
     getNormal(u) {
         var normal = vec3.fromValues(0, 0, 0);
 
-        vec3.rotateZ(normal, this.getTangent(u), [0, 0, 0], Math.PI / 2);
+        vec3.rotateZ(normal, this.getTangent(u), [0, 0, 0], -Math.PI / 2);
         vec3.normalize(normal, normal);
         
         return [normal[0], normal[1], normal[2]];

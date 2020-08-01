@@ -5,8 +5,8 @@ class CastleFloor {
         this.height = height;
         this.extra_height = extra_height;
 
-        this.floor = new Cube(this.size_1, this.size_2, height + extra_height, false, MaterialsList.TEST_NORMAL);
-        this.roof = new Cube(this.size_1 + 0.3, 0.3, this.size_2 * 2 + 0.6, true, MaterialsList.TEST_NORMAL);
+        this.floor = new Cube(this.size_1, this.size_2, height + extra_height, false, MaterialsList.COLOR_BEIGE);
+        this.roof = new Cube(this.size_1 + 0.3, 0.3, this.size_2 * 2 + 0.6, true, MaterialsList.COLOR_BEIGE);
 
         this.windows_size_1_front = [];
         this.windows_size_1_back = [];

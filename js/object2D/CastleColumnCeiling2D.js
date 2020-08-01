@@ -1,7 +1,7 @@
 class CastleColumnCeiling2D {
     constructor() {
         this.top_offset = 0.02
-        this.arc = new BezierCubicCurve([0 + this.top_offset, 2.3, 0], [0.05 + this.top_offset, 1.2, 0], [0.5 + this.top_offset, 0.4, 0], [0.75 + this.top_offset, 0, 0]);
+        this.arc = new BezierCubicCurveConcave([0 + this.top_offset, 2.3, 0], [0.05 + this.top_offset, 1.2, 0], [0.5 + this.top_offset, 0.4, 0], [0.75 + this.top_offset, 0, 0]);
         this.arc_vertices = 15;
         this.vertices = (this.arc_vertices) + 2;
         this.position_points = [];
