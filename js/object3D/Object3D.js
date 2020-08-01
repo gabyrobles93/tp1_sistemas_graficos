@@ -3,8 +3,6 @@ class Object3D {
     this.rows = rows;
     this.columns = columns;
 
-    console.log(material_type);
-
     this.material = new Material(material_type);
     
     this.position_buffer = null;

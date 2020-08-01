@@ -37,9 +37,9 @@ function setViewProjectionMatrix() {
 /*     castle_wall.setViewProjectionMatrix(projMatrix, viewMatrix); */
     catapult.setViewProjectionMatrix(projMatrix, viewMatrix);
     castle.setViewProjectionMatrix(projMatrix, viewMatrix);
+    projectile.setViewProjectionMatrix(projMatrix, viewMatrix);
 /*     axis.setViewProjectionMatrix(projMatrix, viewMatrix);
     world_floor.setViewProjectionMatrix(projMatrix, viewMatrix);
-    projectile.setViewProjectionMatrix(projMatrix, viewMatrix);
     sky.setViewProjectionMatrix(projMatrix, viewMatrix); */
 }
 
@@ -88,7 +88,7 @@ function drawScene(){
     world_floor.draw(); */
 
     catapult_control.drawCatapult();
-    /* projectile_control.drawProjectile(projectile, catapult_control.getProjectileModelMatrix(), catapult_control.getArmAngle(), catapult_control.getMaxArmAngle()); */
+    projectile_control.drawProjectile(catapult_control.getProjectileModelMatrix(), catapult_control.getArmAngle(), catapult_control.getMaxArmAngle());
 }
 
 function animate(t) {
@@ -108,8 +108,9 @@ function initWorldObjects() {
     catapult = new Catapult();
     catapult_control.setCatapult(catapult);
     castle = new Castle(CASTLE_SIZE_1, CASTLE_SIZE_2, CASTLE_FLOORS);
-/*     projectile = new Sphere(0.9, 30, 30, MaterialsList.TEST_NORMAL);
-    castle_wall = new CastleWall(CASTLE_WALL_SIDES, CASTLE_WALL_SIZE);
+    projectile = new Sphere(0.9, 30, 30, MaterialsList.COLOR_GREY);
+    projectile_control.setProjectile(projectile);
+/*    castle_wall = new CastleWall(CASTLE_WALL_SIDES, CASTLE_WALL_SIZE);
     world_floor = new WorldFloor(CASTLE_WALL_SIZE);
     sky = new Sphere(300, 30, 30, MaterialsList.TEST_NORMAL);
  */
