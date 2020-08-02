@@ -82,9 +82,9 @@ class Object3D {
 
       this.material.setSunPositionUniform(SUN_POSITION);
 
-      this.material.setTorch1Uniform(vec3.fromValues(0, 0, 0));
+      this.material.setTorch1Uniform(TORCH_1_POSITION);
 
-      this.material.setTorch2Uniform(vec3.fromValues(0, 0, 0));
+      this.material.setTorch2Uniform(TORCH_2_POSITION);
 
       this.material.setColorUniform();
   

@@ -45,6 +45,10 @@ class CastleWall {
         m4 = this.torch_1.translate(m4, -2, 0, 0);
         this.torch_1.draw();
 
+        var vec3_torch_1_position = vec3.create();
+        mat4.getTranslation(vec3_torch_1_position, this.torch_1.modelMatrix);
+        TORCH_1_POSITION = vec3_torch_1_position;
+
         var m4 = mat4.clone(m1);
         m4 = this.door.rotate_z(m4, this.GENERAL_ROTATION * 180/Math.PI);
         m4 = this.torch_2.translate(m4, -12, -29, 6);
@@ -52,6 +56,10 @@ class CastleWall {
         m4 = this.torch_2.rotate_z(m4, -45);
         m4 = this.torch_2.translate(m4, -2, 0, 0);
         this.torch_2.draw();
+
+        var vec3_torch_2_position = vec3.create();
+        mat4.getTranslation(vec3_torch_2_position, this.torch_2.modelMatrix);
+        TORCH_2_POSITION = vec3_torch_2_position;
     }
 
     getTorch1Position() {
