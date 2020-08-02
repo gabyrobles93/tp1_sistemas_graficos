@@ -78,9 +78,9 @@ class Object3D {
   
       this.material.setVertexNormalAttribute(this.webgl_normal_buffer);
 
-      this.material.setProjectilePositionUniform(vec3.fromValues(0, 0, 0));
+      this.material.setProjectilePositionUniform(PROJECTILE_POSITION);
 
-      this.material.setSunPositionUniform(vec3.fromValues(0, 200, 50));
+      this.material.setSunPositionUniform(SUN_POSITION);
 
       this.material.setTorch1Uniform(vec3.fromValues(0, 0, 0));
 

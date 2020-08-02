@@ -24,6 +24,8 @@ class Material {
             this.fragment_program_name = 'fragment_shader_regular.glsl';
         } else if (type[0].includes('test')) {
             this.fragment_program_name = 'fragment_shader_test_normal.glsl';
+        } else if (type[0].includes('light')) {
+            this.fragment_program_name = 'fragment_shader_light.glsl';
         }
 
         this.shaderProgram = utils.addShaderProg(gl, this.vertex_program_name, this.fragment_program_name);
@@ -75,7 +77,7 @@ class Material {
         if (this.type[0] != 'color') {
             color = [255, 255, 255];
         }
-        
+
         gl.useProgram(this.shaderProgram);
 
         gl.uniform3fv(this.shaderProgram.uColor, color);

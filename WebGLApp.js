@@ -17,7 +17,7 @@ var CASTLE_SIZE_2 = 6;
 var CASTLE_FLOORS = 3;
 var CASTLE_WALL_SIDES = 6; // Entre 4 y 8 lados
 var CASTLE_WALL_DOOR_OPENING = 100; // 0 a 100%
-var SUN_POSITION = [0, 0, 0];
+var SUN_POSITION = [100, 250, -80];
 var TORCH_1_POSITION = [0, 0, 0];
 var TORCH_2_POSITION = [0, 0, 0];
 var PROJECTILE_POSITION = [0, 0, 0];
@@ -113,7 +113,7 @@ function initWorldObjects() {
     catapult = new Catapult();
     catapult_control.setCatapult(catapult);
     castle = new Castle(CASTLE_SIZE_1, CASTLE_SIZE_2, CASTLE_FLOORS);
-    projectile = new Sphere(0.9, 30, 30, MaterialsList.COLOR_GREY);
+    projectile = new Sphere(0.9, 30, 30, MaterialsList.LIGHT_FIRE);
     projectile_control.setProjectile(projectile);
     castle_wall = new CastleWall(CASTLE_WALL_SIDES, CASTLE_WALL_SIZE);
     world_floor = new WorldFloor(CASTLE_WALL_SIZE);

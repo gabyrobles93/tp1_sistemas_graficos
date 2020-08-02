@@ -6,7 +6,7 @@ class CatapultArm {
         this.bucket = new Cube(1.2, 1.2, 0.6, true, MaterialsList.COLOR_LIGHT_BROWN);
         this.rope_end = new Cilinder(0.6, 0.5, true, MaterialsList.COLOR_WHITE);
         this.rope = new Cilinder(0.05, 1, true, MaterialsList.COLOR_WHITE);
-        this.projectile = new Sphere(0.9, 30, 30, MaterialsList.COLOR_GREY);
+        this.projectile = new Sphere(0.9, 30, 30, MaterialsList.LIGHT_FIRE);
         this.counterweight = new CatapultCounterweight();
     }
 
