@@ -2,6 +2,8 @@ precision highp float;
 varying vec3 vNormal;
 varying vec3 vPosWorld;
 
+varying float vGlossiness;
+varying vec3 vPosCam;
 varying vec3 vPosSun;
 varying vec3 vPosProjectile;
 varying vec3 vPosTorch1;
@@ -31,11 +33,19 @@ void main(void) {
     vec3 lightTorch1 = normalize(vPosTorch1 - vPosWorld);
     vec3 lightTorch2 = normalize(vPosTorch2 - vPosWorld);
 
+    vec3 camVec = normalize(vPosCam - vPosWorld);
+    vec3 reflexVec = normalize(reflect(-lightVec, vNormal));
+    vec3 specular_color = pow(max(0.0, dot(reflexVec, camVec)), vGlossiness) * vec3(1.0, 1.0, 1.0);
+
+    if (vGlossiness == 0.0) {
+        specular_color = vec3(0.0, 0.0, 0.0);
+    }
+
     vec3 color = sun_factor * dot(lightVec, vNormal) +
                  projectile_factor * projectile_color * dot(lightProjectile, vNormal) +
                  torch_1_factor * torch_1_color * dot(lightTorch1, vNormal) +
                  torch_2_factor * torch_2_color * dot(lightTorch2, vNormal) +
-                 0.5 * vColor;
+                 0.5 * vColor + specular_color;
 
     gl_FragColor = vec4(color, 1.0);
 }

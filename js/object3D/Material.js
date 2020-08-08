@@ -1,17 +1,20 @@
 var MaterialsList = {
-    TEST_NORMAL: ['test', 'test_normal'],
-    COLOR_LIGHT_BROWN: ['color', [0.5725, 0.4549, 0.3607]],
-    COLOR_DARK_BROWN: ['color', [0.2549, 0.1764, 0.1803]],
-    COLOR_GREY: ['color', [0.5843, 0.5882, 0.6078]],
-    COLOR_WHITE: ['color', [1.0, 1.0, 1.0]],
-    COLOR_BEIGE: ['color', [0.7607, 0.7450, 0.5529]],
-    COLOR_BLUE: ['color', [0.3607, 0.3725, 0.5882]],
-    COLOR_WALL_GREY: ['color', [0.5607, 0.5647, 0.5843]],
-    COLOR_GREEN: ['color', [0.2627, 0.5607, 0.2862]],
-    COLOR_AXIS_RED: ['color', [1, 0, 0]],
-    COLOR_AXIS_GREEN: ['color', [0, 1, 0]],
-    COLOR_AXIS_BLUE: ['color', [0, 0, 1]],
-    LIGHT_FIRE: ['light', 'fire']
+    TEST_NORMAL: ['test', 'test_normal', 0],
+    COLOR_LIGHT_BROWN: ['color', [0.5725, 0.4549, 0.3607], 0],
+    COLOR_DARK_BROWN: ['color', [0.2549, 0.1764, 0.1803], 0],
+    COLOR_GREY: ['color', [0.5843, 0.5882, 0.6078], 0],
+    COLOR_WHITE: ['color', [1.0, 1.0, 1.0], 0],
+    COLOR_BEIGE: ['color', [0.7607, 0.7450, 0.5529], 0],
+    COLOR_BLUE: ['color', [0.3607, 0.3725, 0.5882], 0],
+    COLOR_WALL_GREY: ['color', [0.5607, 0.5647, 0.5843], 0],
+    COLOR_GREEN: ['color', [0.2627, 0.5607, 0.2862], 0],
+    COLOR_AXIS_RED: ['color', [1, 0, 0], 0],
+    COLOR_AXIS_GREEN: ['color', [0, 1, 0], 0],
+    COLOR_AXIS_BLUE: ['color', [0, 0, 1], 0],
+    LIGHT_FIRE: ['light', 'fire', 0],
+    CASTLE_WINDOW: ['color', [0.2549, 0.1764, 0.1803], 9],
+    CASTLE_CEILING: ['color', [0.3607, 0.3725, 0.5882], 15],
+    WATER: ['color', [0.3607, 0.3725, 0.5882], 7]
 };
 
 class Material {
@@ -55,6 +58,12 @@ class Material {
         gl.uniform3fv(this.shaderProgram.uPosProjectile, projectilePosition);
     }
 
+    setCamPositionUniform(camPosition) {
+        gl.useProgram(this.shaderProgram);
+
+        gl.uniform3fv(this.shaderProgram.uPosCam, camPosition);        
+    }
+
     setSunPositionUniform(sunPosition) {
         gl.useProgram(this.shaderProgram);
 
@@ -81,6 +90,12 @@ class Material {
         gl.useProgram(this.shaderProgram);
 
         gl.uniform3fv(this.shaderProgram.uColor, color);
+    }
+
+    setGlossinessUniform(glossiness = this.type[2]) {
+        gl.useProgram(this.shaderProgram);
+
+        gl.uniform1f(this.shaderProgram.uGlossiness, glossiness); 
     }
 
     setVertexPositionAttribute(webgl_position_buffer) {
@@ -121,6 +136,8 @@ class Material {
         this.shaderProgram.projMatrixUniform = gl.getUniformLocation(this.shaderProgram, "projMatrix");
         this.shaderProgram.normalMatrixUniform = gl.getUniformLocation(this.shaderProgram, "normalMatrix");
 
+        this.shaderProgram.uGlossiness = gl.getUniformLocation(this.shaderProgram, "uGlossiness");
+        this.shaderProgram.uPosCam = gl.getUniformLocation(this.shaderProgram, "uPosCam");
         this.shaderProgram.uPosSun = gl.getUniformLocation(this.shaderProgram, "uPosSun");
         this.shaderProgram.uPosProjectile = gl.getUniformLocation(this.shaderProgram, "uPosProjectile");
         this.shaderProgram.uPosTorch1 = gl.getUniformLocation(this.shaderProgram, "uPosTorch1");

@@ -15,13 +15,11 @@ class ProjectileControl {
 
     drawProjectile(original_projectile_model_matrix, arm_angle, max_arm_angle) {
         if (arm_angle >= max_arm_angle && !this.projectile_flying) {
-            console.log("Hola");
             this.projectile_flying = true;
             this.max_arm_angle = max_arm_angle;
             this.initial_time = 0;
             this.projectile.setVisible();
         } else if (arm_angle < max_arm_angle) {
-            console.log("Chau");
             this.projectile_flying = false;
             this.projectile.translate(original_projectile_model_matrix, 0, 0, 0);
             this.projectile.rotate_z(original_projectile_model_matrix, max_arm_angle);

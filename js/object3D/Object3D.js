@@ -80,6 +80,8 @@ class Object3D {
 
       this.material.setProjectilePositionUniform(PROJECTILE_POSITION);
 
+      this.material.setCamPositionUniform(camera_control.getCameraPosition());
+
       this.material.setSunPositionUniform(SUN_POSITION);
 
       this.material.setTorch1Uniform(TORCH_1_POSITION);
@@ -87,6 +89,8 @@ class Object3D {
       this.material.setTorch2Uniform(TORCH_2_POSITION);
 
       this.material.setColorUniform();
+
+      this.material.setGlossinessUniform();
   
       gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.webgl_index_buffer);
       gl.drawElements(this.gl_draw_mode, this.webgl_index_buffer.numItems, gl.UNSIGNED_SHORT, 0);
