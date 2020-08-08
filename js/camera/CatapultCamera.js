@@ -3,6 +3,7 @@ class CatapultCamera {
         this.catapult_control = catapult_control;
         this.height = 6;
         this.radius = 40;
+        this.position = vec3.fromValues(0, 0, 0);
 
         this.viewMatrix = mat4.create();
         mat4.identity(this.viewMatrix);
@@ -23,11 +24,17 @@ class CatapultCamera {
             catapult_look_position[2] + this.catapult_control.getCatapultFrontal()[2] * this.radius
         )
 
+        this.position = camera_position;
+
         mat4.lookAt(this.viewMatrix, camera_position, catapult_look_position, [0, 1, 0]);
         return this.viewMatrix;
     }
 
     use() {
         // Nada para hacer
+    }
+
+    getPosition() {
+        return this.position;
     }
 }

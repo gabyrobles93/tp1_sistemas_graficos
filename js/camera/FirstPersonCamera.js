@@ -51,6 +51,12 @@ class FirstPersonCamera {
         this._setEventListeners(canvas);
     }
 
+    getPosition() {
+        var position = vec3.fromValues(0, 0, 0);
+        mat4.getTranslation(position, this.position);
+        return position;
+    }
+
     // Private
 
     _setEventListeners(canvas) {

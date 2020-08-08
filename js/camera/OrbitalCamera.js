@@ -32,6 +32,10 @@ class OrbitalCamera {
         this._setEventListeners(canvas);
     }
 
+    getPosition() {
+        return this.position;
+    }
+
     // Private
 
     _setEventListeners(canvas) {

@@ -18,6 +18,10 @@ class CameraControl {
         return this.cameras[0].getViewMatrix();
     }
 
+    getCameraPosition() {
+        return this.cameras[0].getPosition();
+    }
+
     // Private
 
     _nextCamera() {

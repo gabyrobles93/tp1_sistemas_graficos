@@ -94,6 +94,8 @@ function drawScene(){
 
     catapult_control.drawCatapult();
     projectile_control.drawProjectile(catapult_control.getProjectileModelMatrix(), catapult_control.getArmAngle(), catapult_control.getMaxArmAngle());
+
+    console.log(camera_control.getCameraPosition());
 }
 
 function animate(t) {
