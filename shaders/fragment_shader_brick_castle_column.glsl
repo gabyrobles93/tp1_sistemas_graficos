@@ -44,7 +44,7 @@ void main(void) {
         specular_color = vec3(0.0, 0.0, 0.0);
     }
 
-    vec3 castle_column = texture2D(uSampler, vTextCoords * 2.0).xyz;
+    vec3 castle_column = texture2D(uSampler, vec2(vTextCoords.x * 5.0, vTextCoords.y * 1.0)).xyz;
     
 
     vec3 color = sun_factor * dot(lightVec, vNormal) +
