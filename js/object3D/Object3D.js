@@ -15,6 +15,7 @@ class Object3D {
     this.webgl_position_buffer = null;
     this.webgl_normal_buffer = null;
     this.webgl_index_buffer = null;
+    this.webgl_texture_coord_buffer = null;
     
     this.gl_draw_mode = gl.TRIANGLE_STRIP;
 
@@ -115,6 +116,7 @@ class Object3D {
 
   _generateSurface() {
     this._fillPositionAndNormalBuffers();
+    this._fillTextureCoordsBuffer();
     this._fillIndexBuffer();
     this._setupWebGLBuffers();
   }
@@ -137,6 +139,12 @@ class Object3D {
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(this.indexBuffer), gl.STATIC_DRAW);
     this.webgl_index_buffer.itemSize = 1;
     this.webgl_index_buffer.numItems = this.indexBuffer.length;
+
+    this.webgl_texture_coord_buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, this.webgl_texture_coord_buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.textureCoordsBuffer), gl.STATIC_DRAW);
+    this.webgl_texture_coord_buffer.itemSize = 2;
+    this.webgl_texture_coord_buffer.numItems = this.textureCoordsBuffer.length / 2;
   }
   
   _fillPositionAndNormalBuffers() {
@@ -160,6 +168,18 @@ class Object3D {
         this.normalBuffer.push(nrm[2]);
       }
     }
+  }
+
+  _fillTextureCoordsBuffer() {
+    this.textureCoordsBuffer = [];
+    for (var i = 0; i < this.rows; i++) {
+      for (var j = 0; j < this.cols; j++) {
+        var u = j / (this.cols - 1);
+        var v = i / (this.rows - 1);
+        this.textureCoordsBuffer.push(u);
+        this.textureCoordsBuffer.push(v);
+      };
+    };
   }
 
   _fillIndexBuffer() {
