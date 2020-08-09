@@ -49,7 +49,11 @@ void main(void) {
     if(vPosWorld.y >= -0.5) {
         grass = texture2D(uSampler, vPosWorld.xz * 0.1).xyz;
     } else {
-        grass = texture2D(uSampler, vec2(vTextCoords.x * 12.0, vTextCoords.y * 0.3)).xyz;
+        if (sqrt(vPosWorld.x*vPosWorld.x + vPosWorld.z*vPosWorld.z) > 72.0) {
+            grass = texture2D(uSampler, vec2(vTextCoords.x * 22.0, vTextCoords.y * 0.3)).xyz;
+        } else {
+            grass = texture2D(uSampler, vec2(vTextCoords.x * 12.0, vTextCoords.y * 0.3)).xyz;
+        }
     }
 
     vec3 color = sun_factor * dot(lightVec, vNormal) +
