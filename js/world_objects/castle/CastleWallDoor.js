@@ -8,8 +8,8 @@ class CastleWallDoor {
         this.OFFSET = 5;
         this.DOOR_ANGLE = Math.PI/2;
 
-        this.wall_1 = new Extrusion(new CastleWall2D(), new Line(2, this.size * this.WALL_PROPORTION), true, MaterialsList.WALL);
-        this.wall_2 = new Extrusion(new CastleWall2D(), new Line(2, this.size * this.WALL_PROPORTION), true, MaterialsList.WALL);
+        this.wall_1 = new Extrusion(new CastleWall2D(), new Line(2, this.size * this.WALL_PROPORTION), true, MaterialsList.WALL_DOOR);
+        this.wall_2 = new Extrusion(new CastleWall2D(), new Line(2, this.size * this.WALL_PROPORTION), true, MaterialsList.WALL_DOOR);
 
         this.door_frame_1 = new Cube(this.DOOR_FRAME_WIDTH, 8.5, 6.5, true, MaterialsList.COLOR_WALL_GREY);
         this.door_frame_2 = new Cube(this.DOOR_FRAME_WIDTH, 8.5, 6.5, true, MaterialsList.COLOR_WALL_GREY);
