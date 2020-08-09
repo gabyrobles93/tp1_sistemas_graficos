@@ -117,7 +117,7 @@ function initWorldObjects() {
     projectile_control.setProjectile(projectile);
     castle_wall = new CastleWall(CASTLE_WALL_SIDES, CASTLE_WALL_SIZE);
     world_floor = new WorldFloor(CASTLE_WALL_SIZE);
-    sky = new Sphere(300, 30, 30, MaterialsList.COLOR_BLUE);
+    sky = new Sphere(300, 30, 30, MaterialsList.SKY);
 
 }
 

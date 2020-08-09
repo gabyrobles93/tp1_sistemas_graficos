@@ -100,7 +100,6 @@ class CastleColumn2D {
         // Para intentar que quede mejor la textura:
         var initial = this.arc.getPosition(1)[1];
         for (var i = 0.5; i <= (this.COLUMN_NARROW_PART_SIZE - this.arc.getPosition(1)[1]); i+= 0.5) {
-            console.log(initial + i);
             this.points.push([1, initial + i, 0]);
             this.normal_points.push([1, 0, 0]);
             this.vertices = this.vertices + 1;

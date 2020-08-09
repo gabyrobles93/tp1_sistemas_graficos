@@ -13,7 +13,7 @@ varying vec3 vPosTorch1;
 varying vec3 vPosTorch2;
 varying vec3 vColor;
 
-varying vec2 vUv;
+varying highp vec2 vTextCoords;
 
 void main(void) {
     vec3 projectile_color = vec3(0.9137, 0.4588, 0.0392);
@@ -38,19 +38,19 @@ void main(void) {
 
     vec3 camVec = normalize(vPosCam - vPosWorld);
     vec3 reflexVec = normalize(reflect(-lightVec, vNormal));
-    vec3 specular_color = pow(max(0.0, dot(reflexVec, camVec)), vGlossiness) * vec3(1.0, 1.0, 1.0);
+    vec3 specular_color = pow(max(0.0, dot(reflexVec, camVec)), vGlossiness) * vec3(0.9137, 0.4588, 0.0392);
 
     if (vGlossiness == 0.0) {
         specular_color = vec3(0.0, 0.0, 0.0);
     }
 
-    vec3 castle_ceiling = texture2D(uSampler, vPosWorld.xz * 0.1).xyz;
+    vec3 sky = texture2D(uSampler, vPosWorld.xz * 1.0).xyz;
 
     vec3 color = sun_factor * dot(lightVec, vNormal) +
                  projectile_factor * projectile_color * dot(lightProjectile, vNormal) +
                  torch_1_factor * torch_1_color * dot(lightTorch1, vNormal) +
                  torch_2_factor * torch_2_color * dot(lightTorch2, vNormal) +
-                 0.5 * castle_ceiling + specular_color;
+                 0.5 * vec3(0, 0, 0.4) + specular_color;
 
     gl_FragColor = vec4(color, 1.0);
 }
