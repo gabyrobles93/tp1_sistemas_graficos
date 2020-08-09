@@ -4,7 +4,7 @@ class CatapultCounterweight {
         this.counterweight_column_1 = new CatapultColumn();
         this.counterweight_column_2 = new CatapultColumn();
         this.counterweight_hub = new Cilinder(0.15, 1.1, true, MaterialsList.WOOD_DARK);
-        this.counterweight = new Cube(0.7, 0.7, 1.4, true, MaterialsList.COLOR_GREY);
+        this.counterweight = new Cube(0.7, 0.7, 1.4, true, MaterialsList.STONE);
     }
 
     draw() {

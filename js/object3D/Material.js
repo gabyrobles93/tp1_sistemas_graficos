@@ -25,7 +25,8 @@ var MaterialsList = {
     WOOD_LIGHT: ['texture', 'wood_light', 0],
     WALL_DOOR: ['texture', 'brick_wall_door', 0],
     WALL_DOOR_PERIMETER: ['texture', 'brick_door', 0],
-    ROPE: ['texture', 'rope', 0]
+    ROPE: ['texture', 'rope', 0],
+    STONE: ['texture', 'stone', 0]
 };
 
 class Material {
