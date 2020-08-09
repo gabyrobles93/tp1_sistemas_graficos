@@ -91,6 +91,8 @@ class Object3D {
       this.material.setColorUniform();
 
       this.material.setGlossinessUniform();
+
+      this.material.setSamplerUniform();
   
       gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.webgl_index_buffer);
       gl.drawElements(this.gl_draw_mode, this.webgl_index_buffer.numItems, gl.UNSIGNED_SHORT, 0);

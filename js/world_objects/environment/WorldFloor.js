@@ -2,10 +2,10 @@ class WorldFloor {
     constructor(castle_floor_size) {
         this.castle_floor_size = castle_floor_size;
         this.modelMatrix = mat4.create();
-        this.castle_floor = new Extrusion(new Circle(40, this.castle_floor_size + 3), new Line(4, 1), true, MaterialsList.COLOR_GREEN);
-        this.castle_bridge = new Cube(8, 28, 1, true, MaterialsList.COLOR_GREEN);
+        this.castle_floor = new Extrusion(new Circle(40, this.castle_floor_size + 3), new Line(4, 1), true, MaterialsList.GRASS);
+        this.castle_bridge = new Cube(8, 28, 1, true, MaterialsList.GRASS);
         this.castle_water = new Extrusion(new Line(4, 28), new Circle(7, this.castle_floor_size + 3), false, MaterialsList.WATER);
-        this.world_floor = new Extrusion(new Rectangle(this.castle_floor_size + 70, 1), new Circle(7, this.castle_floor_size + 150), true, MaterialsList.COLOR_GREEN);
+        this.world_floor = new Extrusion(new Rectangle(this.castle_floor_size + 70, 1), new Circle(7, this.castle_floor_size + 150), true, MaterialsList.GRASS);
     }
 
     draw() {

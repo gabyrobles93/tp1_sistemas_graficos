@@ -44,13 +44,13 @@ void main(void) {
         specular_color = vec3(0.0, 0.0, 0.0);
     }
 
-    vec3 grass = texture2D(uSampler, vPosWorld.xz * 0.1).xyz;
+    vec3 wall = texture2D(uSampler, vPosWorld.xz * 0.1).xyz;
 
     vec3 color = sun_factor * dot(lightVec, vNormal) +
                  projectile_factor * projectile_color * dot(lightProjectile, vNormal) +
                  torch_1_factor * torch_1_color * dot(lightTorch1, vNormal) +
                  torch_2_factor * torch_2_color * dot(lightTorch2, vNormal) +
-                 0.5 * grass + specular_color;
+                 0.5 * wall + specular_color;
 
     gl_FragColor = vec4(color, 1.0);
 }

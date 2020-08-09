@@ -21,6 +21,7 @@ var MaterialsList = {
 class Material {
     constructor(type) {
         this.type = type;
+        this.textures = [];
 
         //this.fragment_program_name = 'fragment_shader_' + type + '.glsl';
         if (type[0].includes('color')) {
@@ -35,9 +36,12 @@ class Material {
         } else if (type[0].includes('texture')) {
             this.fragment_program_name = 'fragment_shader_' + type[1] + '.glsl';
             this.vertex_program_name = 'vertex_shader_' + 'regular' + '.glsl';
+            this._initTexture(type[1]);
         }
 
         this.shaderProgram = utils.addShaderProg(gl, this.vertex_program_name, this.fragment_program_name);
+        
+
         
         if (!gl.getProgramParameter(this.shaderProgram, gl.LINK_STATUS)) {
             alert("Unable to initialize the shader program.");
@@ -143,6 +147,17 @@ class Material {
         gl.uniformMatrix4fv(this.shaderProgram.viewMatrixUniform, false, viewMatrix);
     }
 
+    setSamplerUniform(sampler = this.type[1]) {
+        if (this.type[0] == 'texture') { 
+            console.log("Textura: " + sampler);
+
+            gl.useProgram(this.shaderProgram);
+            gl.activeTexture(gl.TEXTURE0);
+            gl.bindTexture(gl.TEXTURE_2D, this.textures[0]);
+            gl.uniform1i(this.shaderProgram.uSampler0, 0);
+        }
+    }
+
     // Private
 
     _initShaders() {
@@ -170,6 +185,34 @@ class Material {
             this.shaderProgram.uPosTorch2 = gl.getUniformLocation(this.shaderProgram, "uPosTorch2");
             this.shaderProgram.uColor = gl.getUniformLocation(this.shaderProgram, "uColor");
         }
+
+        if (this.type[0] == 'texture') {
+            this.shaderProgram.uSampler0 = gl.getUniformLocation(this.shaderProgram, "uSampler0");
+        }
+    }
+
+    _initTexture(file) {
+        var texture = gl.createTexture();
+        file = './textures/' + file + '.jpg';
+
+        texture.image = new Image();
+        
+        this.textures.push(texture);
+
+        texture.image.onload = function () {
+        
+            gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true); 					// invierto el ejeY					
+            gl.bindTexture(gl.TEXTURE_2D, texture); 						// activo la textura
+            
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, texture.image);	// cargo el bitmap en la GPU
+            
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);					// selecciono filtro de magnificacion
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_NEAREST);	// selecciono filtro de minificacion
+            
+            gl.generateMipmap(gl.TEXTURE_2D);		// genero los mipmaps
+            gl.bindTexture(gl.TEXTURE_2D, null);
+        }
+        texture.image.src = file;    
     }
     
 }
