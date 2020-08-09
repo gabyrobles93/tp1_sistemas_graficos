@@ -13,7 +13,7 @@ varying vec3 vPosTorch1;
 varying vec3 vPosTorch2;
 varying vec3 vColor;
 
-varying vec2 vUv;
+varying highp vec2 vTextCoords;
 
 // TODO: Hacer llegar el ancho del castillo para mapear bien las texturas
 

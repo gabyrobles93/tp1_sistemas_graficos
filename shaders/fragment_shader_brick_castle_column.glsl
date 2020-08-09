@@ -13,7 +13,7 @@ varying vec3 vPosTorch1;
 varying vec3 vPosTorch2;
 varying vec3 vColor;
 
-varying vec2 vUv;
+varying highp vec2 vTextCoords;
 
 void main(void) {
     vec3 projectile_color = vec3(0.9137, 0.4588, 0.0392);
@@ -44,7 +44,8 @@ void main(void) {
         specular_color = vec3(0.0, 0.0, 0.0);
     }
 
-    vec3 castle_column = texture2D(uSampler, vPosWorld.xy * 0.1).xyz;
+    vec3 castle_column = texture2D(uSampler, vTextCoords * 2.0).xyz;
+    
 
     vec3 color = sun_factor * dot(lightVec, vNormal) +
                  projectile_factor * projectile_color * dot(lightProjectile, vNormal) +
