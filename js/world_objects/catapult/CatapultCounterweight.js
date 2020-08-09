@@ -35,7 +35,9 @@ class CatapultCounterweight {
 
         // DIBUJO CONTRAPESO
         var m1 = mat4.clone(this.modelMatrix);
-        this.counterweight.translate(m1, -0.7, -1.5, 0);
+        m1 = this.counterweight.rotate_z(m1, 90);
+        //this.counterweight.translate(m1, -0.7, -1.5, 0);
+        this.counterweight.translate(m1, -2.2, 0, 0);
         this.counterweight.draw();
     }
 
