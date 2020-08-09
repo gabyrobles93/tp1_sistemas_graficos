@@ -21,7 +21,8 @@ var MaterialsList = {
     CASTLE_COLUMN: ['texture', 'brick_castle_column', 0],
     TOWER: ['texture', 'brick_tower', 0],
     SKY: ['texture', 'sky', 0],
-    WOOD_DARK: ['texture', 'wood_dark', 0]
+    WOOD_DARK: ['texture', 'wood_dark', 0],
+    WOOD_LIGHT: ['texture', 'wood_light', 0]
 };
 
 class Material {

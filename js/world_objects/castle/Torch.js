@@ -1,7 +1,7 @@
 class Torch {
     constructor() {
         this.modelMatrix = mat4.create();
-        this.handle = new Cilinder(0.2, 4, true, MaterialsList.COLOR_LIGHT_BROWN);
+        this.handle = new Cilinder(0.2, 4, true, MaterialsList.WOOD_DARK);
         this.fire = new Sphere(0.65, 30, 30, MaterialsList.LIGHT_FIRE);
     }
 

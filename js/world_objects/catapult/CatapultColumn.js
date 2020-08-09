@@ -3,7 +3,7 @@ class CatapultColumn {
         this.CATAPULT_COLUMN_SIZE_1 = 1;
         this.CATAPULT_COLUMN_SIZE_2 = 2;
         this.CATAPULT_COLUMN_WIDTH = 0.3;
-        this.column = new Parallelogram3D(this.CATAPULT_COLUMN_SIZE_1, this.CATAPULT_COLUMN_SIZE_2, this.CATAPULT_COLUMN_WIDTH, true, MaterialsList.COLOR_LIGHT_BROWN);
+        this.column = new Parallelogram3D(this.CATAPULT_COLUMN_SIZE_1, this.CATAPULT_COLUMN_SIZE_2, this.CATAPULT_COLUMN_WIDTH, true, MaterialsList.WOOD_LIGHT);
     }
 
     draw(modelMatrix) {

@@ -5,7 +5,7 @@ class CatapultWheel {
         this.CATAPULT_WHEEL_RADIUS = 1;
         this.CATAPULT_WHEEL_HUB_RADIUS = 1/6;
 
-        this.wheel = new Cilinder(this.CATAPULT_WHEEL_RADIUS, this.CATAPULT_WHEEL_WIDTH, true, MaterialsList.COLOR_LIGHT_BROWN)
+        this.wheel = new Cilinder(this.CATAPULT_WHEEL_RADIUS, this.CATAPULT_WHEEL_WIDTH, true, MaterialsList.WOOD_LIGHT)
         this.wheel_hub = new Cilinder (this.CATAPULT_WHEEL_HUB_RADIUS, this.CATAPULT_WHEEL_HUB_WIDTH, true, MaterialsList.WOOD_DARK)
     }
 
