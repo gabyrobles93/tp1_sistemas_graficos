@@ -55,7 +55,7 @@ void main(void) {
     }
 
     if(vPosWorld.y > 14.5) {
-        brick_wall = texture2D(uSampler, vTextCoords * 14.0).xyz;
+        brick_wall = texture2D(uSampler, vTextCoords * 20.0).xyz;
     }
 
     vec3 color = sun_factor * dot(lightVec, vNormal) +

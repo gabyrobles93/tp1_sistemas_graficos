@@ -13,7 +13,7 @@ class CastleWall2D {
         this.arc_8 = new BSplineCuadraticCurve([-10.5, 12, 0], [-14.5, 4, 0], [-14.5, -5, 0],);
 
         this.arc_vertices = 15;
-        this.vertices = 2;
+        this.vertices = 8;
         this.points = [];
         this.normal_points = [];
 
@@ -77,6 +77,26 @@ class CastleWall2D {
 
         this.points.push([-5.5, 16, 0]);
         this.normal_points.push([0, 1, 0]);
+
+        //
+        this.points.push([-6, 16, 0]);
+        this.normal_points.push([0, 1, 0]);
+
+        this.points.push([-6.5, 16, 0]);
+        this.normal_points.push([0, 1, 0]);
+
+        this.points.push([-7, 16, 0]);
+        this.normal_points.push([0, 1, 0]);
+
+        this.points.push([-7.5, 16, 0]);
+        this.normal_points.push([0, 1, 0]);
+
+        this.points.push([-8, 16, 0]);
+        this.normal_points.push([0, 1, 0]);
+
+        this.points.push([-8.5, 16, 0]);
+        this.normal_points.push([0, 1, 0]);
+        //
 
         this.points.push([-9, 16, 0]);
         this.normal_points.push([0, 1, 0]);
