@@ -16,7 +16,9 @@ var MaterialsList = {
     CASTLE_CEILING: ['color', [0.3607, 0.3725, 0.5882], 15],
     WATER: ['texture', 'water', 7],
     GRASS: ['texture', 'grass', 0],
-    WALL: ['texture', 'brick_wall', 0]
+    WALL: ['texture', 'brick_wall', 0],
+    CASTLE_WALL: ['texture', 'brick_castle', 0],
+    CASTLE_COLUMN: ['texture', 'brick_castle_column', 0]
 };
 
 class Material {
