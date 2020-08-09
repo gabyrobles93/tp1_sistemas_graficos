@@ -71,10 +71,10 @@ class Object3D {
   draw() {
     if(this.visible) {
       this.material.setModelMatrixUniform(this.modelMatrix);
+
+      this.material.setVertexPositionAttribute(this.webgl_position_buffer);
     
       this.material.setNormalMatrixUniform(this.normalMatrix);
-  
-      this.material.setVertexPositionAttribute(this.webgl_position_buffer);
   
       this.material.setVertexNormalAttribute(this.webgl_normal_buffer);
 

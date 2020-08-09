@@ -14,21 +14,27 @@ var MaterialsList = {
     LIGHT_FIRE: ['light', 'fire', 0],
     CASTLE_WINDOW: ['color', [0.2549, 0.1764, 0.1803], 9],
     CASTLE_CEILING: ['color', [0.3607, 0.3725, 0.5882], 15],
-    WATER: ['color', [0.3607, 0.3725, 0.5882], 7]
+    WATER: ['color', [0.3607, 0.3725, 0.5882], 7],
+    GRASS: ['texture', 'grass', 0]
 };
 
 class Material {
     constructor(type) {
         this.type = type;
 
-        this.vertex_program_name = 'vertex_shader_' + 'default' + '.glsl';
         //this.fragment_program_name = 'fragment_shader_' + type + '.glsl';
         if (type[0].includes('color')) {
             this.fragment_program_name = 'fragment_shader_regular.glsl';
+            this.vertex_program_name = 'vertex_shader_' + 'regular' + '.glsl';
         } else if (type[0].includes('test')) {
             this.fragment_program_name = 'fragment_shader_test_normal.glsl';
+            this.vertex_program_name = 'vertex_shader_' + 'regular' + '.glsl';
         } else if (type[0].includes('light')) {
             this.fragment_program_name = 'fragment_shader_light.glsl';
+            this.vertex_program_name = 'vertex_shader_light.glsl';
+        } else if (type[0].includes('texture')) {
+            this.fragment_program_name = 'fragment_shader_' + type[1] + '.glsl';
+            this.vertex_program_name = 'vertex_shader_' + 'regular' + '.glsl';
         }
 
         this.shaderProgram = utils.addShaderProg(gl, this.vertex_program_name, this.fragment_program_name);
@@ -47,42 +53,56 @@ class Material {
     }
 
     setNormalMatrixUniform(normalMatrix) {
+        if (this.type[0] == 'light') { return; }
+
         gl.useProgram(this.shaderProgram);
 
         gl.uniformMatrix4fv(this.shaderProgram.normalMatrixUniform, false, normalMatrix);
     }
 
     setProjectilePositionUniform(projectilePosition) {
+        if (this.type[0] == 'light') { return; }
+
         gl.useProgram(this.shaderProgram);
 
         gl.uniform3fv(this.shaderProgram.uPosProjectile, projectilePosition);
     }
 
     setCamPositionUniform(camPosition) {
+        if (this.type[0] == 'light') { return; }
+
         gl.useProgram(this.shaderProgram);
 
         gl.uniform3fv(this.shaderProgram.uPosCam, camPosition);        
     }
 
     setSunPositionUniform(sunPosition) {
+        if (this.type[0] == 'light') { return; }
+
         gl.useProgram(this.shaderProgram);
 
         gl.uniform3fv(this.shaderProgram.uPosSun, sunPosition);
     }
 
     setTorch1Uniform(torch1Position) {
+        if (this.type[0] == 'light') { return; }
+
         gl.useProgram(this.shaderProgram);
 
         gl.uniform3fv(this.shaderProgram.uPosTorch1, torch1Position);
     }
 
     setTorch2Uniform(torch2Position) {
+        if (this.type[0] == 'light') { return; }
+
         gl.useProgram(this.shaderProgram);
 
         gl.uniform3fv(this.shaderProgram.uPosTorch2, torch2Position);
     }
 
     setColorUniform(color = this.type[1]) {
+        if (this.type[0] == 'light') { return; }
+
         if (this.type[0] != 'color') {
             color = [255, 255, 255];
         }
@@ -93,6 +113,8 @@ class Material {
     }
 
     setGlossinessUniform(glossiness = this.type[2]) {
+        if (this.type[0] == 'light') { return; }
+
         gl.useProgram(this.shaderProgram);
 
         gl.uniform1f(this.shaderProgram.uGlossiness, glossiness); 
@@ -106,6 +128,8 @@ class Material {
     }
 
     setVertexNormalAttribute(webgl_normal_buffer) {
+        if (this.type[0] == 'light') { return; }
+        
         gl.useProgram(this.shaderProgram);
 
         gl.bindBuffer(gl.ARRAY_BUFFER, webgl_normal_buffer);
@@ -128,21 +152,24 @@ class Material {
         this.shaderProgram.vertexPositionAttribute = gl.getAttribLocation(this.shaderProgram, "aVertexPosition");
         gl.enableVertexAttribArray(this.shaderProgram.vertexPositionAttribute);
     
-        this.shaderProgram.vertexNormalAttribute = gl.getAttribLocation(this.shaderProgram, "aVertexNormal");
-        gl.enableVertexAttribArray(this.shaderProgram.vertexNormalAttribute);
-    
         this.shaderProgram.modelMatrixUniform = gl.getUniformLocation(this.shaderProgram, "modelMatrix");
         this.shaderProgram.viewMatrixUniform = gl.getUniformLocation(this.shaderProgram, "viewMatrix");
         this.shaderProgram.projMatrixUniform = gl.getUniformLocation(this.shaderProgram, "projMatrix");
-        this.shaderProgram.normalMatrixUniform = gl.getUniformLocation(this.shaderProgram, "normalMatrix");
 
-        this.shaderProgram.uGlossiness = gl.getUniformLocation(this.shaderProgram, "uGlossiness");
-        this.shaderProgram.uPosCam = gl.getUniformLocation(this.shaderProgram, "uPosCam");
-        this.shaderProgram.uPosSun = gl.getUniformLocation(this.shaderProgram, "uPosSun");
-        this.shaderProgram.uPosProjectile = gl.getUniformLocation(this.shaderProgram, "uPosProjectile");
-        this.shaderProgram.uPosTorch1 = gl.getUniformLocation(this.shaderProgram, "uPosTorch1");
-        this.shaderProgram.uPosTorch2 = gl.getUniformLocation(this.shaderProgram, "uPosTorch2");
-        this.shaderProgram.uColor = gl.getUniformLocation(this.shaderProgram, "uColor");
+        if (this.type[0] != 'light') {
+            this.shaderProgram.vertexNormalAttribute = gl.getAttribLocation(this.shaderProgram, "aVertexNormal");
+            gl.enableVertexAttribArray(this.shaderProgram.vertexNormalAttribute);
+        
+            this.shaderProgram.normalMatrixUniform = gl.getUniformLocation(this.shaderProgram, "normalMatrix");
+
+            this.shaderProgram.uGlossiness = gl.getUniformLocation(this.shaderProgram, "uGlossiness");
+            this.shaderProgram.uPosCam = gl.getUniformLocation(this.shaderProgram, "uPosCam");
+            this.shaderProgram.uPosSun = gl.getUniformLocation(this.shaderProgram, "uPosSun");
+            this.shaderProgram.uPosProjectile = gl.getUniformLocation(this.shaderProgram, "uPosProjectile");
+            this.shaderProgram.uPosTorch1 = gl.getUniformLocation(this.shaderProgram, "uPosTorch1");
+            this.shaderProgram.uPosTorch2 = gl.getUniformLocation(this.shaderProgram, "uPosTorch2");
+            this.shaderProgram.uColor = gl.getUniformLocation(this.shaderProgram, "uColor");
+        }
     }
     
 }
