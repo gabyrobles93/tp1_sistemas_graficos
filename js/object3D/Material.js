@@ -23,7 +23,8 @@ var MaterialsList = {
     SKY: ['texture', 'sky', 0],
     WOOD_DARK: ['texture', 'wood_dark', 0],
     WOOD_LIGHT: ['texture', 'wood_light', 0],
-    WALL_DOOR: ['texture', 'brick_wall_door', 0]
+    WALL_DOOR: ['texture', 'brick_wall_door', 0],
+    WALL_DOOR_PERIMETER: ['texture', 'brick_door', 0]
 };
 
 class Material {
