@@ -13,7 +13,7 @@ varying vec3 vPosTorch1;
 varying vec3 vPosTorch2;
 varying vec3 vColor;
 
-varying vec2 vUv;
+varying highp vec2 vTextCoords;
 
 // TODO: Hacer llegar la cantidad de lados de la muralla para mapear mejor las texturas
 
@@ -52,6 +52,10 @@ void main(void) {
         brick_wall = texture2D(uSampler, vPosWorld.xy * 0.1).xyz;
     } else {
         brick_wall = texture2D(uSampler, vPosWorld.yz * 0.1).xyz;
+    }
+
+    if(vPosWorld.y > 14.5) {
+        brick_wall = texture2D(uSampler, vTextCoords * 14.0).xyz;
     }
 
     vec3 color = sun_factor * dot(lightVec, vNormal) +
