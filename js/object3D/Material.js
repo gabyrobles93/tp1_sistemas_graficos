@@ -14,8 +14,9 @@ var MaterialsList = {
     LIGHT_FIRE: ['light', 'fire', 0],
     CASTLE_WINDOW: ['color', [0.2549, 0.1764, 0.1803], 9],
     CASTLE_CEILING: ['color', [0.3607, 0.3725, 0.5882], 15],
-    WATER: ['color', [0.3607, 0.3725, 0.5882], 7],
-    GRASS: ['texture', 'grass', 0]
+    WATER: ['texture', 'water', 7],
+    GRASS: ['texture', 'grass', 0],
+    WALL: ['texture', 'brick_wall', 0]
 };
 
 class Material {
@@ -149,8 +150,6 @@ class Material {
 
     setSamplerUniform(sampler = this.type[1]) {
         if (this.type[0] == 'texture') { 
-            console.log("Textura: " + sampler);
-
             gl.useProgram(this.shaderProgram);
             gl.activeTexture(gl.TEXTURE0);
             gl.bindTexture(gl.TEXTURE_2D, this.textures[0]);
@@ -192,6 +191,8 @@ class Material {
     }
 
     _initTexture(file) {
+        gl.useProgram(this.shaderProgram);
+
         var texture = gl.createTexture();
         file = './textures/' + file + '.jpg';
 
@@ -205,7 +206,7 @@ class Material {
             gl.bindTexture(gl.TEXTURE_2D, texture); 						// activo la textura
             
             gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, texture.image);	// cargo el bitmap en la GPU
-            
+
             gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);					// selecciono filtro de magnificacion
             gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_NEAREST);	// selecciono filtro de minificacion
             
