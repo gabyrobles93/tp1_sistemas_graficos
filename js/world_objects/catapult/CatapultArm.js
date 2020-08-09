@@ -4,8 +4,8 @@ class CatapultArm {
         this.projectile_model_matrix = mat4.create();
         this.arm = new Cube(0.3, 0.3, 13, true, MaterialsList.WOOD_LIGHT);
         this.bucket = new Cube(1.2, 1.2, 0.6, true, MaterialsList.WOOD_LIGHT);
-        this.rope_end = new Cilinder(0.6, 0.5, true, MaterialsList.COLOR_WHITE);
-        this.rope = new Cilinder(0.05, 1, true, MaterialsList.COLOR_WHITE);
+        this.rope_end = new Cilinder(0.6, 0.5, true, MaterialsList.ROPE);
+        this.rope = new Cilinder(0.05, 1, true, MaterialsList.ROPE);
         this.projectile = new Sphere(0.9, 30, 30, MaterialsList.LIGHT_FIRE);
         this.counterweight = new CatapultCounterweight();
     }
