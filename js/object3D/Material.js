@@ -160,6 +160,15 @@ class Material {
         }
     }
 
+    setTextCoordsAttribute(webgl_texture_coord_buffer) {
+        if (this.type[0] == 'light') { return; }
+        
+        gl.useProgram(this.shaderProgram);
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, webgl_texture_coord_buffer);
+        gl.vertexAttribPointer(this.shaderProgram.vertexTextCoordsAttribute, webgl_texture_coord_buffer.itemSize, gl.FLOAT, false, 0, 0);
+    }
+
     // Private
 
     _initShaders() {
@@ -176,6 +185,9 @@ class Material {
         if (this.type[0] != 'light') {
             this.shaderProgram.vertexNormalAttribute = gl.getAttribLocation(this.shaderProgram, "aVertexNormal");
             gl.enableVertexAttribArray(this.shaderProgram.vertexNormalAttribute);
+
+            this.shaderProgram.vertexTextCoordsAttribute = gl.getAttribLocation(this.shaderProgram, "aTextCoords");
+            gl.enableVertexAttribArray(this.shaderProgram.vertexTextCoordsAttribute);
         
             this.shaderProgram.normalMatrixUniform = gl.getUniformLocation(this.shaderProgram, "normalMatrix");
 

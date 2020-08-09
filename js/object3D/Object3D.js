@@ -74,6 +74,8 @@ class Object3D {
       this.material.setModelMatrixUniform(this.modelMatrix);
 
       this.material.setVertexPositionAttribute(this.webgl_position_buffer);
+
+      this.material.setTextCoordsAttribute(this.webgl_texture_coord_buffer);
     
       this.material.setNormalMatrixUniform(this.normalMatrix);
   
@@ -172,14 +174,15 @@ class Object3D {
 
   _fillTextureCoordsBuffer() {
     this.textureCoordsBuffer = [];
-    for (var i = 0; i < this.rows; i++) {
-      for (var j = 0; j < this.cols; j++) {
-        var u = j / (this.cols - 1);
-        var v = i / (this.rows - 1);
+    for (var i=0; i <= this.rows; i++) {
+      for (var j=0; j <= this.columns; j++) {
+        var u = j / this.columns;
+        var v = i / this.rows;
+
         this.textureCoordsBuffer.push(u);
         this.textureCoordsBuffer.push(v);
-      };
-    };
+      }
+    }
   }
 
   _fillIndexBuffer() {

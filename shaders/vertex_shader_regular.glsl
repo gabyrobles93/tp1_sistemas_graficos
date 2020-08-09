@@ -2,6 +2,7 @@ precision highp float;
 
 attribute vec3 aVertexPosition;
 attribute vec3 aVertexNormal;
+attribute vec2 aTextCoords;
 
 uniform mat4 modelMatrix;            
 uniform mat4 viewMatrix;
@@ -26,6 +27,7 @@ varying vec3 vPosProjectile;
 varying vec3 vPosTorch1;
 varying vec3 vPosTorch2;
 varying vec3 vColor;
+varying highp vec2 vTextCoords;
 
 void main(void) {
     gl_Position = projMatrix * viewMatrix * modelMatrix * vec4(aVertexPosition, 1.0);
@@ -40,4 +42,5 @@ void main(void) {
     vPosTorch1 = uPosTorch1;
     vPosTorch2 = uPosTorch2;
     vColor = uColor;
+    vTextCoords = aTextCoords;
 }
