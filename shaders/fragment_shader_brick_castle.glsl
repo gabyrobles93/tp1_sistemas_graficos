@@ -15,6 +15,8 @@ varying vec3 vColor;
 
 varying vec2 vUv;
 
+// TODO: Hacer llegar el ancho del castillo para mapear bien las texturas
+
 void main(void) {
     vec3 projectile_color = vec3(0.9137, 0.4588, 0.0392);
     float projectile_dist = distance(vPosProjectile, vPosWorld);
@@ -51,7 +53,6 @@ void main(void) {
     } else {
         castle_wall = texture2D(uSampler, vPosWorld.xy * 0.1).xyz;
     }
-    
 
     vec3 color = sun_factor * dot(lightVec, vNormal) +
                  projectile_factor * projectile_color * dot(lightProjectile, vNormal) +

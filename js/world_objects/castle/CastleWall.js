@@ -7,7 +7,7 @@ class CastleWall {
         this.WALL_DOOR_PROPORTION = 0.82;
         this.GENERAL_ROTATION = Math.PI/2 - (2*Math.PI - 2*Math.PI * this.WALL_DOOR_PROPORTION) / 2;
 
-        this.wall = new Extrusion(new CastleWall2D(), new CircleIncomplete(this.sides_qty - 2, this.side_size, this.WALL_DOOR_PROPORTION), false, MaterialsList.COLOR_WALL_GREY);
+        this.wall = new Extrusion(new CastleWall2D(), new CircleIncomplete(this.sides_qty - 2, this.side_size, this.WALL_DOOR_PROPORTION), false, MaterialsList.WALL);
         this.door = new CastleWallDoor(this.side_size);
         this.torch_1 = new Torch();
         this.torch_2 = new Torch();
