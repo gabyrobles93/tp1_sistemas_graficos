@@ -3,6 +3,14 @@ varying vec3 vNormal;
 varying vec3 vPosWorld;
 varying vec2 vUv;
 
+varying float vGlossiness;
+varying vec3 vPosCam;
+varying vec3 vPosSun;
+varying vec3 vPosProjectile;
+varying vec3 vPosTorch1;
+varying vec3 vPosTorch2;
+varying vec3 vColor;
+
 void main(void) {
     vec3 lightVec = normalize(vec3(0.0, 3.0, 5.0) - vPosWorld);
     vec3 diffColor = mix(vec3(0.7, 0.7, 0.7), vNormal, 0.4);

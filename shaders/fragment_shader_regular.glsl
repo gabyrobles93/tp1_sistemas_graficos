@@ -35,7 +35,7 @@ void main(void) {
 
     vec3 camVec = normalize(vPosCam - vPosWorld);
     vec3 reflexVec = normalize(reflect(-lightVec, vNormal));
-    vec3 specular_color = pow(max(0.0, dot(reflexVec, camVec)), vGlossiness) * vec3(1.0, 1.0, 1.0);
+    vec3 specular_color = pow(max(0.0, dot(reflexVec, camVec)), vGlossiness) * vec3(0.9137, 0.4588, 0.0392);
 
     if (vGlossiness == 0.0) {
         specular_color = vec3(0.0, 0.0, 0.0);
