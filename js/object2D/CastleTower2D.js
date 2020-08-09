@@ -4,7 +4,7 @@ class CastleTower2D {
         this.arc_2 = new BSplineCuadraticCurve([8, 4, 0], [4, 12, 0], [7, 17, 0]);
 
         this.arc_vertices = 15;
-        this.vertices = 12;
+        this.vertices = 16;
         this.points = [];
         this.normal_points = [];
 
@@ -85,6 +85,18 @@ class CastleTower2D {
         this.normal_points.push([-1, 0, 0]);
 
         this.points.push([4.5, 14, 0]);
+        this.normal_points.push([0, 1, 0]);
+
+        this.points.push([3.5, 14, 0]);
+        this.normal_points.push([0, 1, 0]);
+
+        this.points.push([2.5, 14, 0]);
+        this.normal_points.push([0, 1, 0]);
+
+        this.points.push([1.5, 14, 0]);
+        this.normal_points.push([0, 1, 0]);
+
+        this.points.push([0.5, 14, 0]);
         this.normal_points.push([0, 1, 0]);
 
         this.points.push([0, 14, 0]);
